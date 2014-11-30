@@ -1,5 +1,8 @@
 import os
 
+import logging
+from logging import StreamHandler
+
 from flask import Flask
 
 from views import views
@@ -14,6 +17,8 @@ def create_app(config=None):
     if config is not None:
         app.config.update(config)
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URL']
+    app.logger.setLevel(logging.DEBUG)
+    app.logger.addHandler(StreamHandler())
     
     assets.init_app(app)
     db.init_app(app)
