@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% set title="Modulo" %}
+{% set page="modulo" %}
+{% block content %}
+<h2>Modular Arithmetic</h2>
+<p>Some ciphers require modular arithmetic. This is similar to the arithmetic of clocks; when you reach the highest number possible (12 or 23) you start counting again, from the smallest number.</p>
+<p>Here are some more thorough descriptions: <a href="http://betterexplained.com/articles/fun-with-modular-arithmetic/" target="_blank">Better Explained</a>, <a href="https://en.wikipedia.org/wiki/Modular_arithmetic" target="_blank">Wikipedia</a>.</p>
+
+<h3>Calculator</h3>
+
+<div class="calc">
+    <input id="a" type="number" />
+    <span>mod</span>
+    <input id="n" type="number" />
+    <span>=</span>
+    <span id="b"></span>
+</div>
+{% endblock %}

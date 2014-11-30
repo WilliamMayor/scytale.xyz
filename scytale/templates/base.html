@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>scytale{% if title %} - {{ title }}{% endif %}</title>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        {% assets "css" %}<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />{% endassets %}
+    </head>
+    <body class="{{ page | default('') }}">
+        <nav id="sidebar">
+            <ul class="all">
+                <li><a href="{{ url_for('.home') }}">Home</a></li>
+                <li>Tools</li>
+                <li><ul>
+                    <li><a href="{{ url_for('.padding') }}">Padding</a></li>
+                    <li><a href="{{ url_for('.modulo') }}">Modulo</a></li>
+                </ul></li>
+                <li>Substitutions</li>
+                <li><ul>
+                    <li><a href="{{ url_for('.home') }}">Affine</a></li>
+                    <li><a href="{{ url_for('.home') }}">Fleissner Grille</a></li>
+                    <li><a href="{{ url_for('.home') }}">Mixed Alphabet</a></li>
+                    <li><a href="{{ url_for('.home') }}">Pig Pen</a></li>
+                    <li><a href="{{ url_for('.home') }}">Playfair</a></li>
+                    <li><a href="{{ url_for('.home') }}">Single Letter Grille</a></li>
+                    <li><a href="{{ url_for('.home') }}">Straddling Checkerboard</a></li>
+                </ul></li>
+                <li>Transpositions</li>
+                <li><ul>
+                    <li><a href="{{ url_for('.home') }}">Columnar</a></li>
+                    <li><a href="{{ url_for('.home') }}">Myszkowski</a></li>
+                    <li><a href="{{ url_for('.home') }}">Rail Fence</a></li>
+                    <li><a href="{{ url_for('.home') }}">Route</a></li>
+                    <li><a href="{{ url_for('.home') }}">Trifid</a></li>
+                </ul></li>
+            </ul>
+        </nav>
+        <div id="content">{% block content %}Nothing here yet{% endblock %}</div>
+        {% assets "js" %}<script type="text/javascript" src="{{ ASSET_URL }}"></script>{% endassets %}
+    </body>
+</html>
