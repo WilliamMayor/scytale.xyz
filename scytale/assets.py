@@ -15,6 +15,7 @@ js = Bundle(
     Bundle(
         'js/padding.js',
         'js/modulo.js',
+        'js/cipher.js',
         filters='rjsmin'),
     output='main.min.js')
 assets.register('js', js)

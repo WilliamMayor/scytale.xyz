@@ -17,6 +17,9 @@ var padding = {
         }).join("");
     },
     to_letters: function(numbers) {
+        if ($.isNumeric(numbers)) {
+            numbers = "" + numbers;
+        }
         if (numbers.length % 2 !== 0) {
             numbers = "0" + numbers;
         }
