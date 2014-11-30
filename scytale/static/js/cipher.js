@@ -36,6 +36,7 @@ var ciphers = {
                     c = parseInt(c);
                     $(".e1").text(a * 22 + b);
                     var cipher = (a * 22 + b) % 100;
+                    if (cipher < 0) cipher += 100;
                     $(".e2").text(cipher);
                     $(".e3").text(padding.to_letters(cipher));
                     $(".e4").text(c * (cipher - b));
@@ -43,8 +44,30 @@ var ciphers = {
             } else {
                 $("#c").val(NaN);
             }
+        }, encrypt: function(a, b, plaintext) {
+            var ciphertext = [];
+            _.each(plaintext, function(c) {
+                var n = parseInt(padding.to_numbers(c));
+                var m = (a * n + b) % 100;
+                if (m < 0) m += 100;
+                ciphertext.push(padding.to_letters(m));
+            });
+            return ciphertext.join("");
+        }, decrypt: function(c, b, ciphertext) {
+            var plaintext = [];
+            _.each(ciphertext, function(d) {
+                var n = parseInt(padding.to_numbers(d));
+                var m = (c*(n - b)) % 100;
+                if (m < 0) m += 100;
+                plaintext.push(padding.to_letters(m));
+            });
+            return plaintext.join("");
         }, test: function() {
-
+            console.log("Affine tests pass: " + _.every([
+                "hello" === ciphers.affine.decrypt(43,10,ciphers.affine.encrypt(7,10,"hello")),
+                "hello" === ciphers.affine.decrypt(43,-99,ciphers.affine.encrypt(7,-99,"hello")),
+                "hello" === ciphers.affine.decrypt(43,23456,ciphers.affine.encrypt(7,23456,"hello")),
+            ]));
         }
     }, fleissner: {
         init: function() {

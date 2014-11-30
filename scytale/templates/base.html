@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8" />
         <title>scytale{% if title %} - {{ title }}{% endif %}</title>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         {% assets "css" %}<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />{% endassets %}
     </head>
     <body class="{{ page | default('') }}">

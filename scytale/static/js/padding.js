@@ -24,6 +24,7 @@ var padding = {
             numbers = "0" + numbers;
         }
         numbers = numbers.match(/(..?)/g);
+
         return _.map(numbers, function(n) {
             return padding.reverse_scheme[n];
         }).join("");
