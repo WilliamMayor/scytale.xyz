@@ -25,26 +25,26 @@
 <div class="crypt">
     (<span class="a"></span>*<span class="normal">plain</span> + <span class="b"></span>) mod 100 = <span class="normal">cipher</span>
 </div>
-<div class="encrypt eg">
+<div class="eg">
     <ul>
         <li>e.g. </li>
         <li><span class="label">plain letter:</span> @</li>
         <li><span class="label">padding:</span> @ => 22</li>
         <li><span class="label">encrypt:</span> (<span class="a"></span>*22 + <span class="b"></span>) mod 100 = <span class="e1"></span> mod 100 = <span class="e2"></span></li>
-        <li><span class="label">cipher letter:</span> <span class="e3"></span></li>
+        <li><span class="label">cipher letter:</span> <span class="e2"></span> => <span class="e3"></span></li>
     </ul>
 </div>
 <h3>Decrypt</h3>
 <div class="crypt">
     <span class="c"></span>*(<span class="normal">cipher</span> - <span class="b"></span>) mod 100 = <span class="normal">plain</span>
 </div>
-<div class="encrypt eg">
+<div class="eg">
     <ul>
         <li>e.g. </li>
         <li><span class="label">cipher letter:</span> <span class="e3"></span></li>
         <li><span class="label">padding:</span> <span class="e3"></span> => <span class="e2"></span></li>
         <li><span class="label">decrypt:</span> <span class="c"></span>*(<span class="e2"></span> - <span class="b"></span>) mod 100 = <span class="e4"></span> mod 100 = 22</li>
-        <li><span class="label">plain letter:</span> @</li>
+        <li><span class="label">plain letter:</span> 22 => @</li>
     </ul>
 </div>
 {% endblock %}

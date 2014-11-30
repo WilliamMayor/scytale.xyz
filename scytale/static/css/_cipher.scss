@@ -30,4 +30,17 @@
             text-align: right;
         }
     }
+
+    &.fleissner {
+        .key table {
+            text-align: center;
+            td {
+                border: 1px solid $base-border-color;
+                
+                input {
+                    width: auto;
+                }
+            }
+        }
+    }
 }

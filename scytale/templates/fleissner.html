@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% set title="Fleissner Cipher" %}
+{% set page="cipher fleissner" %}
+{% block content %}
+<h2>Fleissner Cipher</h2>
+<p>A Fleissner grille cipher is an interesting form of transposition cipher that uses a grille (piece of paper) that looks like a chess board with squares cut out of it.</p>
+
+<p>The secret key for a Fleissner grille is made up of the size of the grille (8x8 for a chess board) and the locations of the holes. You also need to write down the orientation of the grille (which side is north, east, south, and west) and the direction you turn (clockwise or anti-clockwise).</p>
+
+<p>To encrypt a message you lay your grille over a second piece of paper and write your message in the spaces revealed by the holes in the grille. When you have filled in every space, rotate the grille 90 degrees in your chosen direction and continue writing your message in the new gaps that are revealed. Keep rotating until you've finished your message, then pick letters at random to fill in the gaps until you turn the grille all the way back to where it started. When you're done, lift the grille off the paper to reveal a square filled with the letters of your message in a garbled order. If you haven't finished your message by the time you rotate the grille back to where it started, then you'll have to continue on a fresh piece of paper.</p>
+
+<p>To decrypt a message write out the cipher text so it fills a square of the same dimensions as your grille. Place your grille over the square in the correct orientation. The grille will reveal only some of the letters, read them out in this order. Then rotate the grille and keep reading.</p>
+
+<p>The holes in the grille must be cut in such a way that you never overlap letters when encrypting messages. The key section below lets you click on squares to mark them as cut out or not. You will not be able to cut out squares that overlap.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Grille_(cryptography)#Turning_grilles" target="_blank">Wikipedia</a></p>
+
+<h3>Key</h3>
+<p>KEEP THIS SAFE!</p>
+<div class="key">
+    <div><label>Dimensions = </label><input type="number" id="x" /> x <input type="number" id="y" disabled /></div>
+    <table></table>
+</div>
+
+<h3>Example</h3>
+<div class="eg">
+    <ul>
+        <li>e.g. </li>
+        <li><span class="label">plain text:</span> Hello</li>
+        <li><span class="label">cipher text:</span> <span class="e1"></span></li>
+    </ul>
+</div>
+{% endblock %}
