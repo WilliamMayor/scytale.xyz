@@ -43,4 +43,25 @@
             }
         }
     }
+    &.mixed {
+        .key table {
+            text-align: center;
+            td {
+                padding: 0;
+                border: none;
+                &:nth-child(2n+1) {
+                    background-color: $base-border-color;
+                }
+                input {
+                    width: 30px;
+                    margin: 5px;
+
+                    &.error {
+                        background-color: $error-back-color;
+                        color: $error-front-color
+                    }
+                }
+            }
+        }
+    }
 }

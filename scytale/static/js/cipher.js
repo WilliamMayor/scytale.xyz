@@ -215,6 +215,77 @@ var ciphers = {
                 ciphers.fleissner.decrypt(grille, -1, "leitciahgthetidflenbiietfonsfssturesnednepreheentrtgproionecsl&c") === from_wiki
             ]));
         }
+    }, mixed: {
+        init: function() {
+            var mappings = _.map(padding.scheme, function(value, key) {
+                value = ciphers.mixed.escape(padding.to_letters((parseInt(value) + 10) % 100));
+                return "<td class='map-" + key + "'>" + key + "</td><td class='map-" + key + "'><input data-plain='" + key + "' type='text' value='" + value + "' /></td>";
+            });
+            var t = $(".key table");
+            var tr = "<tr>";
+            _.each(mappings, function(pair, i) {
+                if (i > 0 && i % 6 === 0) {
+                    tr += "</tr>";
+                    t.append($(tr));
+                    tr = "<tr>";
+                }
+                tr += pair;
+            });
+            tr += "</tr>";
+            t.append($(tr));
+            ciphers.mixed.update();
+        }, escape: function(c) {
+            var entityMap = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': '&quot;',
+                "'": '&#39;',
+                "/": '&#x2F;'
+            };
+            return String(c).replace(/[&<>"'\/]/g, function (s) {
+                return entityMap[s];
+            });
+        }, update: function() {
+            var key = {};
+            _.each($(".key table input"), function(input) {
+                input = $(input);
+                var cipher = input.val();
+                var plain = input.data("plain");
+                if (!cipher || _.values(key).indexOf(cipher) !== -1) {
+                    input.addClass("error");
+                    input.val("");
+                } else {
+                    key[plain] = cipher;
+                    input.removeClass("error");
+                }
+            });
+            var all = _.keys(padding.scheme);
+            var values = _.values(key);
+            var missing = _.filter(all, function(c) {
+                return (values.indexOf(c) === -1);
+            });
+            $(".key .missing span").text(missing.join(""));
+            $(".e1").text(ciphers.mixed.encrypt(key, "Hello"));
+        }, encrypt: function(key, plain) {
+            return _.map(plain, function(letter) {
+                return key[letter];
+            }).join("");
+        }, decrypt: function(key, cipher) {
+            key = _.invert(key);
+            return _.map(cipher, function(letter) {
+                return key[letter];
+            }).join("");
+        }, test: function() {
+            var key = {};
+            _.each(padding.scheme, function(v, k) {
+                v = padding.to_letters((parseInt(v) + 1) % 100);
+                key[k] = v;
+            });
+            console.log("Mixed alphabet tests pass: " + _.every([
+                "Hello" === ciphers.mixed.decrypt(key, ciphers.mixed.encrypt(key, "Hello"))
+            ]));
+        }
     }
 };
 $(document).ready(function() {
