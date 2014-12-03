@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% set title="Trifid Cipher" %}
+{% set page="cipher trifid" %}
+{% block content %}
+<h2>Trifid Cipher</h2>
+
+<p>Trifid ciphers are one of the most complicated substitution ciphers in this list. They work by splitting each letter into 3 parts, each part then interacts with other parts from other letters to form a secure encryption.</p> 
+
+<p>The key for a Trifid cipher is a table with three, 3x3 boxes. Each cell in the table is filled up randomly with letters. Each letter can be found by using a 3-part coordinate; (which box, which row, which column).</p>
+
+<p>To encrypt a message write out the letters in a line, underneath each letter write the letter's coordinates in a column. Now read off, from left to right, all of the coordinates. For each 3 numbers you read look up the letter that corresponds to that triplet</p>
+
+<p>To decrypt convert each letter in the cipher text to a coordinate triplet and write the triplets out, from left to right, forming three equal-width rows. Now read down each column to retrieve the original triplet and use your table to convert it into the original letter.</p>
+
+<p>
+    <a href="http://en.wikipedia.org/wiki/Trifid_cipher" target="_blank">Wikipedia</a>
+     | <a href="/static/trifid.pdf" target="_blank">Instruction Sheet</a>
+</p>
+
+<h3>Key</h3>
+<p>KEEP THIS SAFE!</p>
+<div class="key">
+    <table class="editable">
+        <tr class="box"><td>Box 1</td><td>Box 2</td><td>Box 3</td></tr>
+        <tr>
+            <td class="container">
+                <table>
+                    <tr class="box"><td></td><td>1</td><td>2</td><td>3</td></tr>
+                    <tr><td>1</td>
+                        <td><input type="text" value="Q" data-coords="111" /></td>
+                        <td><input type="text" value="W" data-coords="112" /></td>
+                        <td><input type="text" value="E" data-coords="113" /></td>
+                    </tr>
+                    <tr><td>2</td>
+                        <td><input type="text" value="R" data-coords="121" /></td>
+                        <td><input type="text" value="T" data-coords="122" /></td>
+                        <td><input type="text" value="Y" data-coords="123" /></td>
+                    </tr>
+                    <tr><td>3</td>
+                        <td><input type="text" value="U" data-coords="131" /></td>
+                        <td><input type="text" value="I" data-coords="132" /></td>
+                        <td><input type="text" value="O" data-coords="133" /></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="container">
+                <table>
+                    <tr class="box"><td>1</td><td>2</td><td>3</td></tr>
+                    <tr>
+                        <td><input type="text" value="P" data-coords="211" /></td>
+                        <td><input type="text" value="A" data-coords="212" /></td>
+                        <td><input type="text" value="S" data-coords="213" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="D" data-coords="221" /></td>
+                        <td><input type="text" value="F" data-coords="222" /></td>
+                        <td><input type="text" value="G" data-coords="223" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="H" data-coords="231" /></td>
+                        <td><input type="text" value="J" data-coords="232" /></td>
+                        <td><input type="text" value="K" data-coords="233" /></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="container">
+                <table>
+                    <tr class="box"><td>1</td><td>2</td><td>3</td></tr>
+                    <tr>
+                        <td><input type="text" value="L"  data-coords="311" /></td>
+                        <td><input type="text" value="Z"  data-coords="312" /></td>
+                        <td><input type="text" value="X"  data-coords="313" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="C"  data-coords="321" /></td>
+                        <td><input type="text" value="V"  data-coords="322" /></td>
+                        <td><input type="text" value="B"  data-coords="323" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="N"  data-coords="331" /></td>
+                        <td><input type="text" value="M"  data-coords="332" /></td>
+                        <td><input type="text" value="."  data-coords="333" /></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="coords">
+
+    </table>
+</div>
+
+<h3>Example</h3>
+<div class="eg">
+    <ul>
+        <li>e.g. </li>
+        <li><span class="label">plain text:</span> HELLO</li>
+        <li><span class="label">cipher text:</span> <span class="e1"></span></li>
+    </ul>
+</div>
+{% endblock %}

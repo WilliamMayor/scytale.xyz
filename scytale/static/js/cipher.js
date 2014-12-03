@@ -643,6 +643,52 @@ var ciphers = {
         }, test: function() {
             
         }
+    }, trifid: {
+        init: function() {
+            ciphers.trifid.update();
+        }, update: function() {
+            var key = {};
+            _.each($(".key .editable input"), function(i) {
+                key[$(i).val()] = String($(i).data("coords"));
+            });
+            $(".key .coords tr").remove();
+            var trs = [[],[],[],[]];
+            _.each(key, function(coords, letter) {
+                trs[0].push(letter);
+                coords = coords.split("");
+                trs[1].push(coords[0]);
+                trs[2].push(coords[1]);
+                trs[3].push(coords[2]);
+            });
+            _.each(trs, function(tr) {
+                $(".key .coords").append("<tr><td>" + tr.join("</td><td>") + "</td></tr>");
+            });
+            $(".e1").text(ciphers.trifid.encrypt(key, "HELLO"));
+        }, encrypt: function(key, plain) {
+            var rows = [[],[],[]];
+            _.each(plain, function(c) {
+                var coords = key[c];
+                if (coords) {
+                    coords = coords.split("");
+                    rows[0].push(coords[0]);
+                    rows[1].push(coords[1]);
+                    rows[2].push(coords[2]);
+                }
+            });
+            var numbers = _.map(rows, function(r) { return r.join("");}).join("");
+            console.log(numbers);
+            var by_coords = _.invert(key);
+            var cipher = [];
+            for (var i=0; i<numbers.length; i+=3) {
+                var coord = numbers.slice(i, i+3);
+                cipher.push(by_coords[coord]);
+            }
+            return cipher.join("");
+        }, decrypt: function(key, cipher) {
+            return "";
+        }, test: function() {
+
+        }
     }
 };
 $(document).ready(function() {

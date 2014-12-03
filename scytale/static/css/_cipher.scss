@@ -120,4 +120,47 @@
             }
         }
     }
+    &.trifid {
+        .key table.editable {
+            .box {
+                td {
+                    text-align: center;
+                }
+            }
+            .container {
+                padding: 0;
+                border-right: 1px solid $base-border-color;
+                border-bottom: none;
+                &:last-child {
+                    border-right: none;
+                }
+            }
+            table {
+                margin: 0;
+                td {
+                    input {
+                        width: 30px;
+                        margin: 5px;
+                    }
+                }
+            }
+        }
+        .key .coords {
+            tr:first-child {
+                background-color: $base-border-color;
+            }
+            tr:last-child {
+                border-bottom: 1px solid $base-border-color;
+            }
+            td {
+                text-align: center;
+                padding: 0;
+                border-bottom: none;
+                border-right: 1px solid $base-border-color;
+                &:first-child {
+                    border-left: 1px solid $base-border-color;
+                }
+            }
+        }
+    }
 }
