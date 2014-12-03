@@ -477,9 +477,30 @@ var ciphers = {
                 return columns[i].join("");
             }).join("");
         }, decrypt: function(key, cipher) {
-
+            var columns = [];
+            var size = cipher.length / key.length;
+            var sorted = _.sortBy(key, _.identity);
+            _.each(sorted, function(l, i) {
+                var j = key.indexOf(l);
+                var column = cipher.slice(i*size, (i+1)*size);
+                columns[j] = column;
+            });
+            var plain = [];
+            for (var i=0; i<size; i++) {
+                _.each(columns, function(c) {
+                    if (c) {
+                        plain.push(c[i]);
+                    }
+                });
+            }
+            return plain.join("").replace(/\s+$/,'');
         }, test: function() {
-
+            console.log("Columnar tests pass: " + _.every([
+                "Hello" === ciphers.columnar.decrypt("park", ciphers.columnar.encrypt("park", "Hello")),
+                "Lots of text!" === ciphers.columnar.decrypt("park", ciphers.columnar.encrypt("park", "Lots of text!")),
+                "one letter?" === ciphers.columnar.decrypt("a", ciphers.columnar.encrypt("a", "one letter?")),
+                "long" === ciphers.columnar.decrypt("codeword", ciphers.columnar.encrypt("codeword", "long")),
+            ]));
         }
     }
 };
