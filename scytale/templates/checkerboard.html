@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% set title="Straddling Checkerboard Cipher" %}
+{% set page="cipher checkerboard" %}
+{% block content %}
+<h2>Straddling Checkerboard Cipher</h2>
+
+<p>The Straddling Checkerboard Cipher is an awesome substitution cipher that turns letters into numbers then back into letters again.</p>
+
+<p>The key for this cipher is a combination of a grid of letters and a secret key. The grid is created by writing the numbers 0-9 in the first row, followed by three rows of letters. Often people randomise the numbers in the first row. The letters are written in any order but lots of people write them in descending order of use (i.e. the most common letters first). The secret number can be any number, including numbers that start with zeros (e.g. 0452). In the first row of letters, skip two columns at random, label the second row of numbers with the number of the first column you skipped, label the second with the second. See below for an example grid.</p>
+
+<p>To encrypt a message go through your plain text letter by letter. Find each letter in your grid, if the letter is in the first row of letters then write down the number that is above it in the grid. If the letter is in one of the other two letter rows then write down first the number label for its row then its column label. When you have gone through your entire plain text message you will have a long row of numbers. Take your secret number and write it repeatedly underneath these numbers. Now take each number one by one and add it to the number underneath it using modular arithmetic mod 10. Finally, take this new long line of numbers and use the grid to convert it into letters again.</p>
+
+<p>To decrypt a message you do the opposite of what you did when encrypting. First, convert the letters into numbers, then take away the secret number (mod 10) and finally convert the numbers back into letters.</p> 
+
+<p>
+    <a href="http://en.wikipedia.org/wiki/Straddling_checkerboard#Straddling_checkerboard" target="_blank">Wikipedia</a>
+     | <a href="/static/checkerboard.pdf" target="_blank">Instruction Sheet</a>
+</p>
+
+<h3>Key</h3>
+<p>KEEP THIS SAFE!</p>
+<div class="key">
+    <table>
+        <tr>
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="text" value="R" /></td>
+            <td><input type="text" value="A" /></td>
+            <td><input type="text" value="I" /></td>
+            <td><input type="text" value="N" /></td>
+            <td><input type="text" value="" /></td>
+            <td><input type="text" value="O" /></td>
+            <td><input type="text" value="T" /></td>
+            <td><input type="text" value="S" /></td>
+            <td><input type="text" value="" /></td>
+            <td><input type="text" value="E" /></td>
+        </tr>
+        <tr>
+            <td><span class="first"></span></td>
+            <td><input type="text" value="Q" /></td>
+            <td><input type="text" value="W" /></td>
+            <td><input type="text" value="Y" /></td>
+            <td><input type="text" value="U" /></td>
+            <td><input type="text" value="P" /></td>
+            <td><input type="text" value="D" /></td>
+            <td><input type="text" value="F" /></td>
+            <td><input type="text" value="G" /></td>
+            <td><input type="text" value="H" /></td>
+            <td><input type="text" value="J" /></td>
+        </tr>
+        <tr>
+            <td><span class="second"></span></td>
+            <td><input type="text" value="K" /></td>
+            <td><input type="text" value="L" /></td>
+            <td><input type="text" value="Z" /></td>
+            <td><input type="text" value="X" /></td>
+            <td><input type="text" value="C" /></td>
+            <td><input type="text" value="V" /></td>
+            <td><input type="text" value="B" /></td>
+            <td><input type="text" value="M" /></td>
+            <td><input type="text" value=" " /></td>
+            <td><input type="text" value="." /></td>
+        </tr>
+    </table>
+    <div class="missing">Missing letters: <span></span></div>
+    <label>Secret Code:</label><input id="secretcode" type="text" value="2311" />
+</div>
+
+<h3>Example</h3>
+<div class="eg">
+    <ul>
+        <li>e.g. </li>
+        <li><span class="label">plain text:</span> HELLO</li>
+        <li><span class="label">numbers:</span> <span class="e1"></span></li>
+        <li><span class="label">add code:</span> <span class="e2"></span></li>
+        <li><span class="label">cipher text:</span> <span class="e3"></span></li>
+    </ul>
+</div>
+{% endblock %}

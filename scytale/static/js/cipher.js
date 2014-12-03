@@ -565,6 +565,84 @@ var ciphers = {
                 from_wiki === ciphers.singleletter.decrypt(grille, ciphers.singleletter.encrypt(grille, from_wiki)).slice(0, from_wiki.length)
             ]));
         }
+    }, checkerboard: {
+        init: function() {
+            ciphers.checkerboard.update();
+        }, update: function() {
+            var grid = [];
+            grid.push(_.map($(".key table tr:eq(1) td:gt(0) input"), function(input) {
+                input = $(input);
+                return input.val() || null;
+            }));
+            grid.push(_.map($(".key table tr:eq(2) td:gt(0) input"), function(input) {
+                input = $(input);
+                return input.val();
+            }));
+            grid.push(_.map($(".key table tr:eq(3) td:gt(0) input"), function(input) {
+                input = $(input);
+                return input.val();
+            }));
+            var all = "ABCDEFGHIJKLMNOPQRSTUVWXYZ .";
+            var missing = _.filter(all, function(c) {
+                var coords = ciphers.checkerboard.find(grid, c);
+                return coords[1] === -1;
+            });
+            $(".key .missing span").text(missing.join(""));
+            var first = grid[0].indexOf(null);
+            var second = grid[0].indexOf(null, first+1);
+            $(".key .first").text(first);
+            $(".key .second").text(second);
+            ciphers.checkerboard.encrypt(grid, $("#secretcode").val(), "HELLO");
+        }, find: function(grid, letter) {
+            var i = grid[0].indexOf(letter);
+            if (i === -1) {
+                i = grid[1].indexOf(letter);
+                if (i === -1) {
+                    i = grid[2].indexOf(letter);
+                    return [2, i];
+                } else {
+                    return [1, i];
+                }
+            } else {
+                return [0, i];
+            }
+        }, encrypt: function(grid, code, plain) {
+            var first = grid[0].indexOf(null);
+            var second = grid[0].indexOf(null, first+1);
+            cipher = [];
+            _.each(plain, function(c) {
+                var cords = ciphers.checkerboard.find(grid, c);
+                if (cords[0] !== 0) {
+                    cipher.push(cords[0]);
+                }
+                cipher.push(cords[1]);
+            });
+            $(".e1").text(cipher.join(", "));
+            cipher = _.map(cipher, function(n, i) {
+                var m = parseInt(code[i % code.length]);
+                return (parseInt(n) + m) % 10;
+            });
+            $(".e2").text(cipher.join(", "));
+            var c = [];
+            for (var i=0; i<cipher.length; i++) {
+                var l = grid[0][cipher[i]];
+                if (l === null) {
+                    if (i === parseInt(first)) {
+                        l = grid[1][cipher[i+1]];
+                    } else {
+                        l = grid[2][cipher[i+1]];
+                    }
+                    i++;
+                }
+                c.push(l);
+            }
+            $(".e3").text(c.join(""));
+            return c.join("");
+        }, decrypt: function(grid, code, cipher) {
+            
+        }, test: function() {
+            
+        }
     }
 };
 $(document).ready(function() {

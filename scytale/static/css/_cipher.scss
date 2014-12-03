@@ -102,4 +102,22 @@
             }
         }
     }
+    &.checkerboard {
+        .key table {
+            text-align: center;
+            td {
+                padding: 0;
+                border: none;
+                input {
+                    width: 30px;
+                    margin: 5px;
+
+                    &.error {
+                        background-color: $error-back-color;
+                        color: $error-front-color
+                    }
+                }
+            }
+        }
+    }
 }
