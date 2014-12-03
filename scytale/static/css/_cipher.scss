@@ -69,4 +69,25 @@
             font-family: 'PigPen';
         }
     }
+    &.playfair {
+        ul.intro {
+            list-style-type: disc;
+            margin-left: 40px;
+        }
+        .key table {
+            text-align: center;
+            td {
+                padding: 0;
+                border: 1px solid $base-border-color;
+                input {
+                    margin: 5px;
+
+                    &.error {
+                        background-color: $error-back-color;
+                        color: $error-front-color
+                    }
+                }
+            }
+        }
+    }
 }

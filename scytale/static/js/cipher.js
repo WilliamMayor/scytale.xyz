@@ -303,7 +303,6 @@ var ciphers = {
                     input.removeClass("error");
                 }
             });
-            console.log(key);
             var all = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var values = _.keys(key);
             var missing = _.filter(all, function(c) {
@@ -317,6 +316,123 @@ var ciphers = {
             return ciphers.mixed.decrypt(key, cipher);
         }, test: function() {
 
+        }
+    }, playfair: {
+        init: function() {
+            ciphers.playfair.update();
+        }, update: function() {
+            var key = [];
+            _.each($(".key table input"), function(input) {
+                input = $(input);
+                var value = input.val();
+                if (!value) {
+                    input.addClass("error");
+                } else {
+                    input.removeClass("error");
+                    key.push(value);
+                }
+            });
+            var all = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
+            var missing = _.filter(all, function(c) {
+                return (key.indexOf(c) === -1);
+            });
+            $(".key .missing span").text(missing.join(""));
+            $(".e1").text(ciphers.playfair.encrypt(key, "HELLO"));
+            $(".e2").text(ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "HELLO")));
+        }, encrypt: function(key, plain) {
+            var cipher = [];
+            for (var i = 0; i < plain.length; i+=2) {
+                var first = plain[i];
+                var second;
+                if (i+1 === plain.length) {
+                    second = 'X';
+                } else {
+                    second = plain[i+1];
+                }
+                if (first === second) {
+                    second = 'X';
+                    i--;
+                }
+                var first_i = key.indexOf(first);
+                var first_x = first_i % 5;
+                var first_y = Math.floor(first_i / 5);
+                var second_i = key.indexOf(second);
+                var second_x = second_i % 5;
+                var second_y = Math.floor(second_i / 5);
+                if (first_x === second_x) {
+                    first_y = (first_y + 1) % 5;
+                    second_y = (second_y + 1) % 5;
+                } else if (first_y === second_y) {
+                    first_x = (first_x + 1) % 5;
+                    second_x = (second_x + 1) % 5;
+                } else {
+                    var temp_x = first_x;
+                    first_x = second_x;
+                    second_x = temp_x;
+                }
+                cipher.push(key[first_y * 5 + first_x]);
+                cipher.push(key[second_y * 5 + second_x]);
+            }
+            return cipher.join("");
+        }, decrypt: function(key, cipher) {
+            var plain = [];
+            for (var i = 0; i < cipher.length; i+=2) {
+                var first = cipher[i];
+                var second = cipher[i+1];
+                var first_i = key.indexOf(first);
+                var first_x = first_i % 5;
+                var first_y = Math.floor(first_i / 5);
+                var second_i = key.indexOf(second);
+                var second_x = second_i % 5;
+                var second_y = Math.floor(second_i / 5);
+                if (first_x === second_x) {
+                    first_y = (first_y + 4) % 5;
+                    second_y = (second_y + 4) % 5;
+                } else if (first_y === second_y) {
+                    first_x = (first_x + 4) % 5;
+                    second_x = (second_x + 4) % 5;
+                } else {
+                    var temp_x = first_x;
+                    first_x = second_x;
+                    second_x = temp_x;
+                }
+                plain.push(key[first_y * 5 + first_x]);
+                plain.push(key[second_y * 5 + second_x]);
+            }
+            return plain.join("");
+        }, test: function() {
+            var key = "WELCOMTVIRSPAKBDFGHNJUXYZ";
+            var key2 = [];
+            _.each($(".key table input"), function(input) {
+                input = $(input);
+                var value = input.val();
+                if (!value) {
+                    input.addClass("error");
+                } else {
+                    input.removeClass("error");
+                    key2.push(value);
+                }
+            });
+            console.log("Playfair tests pass: " + _.every([
+                "GLGL" === ciphers.playfair.encrypt(key, "AA"),
+                "AUAU" === ciphers.playfair.encrypt(key, "PP"),
+                "OJ" === ciphers.playfair.encrypt(key, "WZ"),
+                "FU" === ciphers.playfair.encrypt(key, "PF"),
+                "AK" === ciphers.playfair.encrypt(key, "PA"),
+                "UE" === ciphers.playfair.encrypt(key, "FU"),
+                "ND" === ciphers.playfair.encrypt(key, "HN"),
+                "GU" === ciphers.playfair.encrypt(key, "F"),
+                "FCVLCW" === ciphers.playfair.encrypt(key, "HELLO"),
+                "AXAX" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "AA")),
+                "PXPX" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "PP")),
+                "WZ" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "WZ")),
+                "PF" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "PF")),
+                "PA" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "PA")),
+                "FU" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "FU")),
+                "HN" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "HN")),
+                "FX" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "F")),
+                "HELXLO" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "HELLO"))
+            ]));
         }
     }
 };
