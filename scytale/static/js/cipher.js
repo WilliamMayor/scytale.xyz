@@ -743,6 +743,53 @@ var ciphers = {
         }, test: function() {
             
         }
+    }, railfence: {
+        init: function() {
+            ciphers.railfence.update();
+        }, update: function() {
+            var rails_count = parseInt($("#rails").val());
+            $(".key table tr").remove();
+            var t = $(".key table");
+            var plain = "Hello scholars!";
+            for (var i=0; i<rails_count; i++) {
+                var tr = [];
+                var count = rails_count - 1;
+                _.each(plain, function(c, j) {
+                    var td = "<td>";
+                    var x_dist = j % (2*count);
+                    var y_dist = (x_dist > count) ? x_dist - count + i : x_dist + count -i;
+                    td += (y_dist === count) ? c : ".";
+                    tr.push(td + "</td>");
+                });
+                t.append("<tr>" + tr.join("") + "</tr>");
+            }
+            var cipher = _.filter(_.map($(".key table td"), function(td) {
+                return $(td).text();
+            }), function(t) {
+                return t !== ".";
+            }).join("");
+            $(".e1").text(cipher);
+        }, encrypt: function(key, plain) {
+            var columns = _.map(key, function() {
+                return [];
+            });
+            var size = Math.ceil(plain.length / key.length) * key.length;
+            plain += _.map(new Array(size - plain.length), function(_) {
+                return " ";
+            }).join("");
+            _.each(plain, function(l, i) {
+                var j = i % key.length;
+                columns[j].push(l);
+            });
+            var sorted = _.sortBy(key, _.identity);
+            return _.map(sorted, function(l) {
+                var i = key.indexOf(l);
+                return columns[i].join("");
+            }).join("");
+        }, decrypt: function(key, cipher) {
+            return "";
+        }, test: function() {
+        }
     }
 };
 $(document).ready(function() {
