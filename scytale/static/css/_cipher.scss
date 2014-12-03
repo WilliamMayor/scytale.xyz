@@ -43,7 +43,7 @@
             }
         }
     }
-    &.mixed {
+    &.mixed, &.pigpen {
         .key table {
             text-align: center;
             td {
@@ -62,6 +62,11 @@
                     }
                 }
             }
+        }
+    }
+    &.pigpen {
+        .pigpen {
+            font-family: 'PigPen';
         }
     }
 }

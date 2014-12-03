@@ -286,6 +286,38 @@ var ciphers = {
                 "Hello" === ciphers.mixed.decrypt(key, ciphers.mixed.encrypt(key, "Hello"))
             ]));
         }
+    }, pigpen: {
+        init: function() {
+            ciphers.pigpen.update();
+        }, update: function() {
+            var key = {};
+            _.each($(".key table input"), function(input) {
+                input = $(input);
+                var plain = input.val();
+                var cipher = input.data("cipher");
+                if (!plain || _.keys(key).indexOf(plain) !== -1) {
+                    input.addClass("error");
+                    input.val("");
+                } else {
+                    key[plain] = cipher;
+                    input.removeClass("error");
+                }
+            });
+            console.log(key);
+            var all = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var values = _.keys(key);
+            var missing = _.filter(all, function(c) {
+                return (values.indexOf(c) === -1);
+            });
+            $(".key .missing span").text(missing.join(""));
+            $(".e1").text(ciphers.mixed.encrypt(key, "HELLO"));
+        }, encrypt: function(key, plain) {
+            return ciphers.mixed.encrypt(key, plain);
+        }, decrypt: function(key, cipher) {
+            return ciphers.mixed.decrypt(key, cipher);
+        }, test: function() {
+
+        }
     }
 };
 $(document).ready(function() {
