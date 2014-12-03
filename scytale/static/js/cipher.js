@@ -434,6 +434,53 @@ var ciphers = {
                 "HELXLO" === ciphers.playfair.decrypt(key, ciphers.playfair.encrypt(key, "HELLO"))
             ]));
         }
+    }, columnar: {
+        init: function() {
+            $("#codeword").val("park").change();
+        }, update: function() {
+            $(".key table tr").remove();
+            var codeword = $("#codeword").val();
+            var t = $(".key table");
+            var tr = "<tr>";
+            _.each(codeword, function(l) {
+                tr += "<td>" + l + "</td>";
+            });
+            tr += "</tr>";
+            t.append(tr);
+            tr = "<tr>";
+            _.each("Hello scholars!", function(l, i) {
+                if (i > 0 && i % codeword.length === 0) {
+                    tr += "</tr>";
+                    t.append(tr);
+                    tr = "<tr>";
+                }
+                tr += "<td>" + l + "</td>";
+            });
+            tr += "</tr>";
+            t.append(tr);
+            $(".e1").text(ciphers.columnar.encrypt(codeword, "Hello scholars!"));
+        }, encrypt: function(key, plain) {
+            var columns = _.map(key, function() {
+                return [];
+            });
+            var size = Math.ceil(plain.length / key.length) * key.length;
+            plain += _.map(new Array(size - plain.length), function(_) {
+                return " ";
+            }).join("");
+            _.each(plain, function(l, i) {
+                var j = i % key.length;
+                columns[j].push(l);
+            });
+            var sorted = _.sortBy(key, _.identity);
+            return _.map(sorted, function(l) {
+                var i = key.indexOf(l);
+                return columns[i].join("");
+            }).join("");
+        }, decrypt: function(key, cipher) {
+
+        }, test: function() {
+
+        }
     }
 };
 $(document).ready(function() {

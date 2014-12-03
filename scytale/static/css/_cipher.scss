@@ -90,4 +90,16 @@
             }
         }
     }
+    &.columnar {
+        .key table {
+            text-align: center;
+            tr:first-child {
+                background-color: $base-border-color;
+                font-weight: bold;
+            }
+            td {
+                border: 1px solid $base-border-color;
+            }
+        }
+    }
 }

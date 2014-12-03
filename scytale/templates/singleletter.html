@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set title="Single Letter Grille Cipher" %}
+{% set page="cipher singleletter" %}
+{% block content %}
+<h2>Single Letter Grille Cipher</h2>
+
+<p>
+    <a href="http://en.wikipedia.org/wiki/Grille_(cryptography)#Single-letter_grilles" target="_blank">Wikipedia</a>
+     | <a href="/static/singleletter.pdf" target="_blank">Instruction Sheet</a>
+</p>
+
+<h3>Key</h3>
+<p>KEEP THIS SAFE!</p>
+<div class="key">
+    <div><label>Dimensions = </label><input type="number" id="x" /> x <input type="number" id="y" disabled /></div>
+    <table></table>
+</div>
+
+<h3>Example</h3>
+<div class="eg">
+    <ul>
+        <li>e.g. </li>
+        <li><span class="label">plain text:</span> Hello</li>
+        <li><span class="label">cipher text:</span> <span class="e1"></span></li>
+    </ul>
+</div>
+{% endblock %}

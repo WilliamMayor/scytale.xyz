@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set title="Columnar Cipher" %}
+{% set page="cipher columnar" %}
+{% block content %}
+<h2>Columnar Cipher</h2>
+
+<p>The Columnar Cipher is a cool little transposition cipher that involves writing down the plain text along the rows of a table and then reading the cipher text off the columns</p>
+
+<p>The key of a Columnar cipher is a code word (in the instruction sheet we use 'park').</p>
+
+<p>To encrypt a message write your code word along the top of a table, make as many columns in the table as there are letters in your code word. Then write your message along the rows of the table, when you reach the end of a row continue on the next. Don't forget to include your spaces. When you're done find the letter in your code word that appears first in the alphabet (in our example, that's the 'a' in 'park') and read off the letters in that column. Now find the code word letter that appears next in the alphabet and read off that column. Repeat this until you've read off all of your cipher text.</p>
+
+<p>To decrypt a message you write down your code word, as you did when you were encrypting. Now you need to know how many rows there should be in your decryption table. Count the letters in the cipher text and divide that count by the size of your code word, round the result up and that's how many rows you need. For example, for a code word 'park' and a cipher text 'oairtm h  CnCeflrpsw' we have a code word that's 4 letters long and ciper text that's 20. Dividing 20 by 4 gives us 5 rows in our table. Now that you have your table, simply fill it in using the opposite method for encrypting. Write the cipher text down the columns in the alphabetic order of the code word letters, then read off the table as you would normally, from left to right.</p>
+
+<p><a href=" http://en.wikipedia.org/wiki/Transposition_cipher#Columnar_transposition" target="_blank">Wikipedia</a>
+| <a href="/static/columnar.pdf" target="_blank">Instruction Sheet</a></p>
+
+<h3>Key</h3>
+<p>KEEP THIS SAFE!</p>
+<div class="key">
+    <label>Codeword:</label>
+    <input id="codeword" type="text" value="park" />
+    <table>
+
+    </table>
+</div>
+
+<h3>Example</h3>
+<div class="eg">
+    <ul>
+        <li><span class="label">plain text:</span> Hello scholars!</li>
+        <li><span class="label">cipher text:</span> <span class="e1"></span></li>
+    </ul>
+</div>
+{% endblock %}
