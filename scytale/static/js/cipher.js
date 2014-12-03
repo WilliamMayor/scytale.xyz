@@ -502,6 +502,69 @@ var ciphers = {
                 "long" === ciphers.columnar.decrypt("codeword", ciphers.columnar.encrypt("codeword", "long")),
             ]));
         }
+    }, singleletter: {
+        init: function() {
+            $("#x").val(8).change().change();
+        }, update: function() {
+            var x = $("#x").val();
+            if (x !== ciphers.singleletter.x) {
+                ciphers.singleletter.x = x;
+                $("#y").val(x);
+                x = parseInt(x);
+                var m = Math.floor(x / 2);
+                var is_odd = (x % 2) !== 0;
+                $(".key table tr").remove();
+                for (var i = 0; i < x; i++) {
+                    var tds = [];
+                    for (var j = 0; j < x; j++) {
+                        tds.push("<td><input type='checkbox' " + ((i === j) ? "checked" : "") + " /></td>");
+                    }
+                    $(".key table").append("<tr>" + tds.join("") + "</tr>");
+                }
+            }
+            var grille = _.map($(".key table input"), function(radio) {
+                return ($(radio).is(":checked")) ? 1 : 0;
+            });
+            $(".e1").text(ciphers.singleletter.encrypt(grille, "Hello"));
+        }, encrypt: function(grille, plaintext) {
+            var space_at;
+            var page = 0;
+            var ciphertext = new Array(Math.ceil(plaintext.length / grille.length) * grille.length);
+            _.each(plaintext, function(c) {
+                space_at = grille.indexOf(1, space_at + 1);
+                if (space_at === -1) {
+                    space_at = grille.indexOf(1);
+                    page++;
+                }
+                ciphertext[page * grille.length + space_at] = c;
+            });
+            return _.map(ciphertext, function(c) {
+                return (c) ? c : (padding.to_letters(Math.floor(Math.random() * 100)));
+            }).join("");
+        }, decrypt: function(grille, ciphertext) {
+            var plaintext = [];
+            for (var i=0; i<(ciphertext.length / grille.length); i++) {
+                plaintext = plaintext.concat(_.map(grille, function(space_at, j) {
+                    return (space_at) ? ciphertext[grille.length * i + j] : "";
+                }));
+            }
+            return plaintext.join("");
+        }, test: function() {
+            var grille = [
+                0,0,0,1,0,0,0,1,
+                0,0,0,1,0,0,0,1,
+                1,1,0,0,0,1,0,0,
+                0,0,0,0,0,1,0,0,
+                0,0,0,1,0,0,0,1,
+                0,0,0,1,0,0,0,0,
+                0,1,0,1,0,1,0,1,
+                0,0,0,0,0,1,0,0];
+            var from_wiki = "thefleissnergrillecanbeturnedtoeightdifferentpositionsstephenc&c";
+            console.log("Single letter grille tests pass: " + _.every([
+                "hello" === ciphers.singleletter.decrypt(grille, ciphers.singleletter.encrypt(grille, "hello")).slice(0, 5),
+                from_wiki === ciphers.singleletter.decrypt(grille, ciphers.singleletter.encrypt(grille, from_wiki)).slice(0, from_wiki.length)
+            ]));
+        }
     }
 };
 $(document).ready(function() {
