@@ -90,15 +90,20 @@
             }
         }
     }
-    &.columnar {
-        .key table {
-            text-align: center;
-            tr:first-child {
-                background-color: $base-border-color;
-                font-weight: bold;
+    &.columnar, &.myszkowski {
+        .key {
+            #codeword {
+                width: auto;
             }
-            td {
-                border: 1px solid $base-border-color;
+            table {
+                text-align: center;
+                tr:first-child {
+                    background-color: $base-border-color;
+                    font-weight: bold;
+                }
+                td {
+                    border: 1px solid $base-border-color;
+                }
             }
         }
     }

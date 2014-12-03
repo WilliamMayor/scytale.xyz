@@ -689,6 +689,60 @@ var ciphers = {
         }, test: function() {
 
         }
+    }, myszkowski: {
+        init: function() {
+            ciphers.myszkowski.update();
+        }, update: function() {
+            $(".key table tr").remove();
+            var codeword = $("#codeword").val();
+            var t = $(".key table");
+            var tr = "<tr>";
+            _.each(codeword, function(l) {
+                tr += "<td>" + l + "</td>";
+            });
+            tr += "</tr>";
+            t.append(tr);
+            tr = "<tr>";
+            _.each("Hello scholars!", function(l, i) {
+                if (i > 0 && i % codeword.length === 0) {
+                    tr += "</tr>";
+                    t.append(tr);
+                    tr = "<tr>";
+                }
+                tr += "<td>" + l + "</td>";
+            });
+            tr += "</tr>";
+            t.append(tr);
+            $(".e1").text(ciphers.myszkowski.encrypt(codeword, "Hello scholars!"));
+        }, encrypt: function(key, plain) {
+            var columns = _.map(key, function() {
+                return [];
+            });
+            var size = Math.ceil(plain.length / key.length) * key.length;
+            plain += _.map(new Array(size - plain.length), function(_) {
+                return " ";
+            }).join("");
+            _.each(plain, function(l, i) {
+                var j = i % key.length;
+                columns[j].push(l);
+            });
+            var cipher = [];
+            var sorted = _.uniq(_.sortBy(key, _.identity), true);
+            _.each(sorted, function(l) {
+                _.each(columns[0], function(c, i) {
+                    var j = key.indexOf(l);
+                    while (j !== -1) {
+                        cipher.push(columns[j][i]);
+                        j = key.indexOf(l, j+1);
+                    }
+                });
+            });
+            return cipher.join("");
+        }, decrypt: function(key, cipher) {
+            return "";
+        }, test: function() {
+            
+        }
     }
 };
 $(document).ready(function() {
