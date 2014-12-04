@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set title="Rail Fence Cipher" %}
+{% set page="cipher railfence" %}
+{% block content %}
+<h2>Rail Fence Cipher</h2>
+
+<p>Rail Fence ciphers are interesting transposition ciphers that use a code word to shuffle letters in a message.</p>
+
+<p></p>
+
+<p>
+    <a href="http://en.wikipedia.org/wiki/Transposition_cipher#Route_cipher" target="_blank">Wikipedia</a>
+     | <a href="/static/route.pdf" target="_blank">Instruction Sheet</a>
+</p>
+
+<h3>Key</h3>
+<div class="key">
+    <label>Number of rails:</label>
+    <input id="rails" type="number" value="5" />
+    <table>
+
+    </table>
+</div>
+
+<h3>Example</h3>
+<div class="eg">
+    <ul>
+        <li><span class="label">plain text:</span> Hello scholars!</li>
+        <li><span class="label">cipher text:</span> <span class="e1"></span></li>
+    </ul>
+</div>
+{% endblock %}
