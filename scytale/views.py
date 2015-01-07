@@ -19,6 +19,10 @@ def padding():
 def modulo():
     return template('modulo.html')
 
+@views.route('/rsa/')
+def rsa():
+    return template('rsa.html')
+
 @views.route('/affine/')
 def affine():
     return template('affine.html')

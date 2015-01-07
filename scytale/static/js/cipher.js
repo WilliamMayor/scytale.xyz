@@ -747,11 +747,33 @@ var ciphers = {
             return "";
         }, test: function() {
         }
+    }, rsa: {
+        init: function() {
+            ciphers.rsa.update();
+        }, update: function() {
+            var bits = 1024;
+            var key = cryptico.generateRSAKey($("#passphrase").val(), bits);
+            var pub_key = cryptico.publicKeyString(key);
+            var ciphertext = cryptico.encrypt($("#plaintext").val(), pub_key);
+            var text = "";
+            if (ciphertext.status === "success") {
+                text = ciphertext.cipher;
+            }
+            $(".e1").text(text);
+            var plaintext = cryptico.decrypt($("#ciphertext").val(), key);
+            text = "";
+            if (plaintext.status === "success") {
+                text = plaintext.plaintext;
+            }
+            $(".e2").text(text);
+        }, test: function() {
+
+        }
     }
 };
 $(document).ready(function() {
     if ($("body.cipher").length) {
-        $(".key").on("change input", "input", function() {
+        $(".key").on("change input", "input, textarea", function() {
             var name = $(this).attr("id");
             var value = $(this).val();
             if (!$.isNumeric(value)) {

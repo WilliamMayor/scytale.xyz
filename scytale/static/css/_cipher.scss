@@ -30,6 +30,19 @@
             text-align: right;
         }
     }
+    &.rsa {
+        #passphrase {
+            width: 100%;
+        }
+        #plaintext, #ciphertext {
+            width: 100%;
+            height: 150px;
+        }
+        .e1, .e2 {
+            width: 100%;
+            word-wrap: break-word;
+        }
+    }
 
     &.fleissner {
         .key table {

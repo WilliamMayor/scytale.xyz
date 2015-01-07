@@ -12,6 +12,7 @@ assets.register('css', css)
 js = Bundle(
     'js/vendor/jquery.js',
     'js/vendor/underscore.js',
+    'js/vendor/cryptico.min.js',
     Bundle(
         'js/padding.js',
         'js/modulo.js',
