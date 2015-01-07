@@ -71,55 +71,12 @@ var ciphers = {
         }
     }, fleissner: {
         init: function() {
-            $("#x").val(8).change().change();
+            ciphers.fleissner.update();
         }, update: function() {
-            var x = $("#x").val();
-            if ($.isNumeric(x)) {
-                if (x !== ciphers.fleissner.x) {
-                    ciphers.fleissner.x = x;
-                    $("#y").val(x);
-                    x = parseInt(x);
-                    var m = Math.floor(x / 2);
-                    var is_odd = (x % 2) !== 0;
-                    $(".key table tr").remove();
-                    for (var i = 0; i < x; i++) {
-                        var tds = [];
-                        for (var j = 0; j < x; j++) {
-                            var qx, qy;
-                            if (is_odd ) {
-                                var si = i, sj = j;
-                                if (si > m) {
-                                    si--;
-                                }
-                                if (sj > m) {
-                                    sj--;
-                                }
-                                if (i === m) {
-                                    qx = 'm';
-                                    qy = Math.abs(m - j);
-                                } else if (j === m) {
-                                    qx = 'm';
-                                    qy = Math.abs(m - i);
-                                } else {
-                                    qx = sj % m;
-                                    qy = si % m;
-                                }
-                            } else {
-                                qx = j % m;
-                                qy = i % m;
-                            }
-                            var name = [qx, qy].join("-");
-                            tds.push("<td><input type='radio' name='" + name + "'" + ((is_odd && i === m && j === m) ? "disabled" : "checked") + " /></td>");
-                        }
-                        $(".key table").append("<tr>" + tds.join("") + "</tr>");
-                    }
-                } else {
-                    var grille = _.map($(".key table input"), function(radio) {
-                        return ($(radio).is(":checked")) ? 1 : 0;
-                    });
-                    $(".e1").text(ciphers.fleissner.encrypt(grille, 1, "Hello"));
-                }
-            }
+            var grille = _.map($(".key table input"), function(radio) {
+                return ($(radio).is(":checked")) ? 1 : 0;
+            });
+            $(".e1").text(ciphers.fleissner.encrypt(grille, 1, "Hello"));
         }, encrypt: function(grille, rotation, plaintext) {
             var space_at;
             var page = 0;
