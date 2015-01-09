@@ -1,0 +1,26 @@
+# Issues
+
+- Fleissner grille demo can only have 8x8 grilles
+- Straddling checkerboard uses the wrong row numbers
+- The Fleissner grille worksheet spells EAST wrong
+- Affine only demos a single letter
+    - Should use affine on multiple letters at a time?
+    - Otherwise it's too easy to hack
+- The site should be static
+- Fix up the presentation
+    - Better notes
+    - Explain to others how to use the course
+- Fully test the ciphers
+    - encrypt, decrypt
+    - hack
+- Have a secret admin area for checking codes and hacking
+- Add additional activity of talking about how encryption is used on everyday life
+    - Get groups to think about as many examples as they can
+        - have lots of examples
+        - have some unexpected ones
+            - e.g. phone calls
+            - e.g. physical keys
+    - Ask them "What is encrypted" and "Why is it encrypted"
+        - e.g. phone calls are encrypted because the companies want to know who made the call
+    - Ask them how they think the security is
+        - e.g. cards can be stolen if they don't identify the person
