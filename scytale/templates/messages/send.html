@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% set page="messages send" %}
+{% block title %}{{ super() }} | Send Message{% endblock %}
+{% from "macros.html" import field %}
+{% block content %}
+<h2>Send Message</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ field(form.cipher) }}
+    {{ field(form.key) }}
+    {{ field(form.plaintext) }}
+    {{ field(form.ciphertext) }}
+    <input type="submit" value="Send">
+</form>
+{% endblock %}

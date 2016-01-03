@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% set page="messages hack" %}
+{% block title %}{{ super() }} | Hack Message{% endblock %}
+{% from "macros.html" import field %}
+{% block content %}
+<h2>Hack Message</h2>
+<p>Cipher: {{ message.cipher }}</p>
+{% if see_key %}<p>Key: {{ message.key }}</p>{% endif %}
+<p>Ciphertext: {{ message.ciphertext }}</p>
+{% if see_plaintext %}<p>Plaintext: {{ message.plaintext }}</p>
+{% elif message.group.name != "Billy" %}<p><a href="{{ url_for('.messages_plaintext', mid=message.mid) }}">Request Plaintext</a> (-5 points)</p>{% endif %}
+{% if not (see_key and see_plaintext) %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {% if not see_key %}{{ field(form.key) }}{% endif %}
+    {% if not see_plaintext %}{{ field(form.plaintext) }}{% endif %}
+    <input type="submit" value="Hack">
+</form>
+{% endif %}
+{% endblock %}

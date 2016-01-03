@@ -1,0 +1,12 @@
+#!/usr/bin/env fish
+
+switch "$argv"
+    case 'summary'
+        echo "  deploy - Deploy the app"
+    case '*'
+        echo "\
+deploy
+    Deploy the master branch to heroku.
+    You will have to log in to Heroku for this to work
+"
+end

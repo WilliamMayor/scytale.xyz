@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% set page="leaderboard" %}
+{% block title %}{{ super() }} | Leaderboard{% endblock %}
+{% block content %}
+<h2>Leaderboard</h2>
+{% for group in groups | sort(attribute="total", reverse=True) %}
+    <div class="group">
+        <h3>{{ loop.index | ordinal }}: {{ group.name }} ({{ group.total }} points)</h3>
+        <ul>
+            {% for p in group.points %}
+                <li>{{ p.reason }} ({{ p.score }} points)</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+{% endblock %}

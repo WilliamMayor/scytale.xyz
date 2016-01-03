@@ -1,15 +1,84 @@
 from flask_wtf import Form
-from wtforms import StringField
+from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 
+from scytale.ciphers import Checkerboard
+from scytale.exceptions import ScytaleError
+from scytale.models import Group
 
-class SetupForm(Form):
-    directory = StringField(u'Storage Directory', validators=[DataRequired()])
+
+class SignInForm(Form):
+    name = StringField("Group Name", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        g = Group.query.filter_by(name=self.name.data).first()
+        if g is None:
+            self.name.errors.append("Unknown Group: {0}".format(self.name.data))
+            return False
+        if not g.check_password(self.password.data):
+            self.password.errors.append("Incorrect password")
+            return False
+        return True
 
 
-class ProjectForm(Form):
-    name = StringField(u'Name', validators=[DataRequired()])
-    directory = StringField(u'Directory', validators=[DataRequired()])
+class SignUpForm(Form):
+    name = StringField("Group Name", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
 
-class TaskForm(Form):
-    name = StringField(u'Name', validators=[DataRequired()])
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        g = Group.query.filter_by(name=self.name.data).first()
+        if g is not None:
+            self.name.errors.append("Group name taken: {0}".format(self.name.data))
+            return False
+        return True
+
+
+class MessageForm(Form):
+    cipher = SelectField("Cipher", choices=[
+        ("checkerboard", "Checkerboard")
+    ])
+    key = StringField("Key", validators=[DataRequired()])
+    plaintext = TextAreaField("Plain Text", validators=[DataRequired()])
+    ciphertext = TextAreaField("Cipher Text", validators=[DataRequired()])
+
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        try:
+            cipher = {
+                'checkerboard': Checkerboard
+            }[self.cipher.data](key=self.key.data)
+        except ScytaleError as se:
+            self.key.errors.append("Invalid Key: {0}".format(se.args[0]))
+            return False
+        ciphertext = cipher.encrypt(self.plaintext.data)
+        if ciphertext != self.ciphertext.data:
+            self.ciphertext.errors.append("Incorrect ciphertext")
+            return False
+        return True
+
+
+class HackForm(Form):
+    key = StringField("Key")
+    plaintext = StringField("Plain Text")
+
+    def __init__(self, *args, **kwargs):
+        self.message = kwargs.pop("message")
+        super().__init__(*args, **kwargs)
+
+    def validate(self):
+        if not Form.validate(self):
+            return False
+        result = True
+        if self.key.data and self.key.data != self.message.key:
+            self.key.errors.append("Incorrect key")
+            result = False
+        if self.plaintext.data and self.plaintext.data != self.message.plaintext:
+            self.plaintext.errors.append("Incorrect plain text")
+            result = False
+        return result

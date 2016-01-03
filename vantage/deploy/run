@@ -1,0 +1,20 @@
+#!/usr/bin/env fish
+
+function heroku_down
+    heroku maintenance:on --app "$argv"
+    heroku scale web=0 --app "$argv"
+end
+
+function heroku_up
+    heroku scale web=1 --app "$argv"
+    heroku maintenance:off --app "$argv"
+end
+
+switch "$argv"
+    case ''
+        heroku_down 'scytale'
+        heroku pg:reset DATABASE_URL --app scytale --confirm scytale
+        vantage --env .env/heroku alembic apply
+        git push heroku master
+        heroku_up 'scytale'
+end

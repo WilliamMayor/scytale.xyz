@@ -1,9 +1,9 @@
+@import "normalize";
+
 @import "bourbon/bourbon";
 @import "base/base";
 
-@import "fonts";
-@import "sidebar";
-@import "content";
-@import "padding";
-@import "modulo";
-@import "cipher";
+@import "pages/base";
+@import "pages/leaderboard";
+@import "pages/cipher";
+@import "pages/messages/read";

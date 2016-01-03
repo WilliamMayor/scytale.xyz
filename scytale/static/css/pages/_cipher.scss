@@ -1,0 +1,27 @@
+body.cipher #content {
+    ul {
+        @extend %default-ul;
+        margin-left: $base-spacing;
+    }
+    .links {
+        text-align: center;
+    }
+    .key {
+        text-align: center;
+        &.grid {
+            table {
+                td {
+                    border: none;
+                    padding: 0;
+                    text-align: center;
+                    input {
+                        width: 2.5em;
+                        margin-left: auto;
+                        margin-right: auto;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

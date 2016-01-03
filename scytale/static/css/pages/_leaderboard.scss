@@ -1,0 +1,11 @@
+body.leaderboard #content {
+    .group {
+        margin: $base-spacing 0;
+        h3 {
+            margin: 0;
+        }
+        ul {
+            margin-left: $base-spacing;
+        }
+    }
+}

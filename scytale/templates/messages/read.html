@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% set page="messages read" %}
+{% block title %}{{ super() }} | Read Messages{% endblock %}
+{% block content %}
+<h2>Read Messages</h2>
+{% for group, messages in messages.items() | sort %}
+    <div class="group">
+        <h3>{{ group }}</h3>
+        {% for m in messages %}
+            <div class="message">
+                <p><a href="{{ url_for('.messages_hack', mid=m.mid)}}">{{ m.ciphertext }}</a></p>
+                <p class="cipher">Cipher: {{ m.cipher | title}}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+{% endblock %}

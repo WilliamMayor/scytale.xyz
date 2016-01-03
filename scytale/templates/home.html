@@ -1,9 +1,7 @@
 {% extends "base.html" %}
-{% set title="Home" %}
 {% set page="home" %}
+{% block title %}{{ super() }} | Home{% endblock %}
 {% block content %}
 <h2>Hi Scholars!</h2>
 <p>This website should give you all the information and tools you need to start encrypting, decrypting, and hacking.</p>
-<p>In the tools section you can easily convert text into numbers and back again using our padding scheme. You can also check your modulo arithmetic.</p>
-<p>Your group has been given two ciphers, one's a substitution cipher, the other a transposition. Find your ciphers on the left and get learning!</p>
 {% endblock %}

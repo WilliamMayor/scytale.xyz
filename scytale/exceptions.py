@@ -1,0 +1,2 @@
+class ScytaleError(Exception):
+    pass

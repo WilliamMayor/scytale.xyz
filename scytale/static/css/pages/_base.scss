@@ -1,0 +1,53 @@
+$sidebar-width: 300px;
+$content-width: 600px;
+
+html, body {
+    height: 100%;
+}
+.wrapper {
+    display: table;
+    height: 100%;
+}
+
+#sidebar {
+    display:table-cell;
+    width: $sidebar-width;
+
+    background-color: $action-color;
+    color: $base-background-color;
+    a {
+        color: $base-background-color;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2em;
+        margin: 0.3 * $base-spacing 0;
+    }
+    ul {
+        margin-left: $base-spacing;
+    }
+}
+
+#content {
+    display:table-cell;
+    width: $content-width;
+    padding: 0 $base-spacing $base-spacing $base-spacing;
+
+    h2 {
+        font-size: 2em;
+        margin: 0.3 * $base-spacing 0;
+    }
+}
+
+#group {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+    padding: 0.3 * $base-spacing;
+    font-size: smaller;
+    p {
+        margin: 0;
+    }
+}

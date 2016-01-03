@@ -1,29 +1,40 @@
 import os
 
-import logging
-from logging import StreamHandler
-
 from flask import Flask
 
-from views import views
-from assets import assets
-from login import manager
-from models import db, bcrypt
+from scytale.views import bp
+from scytale import jinja, login, models
 
-def create_app(config=None):
-    app = Flask('scytale')
+
+def boolify(s):
+    if s.lower() == 'true':
+        return True
+    if s.lower() == 'false':
+        return False
+    raise ValueError("%s is not one of 'True' or 'False'" % s)
+
+
+def auto_convert(s):
+    for fn in (boolify, int, float):
+        try:
+            return fn(s)
+        except ValueError:
+            pass
+    return s
+
+
+def create_app():
+    app = Flask(__name__)
+
     app.config.from_object('scytale.config')
-    app.config.update({k: v for k, v in os.environ.iteritems() if k in app.config})
-    if config is not None:
-        app.config.update(config)
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DATABASE_URL']
-    app.logger.setLevel(logging.DEBUG)
-    app.logger.addHandler(StreamHandler())
-    
-    assets.init_app(app)
-    db.init_app(app)
-    manager.init_app(app)
-    bcrypt.init_app(app)
-    
-    app.register_blueprint(views)
+    app.config.update({
+        k: auto_convert(os.environ[k])
+        for k in app.config
+        if k in os.environ})
+
+    jinja.init_app(app)
+    login.init_app(app)
+    models.init_app(app)
+
+    app.register_blueprint(bp)
     return app

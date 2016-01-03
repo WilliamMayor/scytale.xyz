@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% set page="cipher checkerboard" %}
+{% block title %}{{ super() }} | Ciphers | Straddling Checkerboard{% endblock %}
+{% block content %}
+<h2>Straddling Checkerboard Cipher</h2>
+
+<p>The Straddling Checkerboard Cipher is an awesome substitution cipher that turns plain text messages into numbers.</p>
+
+<p>The secret key for this cipher is a randomised grid of letters (see below).</p>
+
+<p>To encrypt a message go through your plain text letter by letter. Find the letter in your grid:</p>
+<ul>
+    <li>If the letter is in the first row then write down the column number (0-9)</li>
+    <li>If the letter is in one of the other two rows then first write down the row number then the column number</li>
+</ul>
+<p>When you have gone through your entire plain text message you will have a long row of numbers. This is your cipher text!</p>
+
+<p>To decrypt a message, go through the cipher text number by number. Look in the column with that number:</p>
+<ul>
+    <li>If there is a letter in the first row in that column, write it down</li>
+    <li>If the first row is a space then take another number from your cipher text. The first number tells you which row to look in, the second tells you which column. Find the letter and write it down.</li>
+</ul>
+<p>When you have gone through all of the numbers you should have your plain text back again!</p>
+
+<p>To create your own grid (and therefore your own secret key) draw out a grid with 10 columns and 3 rows. Number the columns 0-9.</p>
+<p>Now pick 8 random letters and fill in the top row with them. Leave 2 random columns empty.</p>
+<p>Now fill in the rest of the grid using the letters that you haven't picked for the top row. Use the letters A-Z as well as a space and a full stop.</p>
+
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Straddling_checkerboard#Straddling_checkerboard" target="_blank">Wikipedia</a>
+     |
+     <a href="{{ url_for('static', filename='worksheets/checkerboard.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
+
+<div class="key grid">
+    <table>
+        <tr>
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td></td>
+            {% for l in cipher.table[0] %}
+            <td><input type="text" value="{{ l }}" maxlength="1" /></td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>{{ cipher.blanks[0] }}</td>
+            {% for l in cipher.table[1] %}
+            <td><input type="text" value="{{ l }}" maxlength="1" /></td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td>{{ cipher.blanks[1] }}</td>
+            {% for l in cipher.table[2] %}
+            <td><input type="text" value="{{ l }}" maxlength="1" /></td>
+            {% endfor %}
+        </tr>
+    </table>
+    <div class="key">
+        Key:
+        <code></code>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.checkerboard(".key.grid");
+</script>
+{% endblock %}

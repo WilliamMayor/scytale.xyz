@@ -2,43 +2,59 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>scytale{% if title %} - {{ title }}{% endif %}</title>
-        {% assets "css" %}<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />{% endassets %}
+        <title>scytale.xyz - {% block title %}Encrypt, decrypt, and hack{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}" />
     </head>
     <body class="{{ page | default('') }}">
-        <nav id="sidebar">
-            <ul class="all">
-                <li><a href="{{ url_for('.home') }}">Home</a></li>
-                <li>Tools</li>
-                <li><ul>
-                    <li><a href="{{ url_for('.padding') }}">Padding</a></li>
-                    <li><a href="{{ url_for('.modulo') }}">Modulo</a></li>
-                </ul></li>
-                <li>Substitutions</li>
-                <li><ul>
-                    <li><a href="{{ url_for('.affine') }}">Affine</a></li>
-                    <li><a href="{{ url_for('.mixed') }}">Mixed Alphabet</a></li>
-                    <li><a href="{{ url_for('.pigpen') }}">Pig Pen</a></li>
-                    <li><a href="{{ url_for('.playfair') }}">Playfair</a></li>
-                    <li><a href="{{ url_for('.checkerboard') }}">Straddling Checkerboard</a></li>
-                    <li><a href="{{ url_for('.trifid') }}">Trifid</a></li>
-                </ul></li>
-                <li>Transpositions</li>
-                <li><ul>
-                    <li><a href="{{ url_for('.columnar') }}">Columnar</a></li>
-                    <li><a href="{{ url_for('.fleissner') }}">Fleissner Grille</a></li>
-                    <li><a href="{{ url_for('.singleletter') }}">Single Letter Grille</a></li>
-                    <li><a href="{{ url_for('.myszkowski') }}">Myszkowski</a></li>
-                    <li><a href="{{ url_for('.railfence') }}">Rail Fence</a></li>
-                    <li><a href="{{ url_for('.route') }}">Route</a></li>
-                </ul></li>
-                <li>Other</li>
-                <li><ul>
-                    <li><a href="{{ url_for('.rsa') }}">RSA</a></li>
-                </ul></li>
-            </ul>
-        </nav>
-        <div id="content">{% block content %}Nothing here yet{% endblock %}</div>
-        {% assets "js" %}<script type="text/javascript" src="{{ ASSET_URL }}"></script>{% endassets %}
+        <div class="wrapper">
+            <nav id="sidebar">
+                <h2>Scytale.xyz</h2>
+                <ul class="all">
+                    <li><a href="{{ url_for('.home') }}">Home</a></li>
+                    <li><a href="{{ url_for('.leaderboard') }}">Leaderboard</a></li>
+                    <li>Substitutions</li>
+                    <li><ul>
+                        <li><a href="{{ url_for('.home') }}">Mixed Alphabet</a></li>
+                        <li><a href="{{ url_for('.home') }}">Playfair</a></li>
+                        <li><a href="{{ url_for('.checkerboard') }}">Checkerboard</a></li>
+                        <li><a href="{{ url_for('.home') }}">Trifid</a></li>
+                    </ul></li>
+                    <li>Transpositions</li>
+                    <li><ul>
+                        <li><a href="{{ url_for('.home') }}">Fleissner</a></li>
+                        <li><a href="{{ url_for('.home') }}">Myszkowski</a></li>
+                        <li><a href="{{ url_for('.home') }}">Rail Fence</a></li>
+                    </ul></li>
+                    {% if current_user.is_authenticated %}
+                    <li>{{ current_user.name }}</li>
+                    <li><ul>
+                        <li><a href="{{ url_for('.messages_send') }}">Send Message</a></li>
+                        <li><a href="{{ url_for('.messages_read') }}">Read Messages</a></li>
+                    </ul></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div id="content">{% block content %}Nothing here yet{% endblock %}</div>
+        </div>
+        <div id="group">
+            {% if current_user.is_authenticated %}
+            <p><a href="{{ url_for('.signout') }}">Sign Out</a></p>
+            {% else %}
+            <p><a href="{{ url_for('.signup') }}">Register Group</a></p>
+            <p><a href="{{ url_for('.signin') }}">Sign In</a></p>
+            {% endif %}
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul id=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+        {% block script %}{% endblock %}
     </body>
 </html>

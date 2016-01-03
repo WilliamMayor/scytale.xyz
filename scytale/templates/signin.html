@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% set page="signup" %}
+{% block title %}{{ super() }} | Sign In{% endblock %}
+{% from "macros.html" import field %}
+{% block content %}
+<h2>Sign In</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ field(form.name) }}
+    {{ field(form.password) }}
+    <input type="submit" value="Sign In">
+</form>
+{% endblock %}

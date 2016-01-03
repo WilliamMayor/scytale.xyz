@@ -1,0 +1,14 @@
+#!/usr/bin/env fish
+
+switch "$argv"
+    case 'summary'
+        echo "  alembic - DB migrations"
+    case '*'
+        echo "\
+alembic learn -m MESSAGE
+    Compare the code to the DB and learn what's different, create a new migration
+alembic apply
+    Apply the migrations to the DB
+alembic shell
+    Drop into a shell with all of the alembic commands available to you"
+end
