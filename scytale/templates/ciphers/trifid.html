@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% set page="cipher trifid" %}
+{% block title %}{{ super() }} | Ciphers | Trifid{% endblock %}
+{% block content %}
+<h2>Trifid Cipher</h2>
+
+<p>Trifid ciphers are one of the most complicated substitution ciphers in this list. They work by splitting each letter into 3 parts, each part then interacts with other parts from other letters to form a secure encryption.</p>
+
+<p>The key for a Trifid cipher is a grid with three, 3x3 boxes. Each cell in the grid is filled up randomly with letters. Each letter can be found by using a 3-part coordinate; (which box, which row, which column).</p>
+
+<p>To encrypt a message, write out the letters in a line, underneath each letter write the letter's coordinates in a column.</p>
+
+<p>For example (using the grid below):</p>
+<table>
+    <tr>
+        <td>H</td>
+        <td>E</td>
+        <td>L</td>
+        <td>L</td>
+        <td>O</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>2</td>
+        <td>2</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>2</td>
+        <td>0</td>
+        <td>0</td>
+        <td>2</td>
+    </tr>
+</table>
+
+<p>Now read off, from left to right, all of the coordinates in groups of three:</p>
+
+<p>200,021,022,002,002</p>
+
+<p>Now look up these new coordinates in the grid:</p>
+
+<p>UZXEE</p>
+
+<p>To decrypt, convert each letter in the cipher text to a coordinate triplet and write the triplets out, from left to right, forming three equal-width rows.</p>
+<p>Now read down each column to retrieve the original triplet and use your table to convert it into the original letter.</p>
+
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Trifid_cipher" target="_blank">Wikipedia</a>
+     |
+     <a href="{{ url_for('static', filename='worksheets/trifid.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
+
+<div class="key grid">
+    <label>Grid:</label>
+    <table>
+        <tr>
+            <td></td>
+            <td colspan="3">Box 0</td>
+            <td colspan="3">Box 1</td>
+            <td colspan="3">Box 2</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        {% for i in range(3) %}
+            <tr>
+                <td>{{ i }}</td>
+                {% for l in cipher.key[9*i:9*(i+1)] %}
+                    <td><input type="text" value="{{ l }}"></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="key">
+        <label>Key:</label>
+        <pre></pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.trifid(".key.grid");
+</script>
+{% endblock %}

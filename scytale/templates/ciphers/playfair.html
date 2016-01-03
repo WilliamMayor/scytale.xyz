@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% set title="Playfair Cipher" %}
 {% set page="playfair cipher" %}
+{% block title %}{{ super() }} | Ciphers | Playfair{% endblock %}
 {% block content %}
 <h2>Playfair Cipher</h2>
 <p>The Playfair cipher is an interesting cipher that replaces pairs of letters with other pairs. Simpler substitution ciphers only replace single letters. This makes hacking the encryption much harder.</p>
