@@ -3,6 +3,10 @@ body.cipher #content {
         @extend %default-ul;
         margin-left: $base-spacing;
     }
+    ol {
+        @extend %default-ol;
+        margin-left: $base-spacing;
+    }
     .links {
         text-align: center;
     }

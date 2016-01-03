@@ -5,22 +5,34 @@
 <h2>Playfair Cipher</h2>
 <p>The Playfair cipher is an interesting cipher that replaces pairs of letters with other pairs. Simpler substitution ciphers only replace single letters. This makes hacking the encryption much harder.</p>
 
-<p>To encrypt a message, first replace all Js with Is and ignore the spaces. This is because your grid will not have J or space in it. Take the letters two at a time from your plain text and apply the following rules:</p>
+<p>To encrypt a message, you'll need to pre-treat it. First replace all Js with Is and remove the spaces. Secondly, split the plain text into pairs of letters. If any pair is a double letter then put an X in between them. Your pair of letters is now a triple! So take the third letter and move it into the next pair. Continue until you have only pairs. If you have a single letter at the end, add an extra X to the end to make a pair.</p>
+
+<p>For example the message "Just you see" would be treated like this:</p>
+
+<ol>
+    <li>Just you see</li>
+    <li>Iustyousee</li>
+    <li>Iu, st, yo, us, ee</li>
+    <li>Iu, st, yo, us, exe</li>
+    <li>Iu, st, yo, us, ex, e</li>
+    <li>Iu, st, yo, us, ex, ex</li>
+</ol>
+
+<p>Take the letters two at a time from your treated plain text and apply the following rules:</p>
 
 <ul>
-    <li>If the letters are the same, put the second one back in the plaintext and use an X instead (e.g. AA would become AX)</li>
     <li>If the letters are on the same row of the grid, replace them with the letters to their right. Wrap around the table if needed.</li>
-    <li>If the letter are in the same column, replace them with the letters below. Wrap around the table if needed.</li>
+    <li>If the letters are in the same column, replace them with the letters below. Wrap around the table if needed.</li>
     <li>If the letters are on different rows and columns then replace the letters with the letter that lies on the same row but it is in the column of the other.</li>
 </ul>
 
-<p>Repeat this method for each pair of letters in the message. Add an extra X to the end of the plain text if you are left with a single letter.</p>
+<p>Repeat this method for each pair of letters in the message.</p>
 
 <p>To decrypt a message you must go through the letters in the cipher text two by two. Apply the following rules:</p>
 
 <ul>
     <li>If the letters are on the same row of the grid, replace them with the letters to their left. Wrap around the table if needed.</li>
-    <li>If the letter are in the same column, replace them with the letters above. Wrap around the table if needed.</li>
+    <li>If the letters are in the same column, replace them with the letters above. Wrap around the table if needed.</li>
     <li>If the letters are on different rows and columns then replace the letters with the letter that lies on the same row but it is in the column of the other.</li>
 </ul>
 
