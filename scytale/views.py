@@ -4,7 +4,7 @@ from collections import defaultdict
 from flask import Blueprint, render_template, redirect, url_for, flash, abort
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
-from scytale.ciphers import Checkerboard, MixedAlphabet
+from scytale.ciphers import Checkerboard, MixedAlphabet, Playfair
 from scytale.forms import SignUpForm, SignInForm, MessageForm, HackForm
 from scytale.models import db, Group, Message, Point
 
@@ -94,7 +94,10 @@ def messages_hack(mid):
             points = current_user.give_point(20, "Hacked Key {0}".format(hashlib.md5(message.key.encode()).hexdigest()), max=1)
             flash("Key Hacked! ({0} points)".format(points))
         if form.plaintext.data and not see_plaintext:
-            points = current_user.give_point(5, "Hacked Message {0}".format(mid), max=1)
+            reason = "Hacked Message {0}".format(mid)
+            if message.group.name == "Billy":
+                reason = "Hacked Billy's Message"
+            points = current_user.give_point(5, reason, max=1)
             flash("Message Hacked! ({0} points)".format(points))
         db.session.commit()
         return redirect(url_for(".messages_hack", mid=mid))
@@ -138,3 +141,9 @@ def checkerboard():
 def mixed():
     cipher = MixedAlphabet()
     return render_template("ciphers/mixed.html", cipher=cipher)
+
+
+@bp.route("/ciphers/playfair/")
+def playfair():
+    cipher = Playfair()
+    return render_template("ciphers/playfair.html", cipher=cipher)

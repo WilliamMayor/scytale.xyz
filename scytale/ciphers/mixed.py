@@ -19,10 +19,10 @@ class MixedAlphabet(Cipher):
 
     def encrypt(self, plaintext):
         plaintext = self.clean(plaintext.upper())
-        return ''.join([self.key[self.alphabet.index(c)] for c in plaintext])
+        return "".join([self.key[self.alphabet.index(c)] for c in plaintext])
 
     def decrypt(self, ciphertext):
-        return ''.join([self.alphabet[self.key.index(c)] for c in ciphertext])
+        return "".join([self.alphabet[self.key.index(c)] for c in ciphertext])
 
     def hack(self, ciphertext):
         raise NotImplementedError("Cannot hack mixed alphabet in any reasonable time")

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% set title="Playfair Cipher" %}
+{% set page="playfair cipher" %}
+{% block content %}
+<h2>Playfair Cipher</h2>
+<p>The Playfair cipher is an interesting cipher that replaces pairs of letters with other pairs. Simpler substitution ciphers only replace single letters. This makes hacking the encryption much harder.</p>
+
+<p>To encrypt a message, first replace all Js with Is and ignore the spaces. This is because your grid will not have J or space in it. Take the letters two at a time from your plain text and apply the following rules:</p>
+
+<ul>
+    <li>If the letters are the same, put the second one back in the plaintext and use an X instead (e.g. AA would become AX)</li>
+    <li>If the letters are on the same row of the grid, replace them with the letters to their right. Wrap around the table if needed.</li>
+    <li>If the letter are in the same column, replace them with the letters below. Wrap around the table if needed.</li>
+    <li>If the letters are on different rows and columns then replace the letters with the letter that lies on the same row but it is in the column of the other.</li>
+</ul>
+
+<p>Repeat this method for each pair of letters in the message. Add an extra X to the end of the plain text if you are left with a single letter.</p>
+
+<p>To decrypt a message you must go through the letters in the cipher text two by two. Apply the following rules:</p>
+
+<ul>
+    <li>If the letters are on the same row of the grid, replace them with the letters to their left. Wrap around the table if needed.</li>
+    <li>If the letter are in the same column, replace them with the letters above. Wrap around the table if needed.</li>
+    <li>If the letters are on different rows and columns then replace the letters with the letter that lies on the same row but it is in the column of the other.</li>
+</ul>
+
+<p>You may end up with a plaintext that has extra Xs in it. You can ignore those, hopefully the message still makes sense.</p>
+
+<p>To make your own grid (and therefore your own secret key) you must fill a 5x5 grid with letters. The grid will only have space for 25 letters in total, so don't use J or space. Fill your 5x5 grid with letters at random. Don't re-use letters and don't miss any out.</p>
+
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Playfair_cipher" target="_blank">Wikipedia</a>
+    |
+    <a href="{{ url_for('static', filename='worksheets/playfair.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
+
+<div class="key grid">
+    <label>Grid:</label>
+    <table>
+        {% for i in range(0, 25, 5) %}
+            <tr>
+                {% for l in cipher.key[i:i+5] %}
+                    <td><input type="text" value="{{ l }}" /></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <div class="key">
+        <label>Key:</label>
+        <pre></pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.playfair(".key.grid");
+</script>
+{% endblock %}

@@ -5,7 +5,7 @@ import pytest
 
 
 def test_from_worksheet():
-    cipher = MixedAlphabet()
+    cipher = MixedAlphabet(key="QWERTYUIOPASDFG HJKLZXCVBNM")
 
     ciphertext = cipher.encrypt("WELCOME TO VILLIERS PARK")
     assert "CTSEGDTMLGMXOSSOTJKM QJA" == ciphertext

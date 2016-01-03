@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 
-from scytale.ciphers import Checkerboard, MixedAlphabet
+from scytale.ciphers import Checkerboard, MixedAlphabet, Playfair
 from scytale.exceptions import ScytaleError
 from scytale.models import Group
 
@@ -41,7 +41,8 @@ class SignUpForm(Form):
 class MessageForm(Form):
     cipher = SelectField("Cipher", choices=[
         ("Checkerboard", "Checkerboard"),
-        ("Mixed Alphabet", "Mixed Alphabet")
+        ("Mixed Alphabet", "Mixed Alphabet"),
+        ("Playfair", "Playfair")
     ])
     key = StringField("Key", validators=[DataRequired()])
     plaintext = TextAreaField("Plain Text", validators=[DataRequired()])
@@ -52,8 +53,9 @@ class MessageForm(Form):
             return False
         try:
             cipher = {
-                'checkerboard': Checkerboard,
-                'mixed': MixedAlphabet
+                "Checkerboard": Checkerboard,
+                "Mixed Alphabet": MixedAlphabet,
+                "Playfair": Playfair
             }[self.cipher.data](key=self.key.data)
         except ScytaleError as se:
             self.key.errors.append("Invalid Key: {0}".format(se.args[0]))
@@ -80,7 +82,13 @@ class HackForm(Form):
         if self.key.data and self.key.data != self.message.key:
             self.key.errors.append("Incorrect key")
             result = False
-        if self.plaintext.data and self.plaintext.data != self.message.plaintext:
-            self.plaintext.errors.append("Incorrect plain text")
-            result = False
+        if self.plaintext.data:
+            cipher = {
+                "Checkerboard": Checkerboard,
+                "Mixed Alphabet": MixedAlphabet,
+                "Playfair": Playfair
+            }[self.message.cipher](key=self.message.key)
+            if not cipher.compare(self.plaintext.data, self.message.plaintext):
+                self.plaintext.errors.append("Incorrect plain text")
+                result = False
         return result

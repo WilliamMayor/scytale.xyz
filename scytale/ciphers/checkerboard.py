@@ -54,7 +54,7 @@ class Checkerboard(Cipher):
 
     def encrypt(self, plaintext):
         plaintext = self.clean(plaintext.upper())
-        return ''.join([
+        return "".join([
             str(number)
             for c in plaintext
             for number in self.char_to_numbers[c]
@@ -71,7 +71,7 @@ class Checkerboard(Cipher):
             else:
                 index = int(numbers.pop(0))
                 plaintext.append(c[index])
-        return ''.join(plaintext)
+        return "".join(plaintext)
 
     def hack(self, ciphertext):
         raise NotImplementedError("Cannot hack checkerboard in any reasonable time")

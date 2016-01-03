@@ -5,7 +5,7 @@ import pytest
 
 
 def test_from_worksheet():
-    cipher = Checkerboard()
+    cipher = Checkerboard(key="RAIN OTS EQWYUPDFGHJKLZXCVBM .")
 
     ciphertext = cipher.encrypt("WELCOME TO VILLIERS PARK")
     assert "419818458798865888528181290788441080" == ciphertext
