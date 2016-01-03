@@ -1,10 +1,10 @@
 import pytest
 
-from scytale.ciphers import Checkerboard
+from scytale.ciphers import Checkerboard, MixedAlphabet
 
 params = (
     "Cipher",
-    [Checkerboard]
+    [Checkerboard, MixedAlphabet]
 )
 
 
@@ -19,6 +19,7 @@ def test_blank(Cipher):
 def test_single_letter(Cipher):
     cipher = Cipher()
     ciphertext = cipher.encrypt("a")
+    print(ciphertext)
     assert "A" == cipher.decrypt(ciphertext)
 
 

@@ -4,7 +4,7 @@ from collections import defaultdict
 from flask import Blueprint, render_template, redirect, url_for, flash, abort
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
-from scytale.ciphers import Checkerboard
+from scytale.ciphers import Checkerboard, MixedAlphabet
 from scytale.forms import SignUpForm, SignInForm, MessageForm, HackForm
 from scytale.models import db, Group, Message, Point
 
@@ -132,3 +132,9 @@ def leaderboard():
 def checkerboard():
     cipher = Checkerboard()
     return render_template("ciphers/checkerboard.html", cipher=cipher)
+
+
+@bp.route("/ciphers/mixed/")
+def mixed():
+    cipher = MixedAlphabet()
+    return render_template("ciphers/mixed.html", cipher=cipher)

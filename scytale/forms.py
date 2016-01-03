@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 
-from scytale.ciphers import Checkerboard
+from scytale.ciphers import Checkerboard, MixedAlphabet
 from scytale.exceptions import ScytaleError
 from scytale.models import Group
 
@@ -40,7 +40,8 @@ class SignUpForm(Form):
 
 class MessageForm(Form):
     cipher = SelectField("Cipher", choices=[
-        ("checkerboard", "Checkerboard")
+        ("Checkerboard", "Checkerboard"),
+        ("Mixed Alphabet", "Mixed Alphabet")
     ])
     key = StringField("Key", validators=[DataRequired()])
     plaintext = TextAreaField("Plain Text", validators=[DataRequired()])
@@ -51,7 +52,8 @@ class MessageForm(Form):
             return False
         try:
             cipher = {
-                'checkerboard': Checkerboard
+                'checkerboard': Checkerboard,
+                'mixed': MixedAlphabet
             }[self.cipher.data](key=self.key.data)
         except ScytaleError as se:
             self.key.errors.append("Invalid Key: {0}".format(se.args[0]))

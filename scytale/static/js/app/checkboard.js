@@ -1,7 +1,7 @@
 (function($, APP) {
     APP.checkerboard = function(selector) {
         var inputs = $(selector).find("table td input");
-        var key = $(selector).find(".key code");
+        var key = $(selector).find(".key pre");
         var generate_key = function() {
             var text = inputs.map(function(i, e) {
                 return $(e).val();

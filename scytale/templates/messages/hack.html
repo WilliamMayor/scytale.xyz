@@ -4,11 +4,11 @@
 {% from "macros.html" import field %}
 {% block content %}
 <h2>Hack Message</h2>
-<p>Cipher: {{ message.cipher }}</p>
-{% if see_key %}<p>Key: {{ message.key }}</p>{% endif %}
-<p>Ciphertext: {{ message.ciphertext }}</p>
-{% if see_plaintext %}<p>Plaintext: {{ message.plaintext }}</p>
-{% elif message.group.name != "Billy" %}<p><a href="{{ url_for('.messages_plaintext', mid=message.mid) }}">Request Plaintext</a> (-5 points)</p>{% endif %}
+<p><label>Cipher:</label> {{ message.cipher }}</p>
+{% if see_key %}<p><label>Key:</label> <pre>{{ message.key }}</pre></p>{% endif %}
+<p><label>Ciphertext:</label> {{ message.ciphertext }}</p>
+{% if see_plaintext %}<p><label>Plaintext:</label> {{ message.plaintext }}</p>
+{% elif message.group.name != "Billy" %}<p><a class="button" href="{{ url_for('.messages_plaintext', mid=message.mid) }}">Request Plaintext</a> (-5 points)</p>{% endif %}
 {% if not (see_key and see_plaintext) %}
 <form method="POST">
     {{ form.hidden_tag() }}
