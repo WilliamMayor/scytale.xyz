@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% set page="cipher railfence" %}
+{% block title %}{{ super() }} | Ciphers | Rail Fence{% endblock %}
+{% block content %}
+<h2>Rail Fence Cipher</h2>
+
+<p>Rail Fence ciphers are interesting transposition ciphers that involve writing a message in a zig zag across multiple "rails".</p>
+
+<p>The key for a Rail Fence cipher is simply the number of "rails" you wish to use.</p>
+
+<p>To encrypt a message write it, letter by letter, in a zig zag shape. The numbers of rails you pick tells you the depth of the zig zag. When you have written your message read it out of the grid, left to right, one rail at a time.</p>
+
+<p>When decrypting a message, the number of letters in the cipher text tells you how long the rails are. This tells you how many letters will be in each rail.</p>
+
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Rail_fence" target="_blank">Wikipedia</a>
+    |
+    <a href="{{ url_for('static', filename='worksheets/railfence.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
+
+<div class="key">
+    <label>Key:</label>
+    <input id="rails" type="number" value="{{ cipher.key }}" />
+    <label>Grid:</label>
+    <table>
+
+    </table>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.railfence(".key");
+</script>
+{% endblock %}

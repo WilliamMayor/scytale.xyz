@@ -4,7 +4,7 @@ from collections import defaultdict
 from flask import Blueprint, render_template, redirect, url_for, flash, abort
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Playfair, Trifid
+from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Playfair, RailFence, Trifid
 from scytale.forms import SignUpForm, SignInForm, MessageForm, HackForm
 from scytale.models import db, Group, Message, Point
 
@@ -153,6 +153,12 @@ def mixed():
 def playfair():
     cipher = Playfair()
     return render_template("ciphers/playfair.html", cipher=cipher)
+
+
+@bp.route("/ciphers/railfence/")
+def railfence():
+    cipher = RailFence()
+    return render_template("ciphers/railfence.html", cipher=cipher)
 
 
 @bp.route("/ciphers/trifid/")

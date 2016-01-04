@@ -47,7 +47,8 @@ body.cipher.mixed #content {
         }
     }
 }
-body.cipher.fleissner #content {
+body.cipher.fleissner #content,
+body.cipher.railfence #content {
     .key {
         table {
             width: auto;
@@ -57,11 +58,13 @@ body.cipher.fleissner #content {
                 height: 2em;
                 padding: 0;
                 border: 1px solid $action-color;
-                cursor: pointer;
                 &.X {
                     background-color: $action-color;
                 }
             }
         }
     }
+}
+body.cipher.fleissner #content .key table td {
+    cursor: pointer;
 }
