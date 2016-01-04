@@ -15,13 +15,13 @@ switch "$argv"
             --name vg_test \
             vantage/test bash
         set $code $status
-    case 'unit'
+    case ''
         docker run \
             --env-file="$VG_ENV_FILE" \
             --volume="$VG_APP_DIR":/usr/src/app \
             --net=host \
             --name vg_test \
-            vantage/test py.test tests/unit
+            vantage/test py.test tests
         set $code $status
     case 'build'
         docker build \
