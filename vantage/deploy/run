@@ -11,11 +11,15 @@ function heroku_up
 end
 
 switch "$argv"
-    case ''
+    case 'blank'
         heroku_down 'scytale'
         set DB_URL (vantage --env .env/heroku env DATABASE_URL)
         heroku pg:reset DATABASE_URL --app scytale --confirm scytale
         vantage pg restore demo.dump --url "$DB_URL"
+        git push heroku master
+        heroku_up 'scytale'
+    case 'code'
+        heroku_down 'scytale'
         git push heroku master
         heroku_up 'scytale'
 end
