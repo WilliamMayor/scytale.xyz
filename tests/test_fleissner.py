@@ -33,6 +33,11 @@ def test_key_has_overlapping_cuts():
         Fleissner(key="XXoo")
 
 
+def test_key_does_not_complete_grid():
+    with pytest.raises(ScytaleError):
+        Fleissner(key="oXooooXoooXooooooooXoXooXoooooXoooooXoooXooooooXooXoooooooooXooX")
+
+
 def test_grille():
     cipher = Fleissner(key="XooooXoXoooooXoo")
     assert [

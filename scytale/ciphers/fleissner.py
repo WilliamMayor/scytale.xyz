@@ -12,10 +12,14 @@ class Fleissner(Cipher):
         self.grille = self.init_grille(self.key)
         self.key_size = len(self.key)
         self.grille_size = len(self.grille)
+        all_a = self.encrypt("A" * self.key_size)
+        all_a = all_a.replace("X", "")
+        if len(all_a) != self.key_size:
+            raise ScytaleError("Either a space in the grille overlaps another, or your gaps do not cover the grid.")
 
     def compare(self, a, b):
-        a = a.rstrip("X")
-        b = b.rstrip("X")
+        a = a.replace("X", "")
+        b = b.replace("X", "")
         return super().compare(a, b)
 
     def validate(self, key):
