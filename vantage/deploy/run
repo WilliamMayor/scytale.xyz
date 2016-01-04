@@ -13,8 +13,9 @@ end
 switch "$argv"
     case ''
         heroku_down 'scytale'
+        set DB_URL (vantage --env .env/heroku env DATABASE_URL)
         heroku pg:reset DATABASE_URL --app scytale --confirm scytale
-        vantage --env .env/heroku alembic apply
+        vantage pg restore demo.dump --url "$DB_URL"
         git push heroku master
         heroku_up 'scytale'
 end
