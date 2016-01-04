@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Playfair, RailFence, Trifid
+from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Playfair, RailFence, Trifid
 from scytale.exceptions import ScytaleError
 from scytale.models import Group
 
@@ -43,6 +43,7 @@ class MessageForm(Form):
         ("Checkerboard", "Checkerboard"),
         ("Fleissner", "Fleissner"),
         ("Mixed Alphabet", "Mixed Alphabet"),
+        ("Myszkowski", "Myszkowski"),
         ("Playfair", "Playfair"),
         ("Rail Fence", "Rail Fence"),
         ("Trifid", "Trifid")
@@ -59,6 +60,7 @@ class MessageForm(Form):
                 "Checkerboard": Checkerboard,
                 "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
+                "Myszkowski": Myszkowski,
                 "Playfair": Playfair,
                 "Rail Fence": RailFence,
                 "Trifid": Trifid
@@ -93,6 +95,7 @@ class HackForm(Form):
                 "Checkerboard": Checkerboard,
                 "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
+                "Myszkowski": Myszkowski,
                 "Playfair": Playfair,
                 "Rail Fence": RailFence,
                 "Trifid": Trifid
