@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 
-from scytale.ciphers import Checkerboard, MixedAlphabet, Playfair, Trifid
+from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Playfair, Trifid
 from scytale.exceptions import ScytaleError
 from scytale.models import Group
 
@@ -41,6 +41,7 @@ class SignUpForm(Form):
 class MessageForm(Form):
     cipher = SelectField("Cipher", choices=[
         ("Checkerboard", "Checkerboard"),
+        ("Fleissner", "Fleissner"),
         ("Mixed Alphabet", "Mixed Alphabet"),
         ("Playfair", "Playfair"),
         ("Trifid", "Trifid")
@@ -55,6 +56,7 @@ class MessageForm(Form):
         try:
             cipher = {
                 "Checkerboard": Checkerboard,
+                "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
                 "Playfair": Playfair,
                 "Trifid": Trifid
@@ -87,6 +89,7 @@ class HackForm(Form):
         if self.plaintext.data:
             cipher = {
                 "Checkerboard": Checkerboard,
+                "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
                 "Playfair": Playfair,
                 "Trifid": Trifid

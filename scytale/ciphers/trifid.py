@@ -47,4 +47,4 @@ class Trifid(Cipher):
         return "".join([self.ntoc[n] for n in coords])
 
     def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack mixed alphabet in any reasonable time")
+        raise NotImplementedError("Cannot hack Trifid in any reasonable time")

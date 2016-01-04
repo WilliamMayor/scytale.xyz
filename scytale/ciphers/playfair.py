@@ -69,4 +69,4 @@ class Playfair(Cipher):
         return self.process(ciphertext, direction=-1)
 
     def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack mixed alphabet in any reasonable time")
+        raise NotImplementedError("Cannot hack Playfair in any reasonable time")

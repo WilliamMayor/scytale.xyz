@@ -47,3 +47,21 @@ body.cipher.mixed #content {
         }
     }
 }
+body.cipher.fleissner #content {
+    .key {
+        table {
+            width: auto;
+            margin: auto;
+            td {
+                width: 2em;
+                height: 2em;
+                padding: 0;
+                border: 1px solid $action-color;
+                cursor: pointer;
+                &.X {
+                    background-color: $action-color;
+                }
+            }
+        }
+    }
+}

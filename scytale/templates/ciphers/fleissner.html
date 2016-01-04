@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% set title="Fleissner Cipher" %}
+{% set page="cipher fleissner" %}
+{% block content %}
+<h2>Fleissner Grille Cipher</h2>
+<p>A Fleissner grille cipher is an interesting form of transposition cipher that uses a grille. The grille is a square piece of paper divided into squares (like a chess board, or graph paper). Some of the squares are cut out of the grille.</p>
+
+<p>The secret key for a Fleissner grille is simply the locations of the holes that have been cut. See the example grid below.</p>
+
+<p>To encrypt a message, you lay your grille over a second piece of paper and write your message in the spaces revealed by the holes in the grille.<p>
+
+<p>When you have filled in every space, rotate the grille 90 degrees clockwise and continue writing your message in the new gaps that are revealed. Keep rotating until you've finished your message.</p>
+
+<p>Now lift the grille off the paper to reveal a square filled with the letters of your message in a garbled order. If there are empty spaces left over, fill them in with Xs.</p>
+
+<p>If you haven't finished your message by the time you rotate the grille back to where it started, then you'll have to continue on a fresh piece of paper. You'll have two (or more) squares of letters when you're done.</p>
+
+<p>Finally, write out your cipher text by reading off of the squares from left to right.</p>
+
+<p>To decrypt a message, write out the cipher text, left to right, so it fills a square of the same dimensions as your grille.</p>
+
+<p>Place your grille over the square in the correct orientation. The grille will reveal only some of the letters, read them out in this order. Then rotate the grille and keep reading.</p>
+
+<p>To make your own grille, the holes must be cut in such a way that you never overlap letters when rotating it. The key section below lets you click on squares to mark them as cut out or not. You will not be able to cut out squares that overlap.</p>
+
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Grille_(cryptography)#Turning_grilles" target="_blank">Wikipedia</a>
+    |
+    <a href="{{ url_for('static', filename='worksheets/fleissner.pdf') }}" target="_blank">Instruction Sheet</a></p>
+
+<div class="key grille">
+    <label>Grid:</label>
+    <table>
+        <tr>
+            <td data-id="1" class="X"></td>
+            <td data-id="2" class=""></td>
+            <td data-id="3" class=""></td>
+            <td data-id="4" class="X"></td>
+            <td data-id="13" class=""></td>
+            <td data-id="9" class=""></td>
+            <td data-id="5" class=""></td>
+            <td data-id="1" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="5" class=""></td>
+            <td data-id="6" class=""></td>
+            <td data-id="7" class="X"></td>
+            <td data-id="8" class=""></td>
+            <td data-id="14" class="X"></td>
+            <td data-id="10" class=""></td>
+            <td data-id="6" class=""></td>
+            <td data-id="2" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="9" class="X"></td>
+            <td data-id="10" class=""></td>
+            <td data-id="11" class=""></td>
+            <td data-id="12" class=""></td>
+            <td data-id="15" class="X"></td>
+            <td data-id="11" class="X"></td>
+            <td data-id="7" class=""></td>
+            <td data-id="3" class="X"></td>
+        </tr>
+        <tr>
+            <td data-id="13" class=""></td>
+            <td data-id="14" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="16" class=""></td>
+            <td data-id="16" class=""></td>
+            <td data-id="12" class=""></td>
+            <td data-id="8" class=""></td>
+            <td data-id="4" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="4" class=""></td>
+            <td data-id="8" class="X"></td>
+            <td data-id="12" class=""></td>
+            <td data-id="16" class="X"></td>
+            <td data-id="16" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="14" class=""></td>
+            <td data-id="13" class="X"></td>
+        </tr>
+        <tr>
+            <td data-id="3" class=""></td>
+            <td data-id="7" class=""></td>
+            <td data-id="11" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="12" class="X"></td>
+            <td data-id="11" class=""></td>
+            <td data-id="10" class=""></td>
+            <td data-id="9" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="2" class="X"></td>
+            <td data-id="6" class=""></td>
+            <td data-id="10" class="X"></td>
+            <td data-id="14" class=""></td>
+            <td data-id="8" class=""></td>
+            <td data-id="7" class=""></td>
+            <td data-id="6" class="X"></td>
+            <td data-id="5" class="X"></td>
+        </tr>
+        <tr>
+            <td data-id="1" class=""></td>
+            <td data-id="5" class=""></td>
+            <td data-id="9" class=""></td>
+            <td data-id="13" class=""></td>
+            <td data-id="4" class=""></td>
+            <td data-id="3" class=""></td>
+            <td data-id="2" class=""></td>
+            <td data-id="1" class=""></td>
+        </tr>
+    </table>
+    </table>
+    <div class="key">
+        <label>Key:</label>
+        <pre></pre>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.fleissner(".key.grille");
+</script>
+{% endblock %}
