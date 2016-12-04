@@ -1,0 +1,14 @@
+#! /bin/bash
+set -e
+
+heroku maintenance:on --app scytale
+heroku scale web=0 --app scytale
+
+heroku pg:backups capture --app scytale
+heroku pg:reset DATABASE_URL --app scytale --confirm scytale
+vantage -e "$VG_APP_DIR/.env/production" migrate apply
+vantage -e "$VG_APP_DIR/.env/production" seed
+git push heroku master
+
+heroku scale web=1 --app scytale
+heroku maintenance:off --app scytale

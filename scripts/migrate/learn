@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+MESSAGE="$*"
+
+if [ -z "$MESSAGE" ]; then
+    echo "You must supply a message"
+    exit 1
+fi
+
+docker run \
+    --env-file="$VG_ENV_FILE" \
+    --volume="$VG_APP_DIR":/usr/src/app \
+    --rm \
+    scytale alembic \
+        --config /usr/src/app/migrations/alembic.ini \
+        revision --autogenerate \
+        --message "$MESSAGE"
