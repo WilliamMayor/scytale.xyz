@@ -12,3 +12,5 @@ git push heroku master
 
 heroku scale web=1 --app scytale
 heroku maintenance:off --app scytale
+
+open "http://www.scytale.xyz"
