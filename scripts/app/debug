@@ -8,4 +8,4 @@ docker run \
     --rm \
     --publish 80:80 \
     --volume="$VG_APP_DIR":/usr/src/app \
-    scytale bash
+    scytale python web.py
