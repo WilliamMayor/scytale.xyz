@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Playfair, RailFence, Trifid
+from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, OneTimePad, Playfair, RailFence, Trifid
 from scytale.exceptions import ScytaleError
 from scytale.models import Group
 
@@ -44,6 +44,7 @@ class MessageForm(Form):
         ("Fleissner", "Fleissner"),
         ("Mixed Alphabet", "Mixed Alphabet"),
         ("Myszkowski", "Myszkowski"),
+        ("One Time Pad", "One Time Pad"),
         ("Playfair", "Playfair"),
         ("Rail Fence", "Rail Fence"),
         ("Trifid", "Trifid")
@@ -61,6 +62,7 @@ class MessageForm(Form):
                 "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
                 "Myszkowski": Myszkowski,
+                "One Time Pad": OneTimePad,
                 "Playfair": Playfair,
                 "Rail Fence": RailFence,
                 "Trifid": Trifid
@@ -70,6 +72,7 @@ class MessageForm(Form):
             return False
         ciphertext = cipher.encrypt(self.plaintext.data)
         if ciphertext != self.ciphertext.data:
+            print("{} not equal to {}".format(ciphertext, self.ciphertext.data))
             self.ciphertext.errors.append("Incorrect ciphertext")
             return False
         return True
@@ -96,6 +99,7 @@ class HackForm(Form):
                 "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
                 "Myszkowski": Myszkowski,
+                "One Time Pad": OneTimePad,
                 "Playfair": Playfair,
                 "Rail Fence": RailFence,
                 "Trifid": Trifid

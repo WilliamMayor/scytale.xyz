@@ -8,3 +8,4 @@ config.codekit
 .vagrant
 scytale/static/css/.sass-cache
 tests/.cache
+.cache
