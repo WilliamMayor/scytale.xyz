@@ -36,3 +36,4 @@ class OneTimePad(Cipher):
 
     def hack(self, ciphertext):
         raise NotImplementedError("Cannot hack one time pad cipher at all")
+

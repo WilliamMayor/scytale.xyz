@@ -71,7 +71,7 @@ class MessageForm(Form):
             self.key.errors.append("Invalid Key: {0}".format(se.args[0]))
             return False
         ciphertext = cipher.encrypt(self.plaintext.data)
-        if ciphertext != self.ciphertext.data:
+        if not cipher.compare(ciphertext, self.ciphertext.data):
             print("{} not equal to {}".format(ciphertext, self.ciphertext.data))
             self.ciphertext.errors.append("Incorrect ciphertext")
             return False
