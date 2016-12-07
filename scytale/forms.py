@@ -70,8 +70,10 @@ class MessageForm(Form):
         except ScytaleError as se:
             self.key.errors.append("Invalid Key: {0}".format(se.args[0]))
             return False
-        ciphertext = cipher.encrypt(self.plaintext.data)
-        if not cipher.compare(ciphertext, self.ciphertext.data):
+        try:
+            ciphertext = cipher.encrypt(self.plaintext.data)
+            assert cipher.compare_ciphertext(ciphertext, self.ciphertext.data)
+        except Exception:
             print("{} not equal to {}".format(ciphertext, self.ciphertext.data))
             self.ciphertext.errors.append("Incorrect ciphertext")
             return False
@@ -104,7 +106,8 @@ class HackForm(Form):
                 "Rail Fence": RailFence,
                 "Trifid": Trifid
             }[self.message.cipher](key=self.message.key)
-            if not cipher.compare(self.plaintext.data, self.message.plaintext):
+            if not cipher.compare_plaintext(self.plaintext.data, self.message.plaintext):
+                print("{} not equal to {}".format(self.plaintext.data, self.message.plaintext))
                 self.plaintext.errors.append("Incorrect plain text")
                 result = False
         return result

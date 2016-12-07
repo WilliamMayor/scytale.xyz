@@ -17,10 +17,11 @@ class Fleissner(Cipher):
         if len(all_a) != self.key_size:
             raise ScytaleError("Either a space in the grille overlaps another, or your gaps do not cover the grid.")
 
-    def compare(self, a, b):
-        a = a.replace("X", "")
-        b = b.replace("X", "")
-        return super().compare(a, b)
+    def compare_ciphertext(self, actual, candidate):
+        """Returns true if the two ciphertexts are equivalent in this cipher"""
+        actual = self.make_comparable(self.decrypt(actual))
+        candidate = self.make_comparable(self.decrypt(candidate))
+        return candidate.startswith(actual)  # i.e. ignore any final random letters
 
     def validate(self, key):
         if key is None:

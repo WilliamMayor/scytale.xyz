@@ -76,3 +76,10 @@ def test_hello():
     cipher = Fleissner(key="XooooXoXoooooXoo")
     assert "HXXOXEXLXXXXXLXX" == cipher.encrypt("HELLO")
     assert "HELLO" == cipher.decrypt("HXXOXEXLXXXXXLXX")
+
+
+def test_compare_ignores_random_letters():
+    cipher = Fleissner(key="XooXooooooXoXoooXoooXXoXoooooooooXoXoooXooooXoooXoXoooXXoooooooo")
+
+    ciphertext = cipher.encrypt("WELCOME TO VILLIERS PARK")
+    assert cipher.compare_ciphertext(ciphertext, "WEHERRXSJQL C  POPVBMEA XTZRJRCKMTXOR Q NMMYVXGJIELAIOLIUB Q J Z")
