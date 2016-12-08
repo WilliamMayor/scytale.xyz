@@ -106,7 +106,9 @@ class HackForm(Form):
                 "Rail Fence": RailFence,
                 "Trifid": Trifid
             }[self.message.cipher](key=self.message.key)
-            if not cipher.compare_plaintext(self.plaintext.data, self.message.plaintext):
+            try:
+                assert cipher.compare_plaintext(self.plaintext.data, self.message.plaintext)
+            except Exception:
                 print("{} not equal to {}".format(self.plaintext.data, self.message.plaintext))
                 self.plaintext.errors.append("Incorrect plain text")
                 result = False
