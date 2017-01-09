@@ -31,18 +31,9 @@ body.cipher #content {
 }
 body.cipher.mixed #content {
     .key {
-        pre {
-            font-size: 16px;
-            margin: 0;
-            letter-spacing: 5px;
-        }
         input {
             font-family: monospace;
             font-size: 16px;
-            padding: 0;
-            border-top: none;
-            border-right: none;
-            border-left: none;
             letter-spacing: 5px;
         }
     }
