@@ -129,6 +129,13 @@
 <div class="ciphertext">
     <label>Example Ciphertext:</label>
     <pre></pre>
+    <p class="error"></p>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.mixed(".key input");
+</script>
 {% endblock %}

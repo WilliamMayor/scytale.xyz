@@ -8,7 +8,7 @@ class OneTimePad(Cipher):
 
     def validate(self, key):
         if key is None:
-            key = "Alice was beginning to get very tired of sitting by her sister on the bank and of having nothing to do"
+            key = "IGBQU"
         key = key.upper()
         key = self.clean(key)
         return key

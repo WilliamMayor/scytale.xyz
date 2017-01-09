@@ -1,12 +1,24 @@
 import hashlib
 from collections import defaultdict
 
-from flask import Blueprint, render_template, redirect, url_for, flash, abort
+from flask import Blueprint, render_template, redirect, url_for, flash, abort, request
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
 from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, OneTimePad, Playfair, RailFence, Trifid
+from scytale.exceptions import ScytaleError
 from scytale.forms import SignUpForm, SignInForm, MessageForm, HackForm
 from scytale.models import db, Group, Message, Point
+
+CIPHERS = {
+    "checkerboard": Checkerboard,
+    "fleissner": Fleissner,
+    "mixed": MixedAlphabet,
+    "myszkowski": Myszkowski,
+    "otp": OneTimePad,
+    "playfair": Playfair,
+    "railfence": RailFence,
+    "trifid": Trifid,
+}
 
 bp = Blueprint("bp", __name__, template_folder="templates")
 
@@ -131,49 +143,17 @@ def leaderboard():
     return render_template("leaderboard.html", groups=groups.values())
 
 
-@bp.route("/ciphers/checkerboard/")
-def checkerboard():
-    cipher = Checkerboard()
-    return render_template("ciphers/checkerboard.html", cipher=cipher)
-
-
-@bp.route("/ciphers/fleissner/")
-def fleissner():
-    cipher = Fleissner()
-    return render_template("ciphers/fleissner.html", cipher=cipher)
-
-
-@bp.route("/ciphers/mixed/")
-def mixed():
-    cipher = MixedAlphabet()
-    return render_template("ciphers/mixed.html", cipher=cipher)
-
-
-@bp.route("/ciphers/myszkowski/")
-def myszkowski():
-    cipher = Myszkowski()
-    return render_template("ciphers/myszkowski.html", cipher=cipher)
-
-
-@bp.route("/ciphers/otp/")
-def otp():
-    cipher = OneTimePad(key="IGBQU")
-    return render_template("ciphers/otp.html", cipher=cipher)
-
-
-@bp.route("/ciphers/playfair/")
-def playfair():
-    cipher = Playfair()
-    return render_template("ciphers/playfair.html", cipher=cipher)
-
-
-@bp.route("/ciphers/railfence/")
-def railfence():
-    cipher = RailFence()
-    return render_template("ciphers/railfence.html", cipher=cipher)
-
-
-@bp.route("/ciphers/trifid/")
-def trifid():
-    cipher = Trifid()
-    return render_template("ciphers/trifid.html", cipher=cipher)
+@bp.route("/ciphers/<cipher>/", methods=["GET", "POST"])
+def ciphers(cipher):
+    if request.method == "POST":
+        plaintext = request.form.get("plaintext")
+        key = request.form.get("key")
+        try:
+            c = CIPHERS[cipher](key=key)
+            return c.encrypt(plaintext)
+        except ScytaleError as e:
+            return str(e), 400
+        except Exception:
+            return "Something went wrong!", 400
+    c = CIPHERS[cipher]()
+    return render_template("ciphers/{}.html".format(cipher), cipher=c)

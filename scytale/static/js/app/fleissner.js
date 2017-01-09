@@ -11,6 +11,7 @@
                 return "o";
             }).get().join("");
             key.text(text);
+            APP.encrypt($(".plaintext pre").text(), text, $(".ciphertext pre"));
         };
 
         cells.click(function() {

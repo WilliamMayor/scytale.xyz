@@ -9,6 +9,7 @@
                 return v;
             }).get().join("");
             key.text(text);
+            APP.encrypt($(".plaintext pre").text(), text, $(".ciphertext pre"));
         };
         inputs.on("change input", generate_key);
         generate_key();

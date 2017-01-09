@@ -19,6 +19,7 @@
                 }
                 table.append(tr);
             }
+            APP.encrypt($(".plaintext pre").text(), rails_count, $(".ciphertext pre"));
         };
         input.on("change input", generate_table);
         generate_table();

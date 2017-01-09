@@ -39,6 +39,9 @@ body.cipher #content {
             }
         }
     }
+    .error {
+        color: red;
+    }
 }
 body.cipher.mixed #content {
     .key {

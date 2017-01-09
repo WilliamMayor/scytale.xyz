@@ -14,17 +14,17 @@
                     <li><a href="{{ url_for('.leaderboard') }}">Leaderboard</a></li>
                     <li>Substitutions</li>
                     <li><ul>
-                        <li><a href="{{ url_for('.checkerboard') }}">Checkerboard</a></li>
-                        <li><a href="{{ url_for('.mixed') }}">Mixed Alphabet</a></li>
-                        <li><a href="{{ url_for('.otp') }}">One Time Pad</a></li>
-                        <li><a href="{{ url_for('.playfair') }}">Playfair</a></li>
-                        <li><a href="{{ url_for('.trifid') }}">Trifid</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='checkerboard') }}">Checkerboard</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='mixed') }}">Mixed Alphabet</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='otp') }}">One Time Pad</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='playfair') }}">Playfair</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='trifid') }}">Trifid</a></li>
                     </ul></li>
                     <li>Transpositions</li>
                     <li><ul>
-                        <li><a href="{{ url_for('.fleissner') }}">Fleissner</a></li>
-                        <li><a href="{{ url_for('.myszkowski') }}">Myszkowski</a></li>
-                        <li><a href="{{ url_for('.railfence') }}">Rail Fence</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='fleissner') }}">Fleissner</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='myszkowski') }}">Myszkowski</a></li>
+                        <li><a href="{{ url_for('.ciphers', cipher='railfence') }}">Rail Fence</a></li>
                     </ul></li>
                     {% if current_user.is_authenticated %}
                     <li>{{ current_user.name }}</li>

@@ -1,0 +1,1 @@
+!function($,n){n.myszkowski=function(t){var e=function(){n.encrypt($(".plaintext pre").text(),$(t).val(),$(".ciphertext pre"))};$(t).on("change input",e),e()}}(jQuery,APP||{});

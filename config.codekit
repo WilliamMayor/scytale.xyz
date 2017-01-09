@@ -1501,6 +1501,50 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/scytale\/static\/js\/app\/min\/mixed.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/mixed.js",
+		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/min\/mixed.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/scytale\/static\/js\/app\/min\/myszkowski.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/myszkowski.js",
+		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/min\/myszkowski.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/scytale\/static\/js\/app\/mixed.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/mixed.js",
+		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/mixed.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/scytale\/static\/js\/app\/myszkowski.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/myszkowski.js",
+		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/myszkowski.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/scytale\/static\/js\/app\/otp.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -1766,26 +1810,38 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/playfair.js",
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/mixed.js",
 			"position": 3,
 			"type": 1
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/otp.js",
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/playfair.js",
 			"position": 4,
 			"type": 1
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/fleissner.js",
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/otp.js",
 			"position": 5,
 			"type": 1
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/checkerboard.js",
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/myszkowski.js",
 			"position": 6,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/fleissner.js",
+			"position": 7,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/checkerboard.js",
+			"position": 8,
 			"type": 1
 			}
 		]
