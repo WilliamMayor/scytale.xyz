@@ -5,7 +5,7 @@
             var pa = pad[i % pad.length];
             pl = alphabet.indexOf(pl);
             pa = alphabet.indexOf(pa);
-            c = (pl + pa) % alphabet.length;
+            var c = (pl + pa) % alphabet.length;
             return alphabet[c];
         });
         return cipher.join("");
@@ -18,7 +18,7 @@
             pa = alphabet.indexOf(pa);
             // Need to add alphabet.length in order to force result to be
             // positive.
-            pl = (c - pa + alphabet.length) % alphabet.length;
+            var pl = (c - pa + alphabet.length) % alphabet.length;
             return alphabet[pl];
         });
         return plain.join("");

@@ -5,7 +5,7 @@
         var generate_key = function() {
             var text = inputs.map(function(i, e) {
                 var v = $(e).val();
-                if (v === "") v = " ";
+                if (v === "") {v = " ";}
                 return v;
             }).get().join("");
             key.text(text);

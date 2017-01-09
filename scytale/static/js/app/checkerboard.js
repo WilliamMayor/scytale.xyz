@@ -8,7 +8,7 @@
             var blanks = 0;
             var text = inputs.map(function(i, e) {
                 var v = $(e).val();
-                if (v === "") v = " ";
+                if (v === "") {v = " ";}
                 if (i < 10) {
                     if (v === " ") {
                         if (blanks === 0) {
