@@ -7,21 +7,32 @@ body.cipher #content {
         @extend %default-ol;
         margin-left: $base-spacing;
     }
+    table, th {
+        text-align: center;
+    }
     .links {
         text-align: center;
     }
     .key {
         &.grid {
-            text-align: center;
             table {
+                &.compressed {
+                    width: auto;
+                    border-collapse: separate;
+                    border-spacing: 1em;
+                    td {
+                        input {
+                           margin-left: 0;
+                            margin-right: 0;
+                        }
+                    }
+                }
                 td {
                     border: none;
                     padding: 0;
                     text-align: center;
                     input {
                         width: 2.5em;
-                        margin-left: auto;
-                        margin-right: auto;
                         text-align: center;
                     }
                 }

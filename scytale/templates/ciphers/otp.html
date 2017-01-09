@@ -3,6 +3,9 @@
 {% block title %}{{ super() }} | Ciphers | One Time Pad{% endblock %}
 {% block content %}
 <h2>One Time Pad Cipher</h2>
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/One-time_pad" target="_blank">Wikipedia</a>
+</p>
 <p>The One Time Pad (OTP) cipher is a substitution cipher that is impossible to crack (if used correctly).</p>
 
 <p>To encrypt a message using OTP you combine each letter of your plaintext with a letter from your "pad". The pad is simply a large amount of text, some people use books as their pad, some people generate random letters.</p>
@@ -48,7 +51,7 @@
     <pre>{{ cipher.encrypt("HELLO") }}</pre>
 </div>
 
-<h2>Calculator</h2>
+<h3>Calculator</h3>
 
 <p>Complicated right? The calculator below can help. If you type a message into the plaintext box and a random pad into the pad box it will encrypt your message. If you instead provide a pad and a ciphertext it will decrypt for you.</p>
 

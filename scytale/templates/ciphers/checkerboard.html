@@ -3,8 +3,15 @@
 {% block title %}{{ super() }} | Ciphers | Straddling Checkerboard{% endblock %}
 {% block content %}
 <h2>Straddling Checkerboard Cipher</h2>
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Straddling_checkerboard#Straddling_checkerboard" target="_blank">Wikipedia</a>
+     |
+     <a href="{{ url_for('static', filename='worksheets/checkerboard.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
 
 <p>The Straddling Checkerboard Cipher is an awesome substitution cipher that turns plain text messages into numbers.</p>
+
+<h3>Encrypting</h3>
 
 <p>The secret key for this cipher is a randomised grid of letters (see below).</p>
 
@@ -18,23 +25,25 @@
 
 <p>When you have gone through your entire plain text message you will have a long row of numbers. This is your cipher text!</p>
 
+<h3>Decrypting</h3>
+
 <p>To decrypt a message, go through the cipher text number by number. Look in the column with that number:</p>
 <ul>
     <li>If there is a letter in the first row in that column, write it down</li>
-    <li>If the first row is a space then take another number from your cipher text. The first number tells you which row to look in, the second tells you which column. Find the letter and write it down.</li>
+    <li>If the first row contains a gap then take another number from your cipher text. The first number tells you which row to look in, the second tells you which column. Find the letter and write it down.</li>
 </ul>
 <p>When you have gone through all of the numbers you should have your plain text back again!</p>
+
+<h3>Making Your Own Key</h3>
 
 <p>To create your own grid (and therefore your own secret key) draw out a grid with 10 columns and 3 rows. Number the columns 0-9.</p>
 <p>Now pick 8 random letters and fill in the top row with them. Leave 2 random columns empty.</p>
 <p>Label the second row with number of the first column you left empty. Label the third row with the number of the second empty column.</p>
 <p>Now fill in the rest of the grid using the letters that you haven't picked for the top row. Use the letters A-Z as well as a space and a full stop.</p>
 
-<p class="links">
-    <a href="http://en.wikipedia.org/wiki/Straddling_checkerboard#Straddling_checkerboard" target="_blank">Wikipedia</a>
-     |
-     <a href="{{ url_for('static', filename='worksheets/checkerboard.pdf') }}" target="_blank">Instruction Sheet</a>
-</p>
+<h3>Example</h3>
+
+<p>Here's a grid that you can edit. When you change the letters in the grid the key will update and the example plaintext will be encrypted for you. Can you see how it all works?</p>
 
 <div class="key grid">
     <label>Grid:</label>
@@ -75,6 +84,14 @@
         <label>Key:</label>
         <pre></pre>
     </div>
+</div>
+<div class="plaintext">
+    <label>Example Plaintext:</label>
+    <pre>HELLO WORLD</pre>
+</div>
+<div class="ciphertext">
+    <label>Example Ciphertext:</label>
+    <pre></pre>
 </div>
 {% endblock %}
 

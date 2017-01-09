@@ -3,7 +3,14 @@
 {% block title %}{{ super() }} | Ciphers | Mixed Alphabet{% endblock %}
 {% block content %}
 <h2>Mixed Alphabet Cipher</h2>
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Substitution_cipher#Simple_substitution" target="_blank">Wikipedia</a>
+    |
+    <a href="{{ url_for('static', filename='worksheets/mixed.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
 <p>The Mixed Alphabet Cipher is a substitution cipher that replaces letters in the plain text with letters from the secret key.</p>
+
+<h3>Encrypting</h3>
 
 <p>To encrypt a message using the Mixed Alphabet Cipher take the letters in your plain text one by one. Find where they are in the normal alphabet (e.g. E is the 5th letter) and then find the letter in that position in your secret key (e.g. T is the 5th letter in the key below). Write down this letter.</p>
 
@@ -11,21 +18,32 @@
 
 <p>When you have replaced every letter in your plain text you will have a string of gibberish letters written down. This is your cipher text!</p>
 
+<h3>Decrypting</h3>
+
 <p>To decrypt a message take the letters in the cipher text one by one. Find where they are in your secret key and replace them with the letter in that position in the normal alphabet. Easy!</p>
+
+<h3>Making Your Own Key</h3>
 
 <p>The secret key is the letters A-Z plus a space jumbled into a random order.</p>
 <p>To make your own secret key simply pick your own random ordering of the letters (and the space). The key below is editable, so you can easily try this.</p>
 <p>Remember to include every letter and include them only once.</p>
 
-<p class="links">
-    <a href="http://en.wikipedia.org/wiki/Substitution_cipher#Simple_substitution" target="_blank">Wikipedia</a>
-    |
-    <a href="{{ url_for('static', filename='worksheets/mixed.pdf') }}" target="_blank">Instruction Sheet</a>
-</p>
+<h3>Example</h3>
+
+<p>Here's a key that you can edit. When you change the letters the example plaintext will be encrypted for you. Can you see how it all works?</p>
 
 <div class="key">
     <label>Key:</label>
     <input type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ " disabled>
     <input type="text" value="{{ cipher.key }}" />
+</div>
+
+<div class="plaintext">
+    <label>Example Plaintext:</label>
+    <pre>HELLO WORLD</pre>
+</div>
+<div class="ciphertext">
+    <label>Example Ciphertext:</label>
+    <pre></pre>
 </div>
 {% endblock %}

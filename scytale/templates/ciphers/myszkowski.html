@@ -3,14 +3,21 @@
 {% block title %}{{ super() }} | Ciphers | Myszkowski{% endblock %}
 {% block content %}
 <h2>Myszkowski Cipher</h2>
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Transposition_cipher#Myszkowski_transposition" target="_blank">Wikipedia</a>
+    |
+    <a href="{{ url_for('static', filename='worksheets/myszkowski.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
 
 <p>Myszkowski ciphers are interesting transposition ciphers that use a code word to shuffle letters in a message.</p>
+
+<h3>Encrypting</h3>
 
 <p>The key to a Myszkowski cipher is a code word that has repeated letters in it. A memorable word, like TOMATO, might be used, but you could also make up a random code word, like AAFIFK</p>
 
 <p>To encrypt a message, write your code word at the top of a grid. Beneath the codeword, write your message from left to right, moving down a column when you reach the end of a row.</p>
 
-<p>For example, with code word TOMATO and message "WATCH OUT":</p>
+<p>For example, with code word TOMATO and message "WATCH OUT" (I've written the spaces as underscores below, so it's easier to see what's going on):</p>
 
 <table>
     <tr>
@@ -27,15 +34,15 @@
         <td>T</td>
         <td>C</td>
         <td>H</td>
-        <td> </td>
+        <td>_</td>
     </tr>
     <tr>
         <td>O</td>
         <td>U</td>
         <td>T</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
+        <td>_</td>
+        <td>_</td>
+        <td>_</td>
     </tr>
 </table>
 
@@ -54,21 +61,21 @@
         <td>C</td>
         <td>T</td>
         <td>A</td>
-        <td> </td>
+        <td>_</td>
         <td>W</td>
         <td>H</td>
     </tr>
     <tr>
-        <td> </td>
+        <td>_</td>
         <td>T</td>
         <td>U</td>
-        <td> </td>
+        <td>_</td>
         <td>O</td>
-        <td> </td>
+        <td>_</td>
     </tr>
 </table>
 
-<p>Now merge the columns that have matching code word letters (I've written the spaces as underscores below, so it's easier to see what's going on):</p>
+<p>Now merge the columns that have matching code word letters:</p>
 
 <table>
     <tr>
@@ -93,15 +100,35 @@
 
 <p>Finally, read out your cipher text column by column; left to right. Don't forget to include the spaces:</p>
 
-<p>C_TTA_U_WHO_</p>
+<pre>C_TTA_U_WHO_</pre>
+
+<h3>Decrypting</h3>
 
 <p>To decrypt a message, write the code word at the top of a grid. To see how many rows your grid will need, divide the length of the cipher text by the length of the code word.</p>
 
 <p>Now write your cipher text into your grid, filling up the columns in alphabetical order. When you fill up columns with repeated header letters, you'll have to fill all the repeated columns in simultaneously.</p>
 
-<p class="links">
-    <a href="http://en.wikipedia.org/wiki/Transposition_cipher#Myszkowski_transposition" target="_blank">Wikipedia</a>
-    |
-    <a href="{{ url_for('static', filename='worksheets/myszkowski.pdf') }}" target="_blank">Instruction Sheet</a>
-</p>
+<h3>Making Your Own Key</h3>
+
+<p>This is really easy. Simply pick a new code word. A good code word is hard to guess, contains repeating letters, and is a good size. A good size means that it's not so small that it's easy to see which of your columns have repeating letters (e.g. EGG) or so large that your columns are really short (e.g. SUPERCALIFRAGILISTICEXPIALIDOCIOUS)</p>
+
+<h3>Example</h3>
+
+<p>Here's a key that you can edit. When you change the key the example plaintext will be encrypted for you. Can you see how it all works?</p>
+
+<div class="key">
+    <label>Key:</label>
+    <input type="text" value="TOMATO">
+</div>
+
+<div class="plaintext">
+    <label>Example Plaintext:</label>
+    <pre>HELLO WORLD</pre>
+</div>
+
+<div class="ciphertext">
+    <label>Example Ciphertext:</label>
+    <pre></pre>
+</div>
+
 {% endblock %}

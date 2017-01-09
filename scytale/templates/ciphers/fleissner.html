@@ -3,7 +3,14 @@
 {% set page="cipher fleissner" %}
 {% block content %}
 <h2>Fleissner Grille Cipher</h2>
+<p class="links">
+    <a href="http://en.wikipedia.org/wiki/Grille_(cryptography)#Turning_grilles" target="_blank">Wikipedia</a>
+    |
+    <a href="{{ url_for('static', filename='worksheets/fleissner.pdf') }}" target="_blank">Instruction Sheet</a>
+</p>
 <p>A Fleissner grille cipher is an interesting form of transposition cipher that uses a grille. The grille is a square piece of paper divided into squares (like a chess board, or graph paper). Some of the squares are cut out of the grille.</p>
+
+<h3>Encrypting</h3>
 
 <p>The secret key for a Fleissner grille is simply the locations of the holes that have been cut. See the example grid below.</p>
 
@@ -17,16 +24,19 @@
 
 <p>Finally, write out your cipher text by reading off of the squares from left to right.</p>
 
+<h3>Decrypting</h3>
+
 <p>To decrypt a message, write out the cipher text, left to right, so it fills a square of the same dimensions as your grille.</p>
 
 <p>Place your grille over the square in the correct orientation. The grille will reveal only some of the letters, read them out in this order. Then rotate the grille and keep reading.</p>
 
+<h3>Making Your Own Key</h3>
+
 <p>To make your own grille, the holes must be cut in such a way that you never overlap letters when rotating it. The key section below lets you click on squares to mark them as cut out or not. You will not be able to cut out squares that overlap.</p>
 
-<p class="links">
-    <a href="http://en.wikipedia.org/wiki/Grille_(cryptography)#Turning_grilles" target="_blank">Wikipedia</a>
-    |
-    <a href="{{ url_for('static', filename='worksheets/fleissner.pdf') }}" target="_blank">Instruction Sheet</a></p>
+<h3>Example</h3>
+
+<p>Here's a grille that you can edit. When you change the holes in the grille the key will update and the example plaintext will be encrypted for you. Can you see how it all works?</p>
 
 <div class="key grille">
     <label>Grid:</label>
@@ -117,6 +127,15 @@
         <label>Key:</label>
         <pre></pre>
     </div>
+</div>
+
+<div class="plaintext">
+    <label>Example Plaintext:</label>
+    <pre>HELLO WORLD</pre>
+</div>
+<div class="ciphertext">
+    <label>Example Ciphertext:</label>
+    <pre></pre>
 </div>
 {% endblock %}
 

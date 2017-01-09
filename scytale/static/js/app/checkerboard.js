@@ -1,4 +1,8 @@
 (function($, APP) {
+    var encrypt = function(plaintext, key) {
+
+    };
+
     APP.checkerboard = function(selector) {
         var inputs = $(selector).find("table td input");
         var key = $(selector).find(".key pre");
