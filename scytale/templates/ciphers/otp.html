@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% set page="cipher otp" %}
+{% block title %}{{ super() }} | Ciphers | One Time Pad{% endblock %}
+{% block content %}
+<h2>One Time Pad Cipher</h2>
+<p>The One Time Pad (OTP) cipher is a substitution cipher that is impossible to crack (if used correctly).</p>
+
+<p>To encrypt a message using OTP you combine each letter of your plaintext with a letter from your "pad". The pad is simply a large amount of text, some people use books as their pad, some people generate random letters.</p>
+
+<p>To combine the letters you have to:</p>
+
+<ul>
+    <li>Find the position of letter from the plaintext is in the alphabet (counting from 0, i.e. A=0)</li>
+    <li>Similarly find where the letter from the pad is in the alphabet</li>
+    <li>Add the two numbers together</li>
+    <li>If the result is greater than the length of your alphabet then wrap around to 0 and keep counting (i.e. use modulo arithmetic)</li>
+    <li>Find which letter is at the position you've just calculated</li>
+</ul>
+
+<p>For example, let's use an alphabet of:</p>
+
+<div class="key">
+    <label>Alphabet:</label>
+    <pre>ABCDEFGHIJKLMNOPQRSTUVWXYZ </pre>
+</div>
+
+<p>And let's encrypt this message, using this pad:</p>
+
+<div class="key">
+    <label>Plaintext:</label>
+    <pre>HELLO</pre>
+    <label>Pad:</label>
+    <pre>{{ cipher.key }}</pre>
+</div>
+
+<ul>
+    <li>The letter <code>H</code> (from the plaintext) is at position {{ cipher.alphabet.index("H") }} in the alphabet</li>
+    <li>The letter <code>{{ cipher.key[0] }}</code> (from the pad) is at position {{ cipher.alphabet.index(cipher.key[0]) }}</li>
+    <li>Adding these positions together gives us <code>{{ cipher.alphabet.index("H") }} + {{ cipher.alphabet.index(cipher.key[0]) }} = {{ cipher.alphabet.index("H") + cipher.alphabet.index(cipher.key[0]) }}</code></li>
+    <li>Make sure our new position isn't bigger than the length of the alphabet: <code>{{ cipher.alphabet.index("H") + cipher.alphabet.index(cipher.key[0]) }} mod {{ cipher.alphabet | count }} == {{ (cipher.alphabet.index("H") + cipher.alphabet.index(cipher.key[0])) % (cipher.alphabet | count) }}</code></li>
+    <li>The letter <code>{{ cipher.alphabet[cipher.alphabet.index("H") + cipher.alphabet.index(cipher.key[0])] }}</code> is at position {{ cipher.alphabet.index("H") + cipher.alphabet.index(cipher.key[0]) }}, this is the first letter of the ciphertext</li>
+</ul>
+
+<p>Going through every letter of the plaintext and pad gives us:
+
+<div class="key">
+    <label>Ciphertext:</label>
+    <pre>{{ cipher.encrypt("HELLO") }}</pre>
+</div>
+
+<h2>Calculator</h2>
+
+<p>Complicated right? The calculator below can help. If you type a message into the plaintext box and a random pad into the pad box it will encrypt your message. If you instead provide a pad and a ciphertext it will decrypt for you.</p>
+
+
+<div class="key">
+    <label>Plaintext:</label>
+    <input type="text" value="HELLO" id="plaintext" />
+    <label>Pad:</label>
+    <input type="text" value="{{ cipher.key }}" id="pad" />
+    <label>Ciphertext:</label>
+    <input type="text" value="{{ cipher.encrypt('HELLO') }}" id="ciphertext" />
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/app/otp.js') }}"></script>
+<script>
+    var otp = new APP.otp("{{ cipher.alphabet }}");
+</script>
+{% endblock %}
