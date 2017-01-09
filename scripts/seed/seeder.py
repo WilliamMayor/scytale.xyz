@@ -54,11 +54,11 @@ def create_messages(group):
     yield create_message(
         group, "Trifid", "QWERTYUIOPASDFGHJKLZXCVBNM",
         "WELCOME TO VILLIERS PARK",
-        "QBZMUILSEOLXXQVTCZMMRCNY")
+        "QBZMUILSEOLXXQVTCZMMRCNY ")
     yield create_message(
         group, "Trifid", "QWERTYUIOPASDFGHJKLZXCVBNM",
         "THE DAY OF THE TRIFIDS",
-        "CHBVOGVWZYSPUPFXSMHMAY")
+        "CHBVOGVWZYSPUPFXSMHMAY ")
 
     yield create_message(
         group, "Fleissner",
