@@ -3,7 +3,6 @@
 
 .env
 .vantage
-config.codekit
 .bundle
 .vagrant
 scytale/static/css/.sass-cache
