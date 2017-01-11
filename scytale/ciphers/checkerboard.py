@@ -3,6 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Checkerboard(Cipher):
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ."
 
     def __init__(self, key=None):
         self.table = self.validate(key)
@@ -72,6 +73,3 @@ class Checkerboard(Cipher):
                 index = int(numbers.pop(0))
                 plaintext.append(c[index])
         return "".join(plaintext)
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack checkerboard in any reasonable time")

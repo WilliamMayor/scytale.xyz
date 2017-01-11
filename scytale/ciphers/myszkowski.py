@@ -55,6 +55,3 @@ class Myszkowski(Cipher):
         for row in range(depth):
             plaintext.append("".join([col[row] for col in columns]))
         return "".join(plaintext).rstrip(" ")
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack Myszkowski in any reasonable time")

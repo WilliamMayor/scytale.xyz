@@ -1,1 +1,0 @@
-!function($,n){n.mixed=function(t){var e=function(){n.encrypt($(".plaintext pre").text(),$(".key input").val(),$(".ciphertext pre"))};$(".key input").on("change input",e),e()}}(jQuery,APP||{});

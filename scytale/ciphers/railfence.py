@@ -31,6 +31,3 @@ class RailFence(Cipher):
         rng = range(len(ciphertext))
         pos = self.fence(rng)
         return ''.join(ciphertext[pos.index(n)] for n in rng)
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack Fleissner in any reasonable time")

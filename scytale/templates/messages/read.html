@@ -3,15 +3,21 @@
 {% block title %}{{ super() }} | Read Messages{% endblock %}
 {% block content %}
 <h2>Read Messages</h2>
-{% for group, messages in messages.items() | sort %}
-    <div class="group">
-        <h3>{{ group }}</h3>
-        {% for m in messages %}
-            <div class="message">
-                <p><a href="{{ url_for('.messages_hack', mid=m.mid)}}">{{ m.ciphertext }}</a></p>
-                <p class="cipher">Cipher: {{ m.cipher | title}}</p>
-            </div>
-        {% endfor %}
-    </div>
+{% for m in messages | sort(attribute='mid') %}
+<div class="message">
+    <p><a href="{{ url_for('.messages_hack', mid=m.mid)}}">{{ m.ciphertext }}</a></p>
+    <p class="small">
+        Group:
+        <a href="{{ url_for('.messages_read', group=m.group.name)}}">{{ m.group.name }}</a>
+    </p>
+    <p class="small">
+        Cipher:
+        <a href="{{ url_for('.messages_read', cipher=m.cipher)}}">{{ m.cipher | title }}</a>
+    </p>
+    <p class="small">
+        Key ID:
+        <a href="{{ url_for('.messages_read', key=m.key_id)}}">{{ m.key_id }}</a>
+    </p>
+</div>
 {% endfor %}
 {% endblock %}

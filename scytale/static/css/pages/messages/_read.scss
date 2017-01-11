@@ -1,17 +1,11 @@
 body.messages.read #content {
-    .group {
-        margin: $base-spacing 0;
-        h3 {
+    .message {
+        margin-left: $base-spacing;
+        margin-bottom: $small-spacing;
+        p {
             margin: 0;
-        }
-        .message {
-            margin-left: $base-spacing;
-            margin-bottom: $small-spacing;
-            p {
-                margin: 0;
-                &.cipher {
-                    font-size: smaller;
-                }
+            &.small {
+                font-size: smaller;
             }
         }
     }

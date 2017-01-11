@@ -45,6 +45,3 @@ class Trifid(Cipher):
         coords = "".join([self.cton[c] for c in ciphertext])
         coords = [coords[i::length] for i in range(length)]
         return "".join([self.ntoc[n] for n in coords])
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack Trifid in any reasonable time")

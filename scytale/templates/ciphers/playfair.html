@@ -61,7 +61,7 @@
         {% for i in range(0, 25, 5) %}
             <tr>
                 {% for l in cipher.key[i:i+5] %}
-                    <td><input type="text" value="{{ l }}" /></td>
+                    <td><input type="text" value="{{ l }}" maxlength="1" /></td>
                 {% endfor %}
             </tr>
         {% endfor %}
@@ -88,6 +88,6 @@
 
 {% block script %}
 <script>
-    new APP.playfair(".key.grid");
+    new APP.playfair(".key.grid", "{{ cipher.alphabet }}");
 </script>
 {% endblock %}

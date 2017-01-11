@@ -1,10 +1,9 @@
-import hashlib
 from collections import defaultdict
 
 from flask import Blueprint, render_template, redirect, url_for, flash, abort, request
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, OneTimePad, Playfair, RailFence, Trifid
+from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Permutation, OneTimePad, Playfair, RailFence, Trifid
 from scytale.exceptions import ScytaleError
 from scytale.forms import SignUpForm, SignInForm, MessageForm, HackForm
 from scytale.models import db, Group, Message, Point
@@ -14,6 +13,7 @@ CIPHERS = {
     "fleissner": Fleissner,
     "mixed": MixedAlphabet,
     "myszkowski": Myszkowski,
+    "permutation": Permutation,
     "otp": OneTimePad,
     "playfair": Playfair,
     "railfence": RailFence,
@@ -80,10 +80,18 @@ def messages_send():
 @bp.route("/messages/read/")
 @login_required
 def messages_read():
-    messages = defaultdict(list)
-    for m in Message.query.all():
-        messages[m.group.name].append(m)
-    return render_template("messages/read.html", messages=messages)
+    query = Message.query
+    group = request.args.get("group")
+    if group is not None:
+        group = Group.query.filter(Group.name == group).first()
+        query = query.filter(Message.group == group)
+    cipher = request.args.get("cipher")
+    if cipher is not None:
+        query = query.filter(Message.cipher == cipher)
+    key_id = request.args.get("key")
+    if key_id is not None:
+        query = (m for m in query if m.key_id == key_id)
+    return render_template("messages/read.html", messages=query)
 
 
 @bp.route("/messages/hack/<int:mid>/", methods=["GET", "POST"])
@@ -98,12 +106,12 @@ def messages_hack(mid):
             "Hacked Message {0}".format(mid)]
         for p in current_user.points])
     see_key = message.group == current_user or message.group.name == "Billy" or any([
-        p.reason == "Hacked Key {0}".format(hashlib.md5(message.key.encode()).hexdigest())
+        p.reason == "Hacked Key {0}".format(message.key_id)
         for p in current_user.points])
     form = HackForm(message=message)
     if form.validate_on_submit():
         if form.key.data and not see_key:
-            points = current_user.give_point(20, "Hacked Key {0}".format(hashlib.md5(message.key.encode()).hexdigest()), max=1)
+            points = current_user.give_point(20, "Hacked Key {0}".format(message.key_id), max=1)
             flash("Key Hacked! ({0} points)".format(points))
         if form.plaintext.data and not see_plaintext:
             reason = "Hacked Message {0}".format(mid)

@@ -98,6 +98,6 @@
 
 {% block script %}
 <script>
-    new APP.checkerboard(".key.grid");
+    new APP.checkerboard(".key.grid", "{{ cipher.alphabet }}");
 </script>
 {% endblock %}

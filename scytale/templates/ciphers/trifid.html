@@ -97,7 +97,7 @@
             <tr>
                 <td>{{ i }}</td>
                 {% for l in cipher.key[9*i:9*(i+1)] %}
-                    <td><input type="text" value="{{ l }}"></td>
+                    <td><input type="text" value="{{ l }}" maxlength="1"></td>
                 {% endfor %}
             </tr>
         {% endfor %}
@@ -121,6 +121,6 @@
 
 {% block script %}
 <script>
-    new APP.trifid(".key.grid");
+    new APP.trifid(".key.grid", "{{ cipher.alphabet }}");
 </script>
 {% endblock %}

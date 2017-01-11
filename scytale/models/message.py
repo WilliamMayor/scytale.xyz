@@ -1,3 +1,5 @@
+import hashlib
+
 from scytale.models import db
 
 
@@ -10,3 +12,7 @@ class Message(db.Model):
 
     group_id = db.Column(db.Integer, db.ForeignKey('group.gid'))
     group = db.relationship('Group', backref=db.backref('messages', lazy='dynamic'))
+
+    @property
+    def key_id(self):
+        return hashlib.md5(self.key.encode()).hexdigest()

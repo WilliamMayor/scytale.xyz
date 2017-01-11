@@ -33,7 +33,3 @@ class OneTimePad(Cipher):
         return ''.join([
             a[(a.index(d) - a.index(p)) % len(a)]
             for d, p in zip(ciphertext, pad)])
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack one time pad cipher at all")
-

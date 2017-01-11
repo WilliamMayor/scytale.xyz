@@ -14,5 +14,15 @@ var APP = {
 
     error: function(msg) {
         $(".error").text(msg);
+    },
+
+    clean: function(elm, alphabet) {
+        var val = elm.val().toUpperCase(),
+            not_alphabet = new RegExp("[^" + alphabet + "]", "g");
+        val = val.replace(not_alphabet, "");
+        var start = elm[0].selectionStart;
+        elm.val(val);
+        elm[0].selectionStart = elm[0].selectionEnd = start;
+
     }
 };

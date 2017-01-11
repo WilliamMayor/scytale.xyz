@@ -1501,28 +1501,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/scytale\/static\/js\/app\/min\/mixed.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/mixed.js",
-		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/min\/mixed.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/scytale\/static\/js\/app\/min\/myszkowski.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/myszkowski.js",
-		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/min\/myszkowski.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/scytale\/static\/js\/app\/mixed.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -1551,6 +1529,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/otp.js",
 		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/otp.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/scytale\/static\/js\/app\/permutation.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scytale\/static\/js\/app\/permutation.js",
+		"outputAbbreviatedPath": "\/scytale\/static\/js\/app\/min\/permutation.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -1681,6 +1670,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/scytale\/templates\/ciphers\/otp.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/scytale\/templates\/ciphers\/permutation.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/scytale\/templates\/ciphers\/permutation.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -1834,14 +1832,20 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/fleissner.js",
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/permutation.js",
 			"position": 7,
 			"type": 1
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/checkerboard.js",
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/fleissner.js",
 			"position": 8,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/app\/checkerboard.js",
+			"position": 9,
 			"type": 1
 			}
 		]

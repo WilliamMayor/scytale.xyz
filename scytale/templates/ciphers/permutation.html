@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% set page="cipher myszkowski" %}
-{% block title %}{{ super() }} | Ciphers | Myszkowski{% endblock %}
+{% block title %}{{ super() }} | Ciphers | Permutation{% endblock %}
 {% block content %}
-<h2>Myszkowski Cipher</h2>
+<h2>Permutation Cipher</h2>
 <p class="links">
-    <a href="http://en.wikipedia.org/wiki/Transposition_cipher#Myszkowski_transposition" target="_blank">Wikipedia</a>
+    <a href="http://crypto.interactive-maths.com/permutation-cipher.html" target="_blank">More Information</a>
     |
-    <a href="{{ url_for('static', filename='worksheets/myszkowski.pdf') }}" target="_blank">Instruction Sheet</a>
+    <a href="{{ url_for('static', filename='worksheets/permutation.pdf') }}" target="_blank">Instruction Sheet</a>
 </p>
 
-<p>Myszkowski ciphers are interesting transposition ciphers that use a code word to shuffle letters in a message.</p>
+<p>Permutation ciphers are cool transposition ciphers that use a code word to shuffle letters in a message.</p>
 
 <h3>Encrypting</h3>
 
-<p>The key to a Myszkowski cipher is a code word that has repeated letters in it. A memorable word, like TOMATO, might be used, but you could also make up a random code word, like AAFIFK</p>
+<p>The key to a Permutation cipher is a code word.</p>
 
 <p>To encrypt a message, write your code word at the top of a grid. Beneath the codeword, write your message from left to right, moving down a column when you reach the end of a row.</p>
 
@@ -75,42 +75,19 @@
     </tr>
 </table>
 
-<p>Now merge the columns that have matching code word letters:</p>
+<p>Finally, read out your cipher text left to right. Don't forget to include the spaces:</p>
 
-<table>
-    <tr>
-        <th>A</th>
-        <th>M</th>
-        <th>O</th>
-        <th>T</th>
-    </tr>
-    <tr>
-        <td>C</td>
-        <td>T</td>
-        <td>A_</td>
-        <td>WH</td>
-    </tr>
-    <tr>
-        <td>_</td>
-        <td>T</td>
-        <td>U_</td>
-        <td>O_</td>
-    </tr>
-</table>
-
-<p>Finally, read out your cipher text column by column; left to right. Don't forget to include the spaces:</p>
-
-<pre>C_TTA_U_WHO_</pre>
+<pre>CTA_WH_TU_O_</pre>
 
 <h3>Decrypting</h3>
 
-<p>To decrypt a message, write the code word at the top of a grid. To see how many rows your grid will need, divide the length of the cipher text by the length of the code word.</p>
+<p>To decrypt a message, write the code word at the top of a grid but in alphabetical order (e.g. don't write <code>TOMATO</code> write <code>AMOOTT</code>. Now write the ciphertext out underneath the code word, left-to-right.</p>
 
-<p>Now write your cipher text into your grid, filling up the columns in alphabetical order. When you fill up columns with repeated header letters, you'll have to fill all the repeated columns in simultaneously.</p>
+<p>Then re-arrange the columns so that the code word is in the correct order. Your ciphertext should now be back to readable english!</p>
 
 <h3>Making Your Own Key</h3>
 
-<p>This is really easy. Simply pick a new code word. A good code word is hard to guess, contains repeating letters, and is a good size. A good size means that it's not so small that it's easy to see which of your columns have repeating letters (e.g. EGG) or so large that your columns are really short (e.g. SUPERCALIFRAGILISTICEXPIALIDOCIOUS)</p>
+<p>This is really easy. Simply pick a new code word. A good code word is hard to guess and is a good size. A good size means that it's not so small that it's easy to see groups of letters together (e.g. ABC) or so large that your columns are really short (e.g. SUPERCALIFRAGILISTICEXPIALIDOCIOUS)</p>
 
 <h3>Example</h3>
 
@@ -136,6 +113,6 @@
 
 {% block script %}
 <script>
-    new APP.myszkowski(".key input", "{{ cipher.alphabet }}");
+    new APP.permutation(".key input", "{{ cipher.alphabet }}");
 </script>
 {% endblock %}

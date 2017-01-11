@@ -24,32 +24,25 @@
         return plain.join("");
     }
 
-    function clean(elm, alphabet) {
-        var val = elm.val().toUpperCase(),
-            not_alphabet = new RegExp("[^" + alphabet + "]", "g");
-        val = val.replace(not_alphabet, "");
-        elm.val(val);
-    }
-
     APP.otp = function(alphabet) {
         var plain = $("#plaintext");
         var pad = $("#pad");
         var cipher = $("#ciphertext");
 
         plain.on("change input", function() {
-            clean(plain, alphabet);
+            APP.clean(plain, alphabet);
             cipher.val(encrypt(plain.val(), pad.val(), alphabet));
         });
 
         pad.on("change input", function() {
-            clean(pad, alphabet);
+            APP.clean(pad, alphabet);
             if (pad.val().length > 0) {
                 cipher.val(encrypt(plain.val(), pad.val(), alphabet));
             }
         });
 
         cipher.on("change input", function() {
-            clean(cipher, alphabet);
+            APP.clean(cipher, alphabet);
             plain.val(decrypt(cipher.val(), pad.val(), alphabet));
         });
     };

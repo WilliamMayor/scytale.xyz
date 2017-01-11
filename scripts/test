@@ -5,4 +5,4 @@ docker run \
     --env-file="$VG_ENV_FILE" \
     --volume="$VG_APP_DIR":/usr/src/app \
     --net=host \
-    scytale py.test tests
+    scytale py.test tests $@

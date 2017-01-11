@@ -23,6 +23,3 @@ class MixedAlphabet(Cipher):
 
     def decrypt(self, ciphertext):
         return "".join([self.alphabet[self.key.index(c)] for c in ciphertext])
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack mixed alphabet in any reasonable time")

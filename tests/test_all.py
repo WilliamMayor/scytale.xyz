@@ -1,10 +1,10 @@
 import pytest
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, OneTimePad, Playfair, RailFence, Trifid
+from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Permutation, OneTimePad, Playfair, RailFence, Trifid
 
 params = (
     "Cipher",
-    [Checkerboard, Fleissner, MixedAlphabet, Myszkowski, OneTimePad, Playfair, RailFence, Trifid]
+    [Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Permutation, OneTimePad, Playfair, RailFence, Trifid]
 )
 
 

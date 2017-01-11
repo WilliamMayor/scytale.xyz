@@ -96,6 +96,3 @@ class Fleissner(Cipher):
             for i in range(0, len(ciphertext), self.key_size)]
         plaintext = "".join([self.read(t) for t in texts])
         return plaintext.rstrip("X")
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack Fleissner in any reasonable time")

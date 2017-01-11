@@ -4,6 +4,7 @@ from scytale.exceptions import ScytaleError
 
 class Playfair(Cipher):
     default = "ILKENCRYPTOABDFGHMQSUVWXZ"
+    alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
 
     def __init__(self, key=None):
         self.key = self.validate(key)
@@ -67,6 +68,3 @@ class Playfair(Cipher):
 
     def decrypt(self, ciphertext):
         return self.process(ciphertext, direction=-1)
-
-    def hack(self, ciphertext):
-        raise NotImplementedError("Cannot hack Playfair in any reasonable time")

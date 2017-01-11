@@ -1,5 +1,5 @@
 (function($, APP) {
-    APP.myszkowski = function(selector, alphabet) {
+    APP.permutation = function(selector, alphabet) {
         var update = function() {
             APP.clean($(selector), alphabet);
             APP.encrypt(
