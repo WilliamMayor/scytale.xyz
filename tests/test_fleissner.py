@@ -13,9 +13,9 @@ def test_from_worksheet():
     assert cipher.compare("WELCOME TO VILLIERS PARK", plaintext), plaintext
 
     ciphertext = cipher.encrypt("FLEISSNER IS A FUNNY NAME")
-    assert cipher.compare("FUXLXNXNXXEYIXXXS XXSNNEXXXAXXXMXRE XXXIXXXXSXXX XAXXX FXXXXXXXX", ciphertext), ciphertext
-    plaintext = cipher.decrypt("FUXLXNXNXXEYIXXXS XXSNNEXXXAXXXMXRE XXXIXXXXSXXX XAXXX FXXXXXXXX")
-    assert cipher.compare("FLEISSNER IS A FUNNY NAME", plaintext), plaintext
+    assert cipher.compare_ciphertext("FUHLINDNVXEYIRACS RNSNNEKEXAZZQMKRE BDGIENXPSZMN GAJKX FRTBUDSKC", ciphertext), ciphertext
+    plaintext = cipher.decrypt("FUHLINDNVXEYIRACS RNSNNEKEXAZZQMKRE BDGIENXPSZMN GAJKX FRTBUDSKC")
+    assert cipher.compare_plaintext("FLEISSNER IS A FUNNY NAME", plaintext), plaintext
 
 
 def test_key_not_square():

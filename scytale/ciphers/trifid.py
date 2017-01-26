@@ -3,7 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Trifid(Cipher):
-    default = "QWERTYUIOPASDFGHJKLZXCVBNM "
+    default = "QWERTYUIOPASDFGHJKLZXCVBNM_"
 
     def __init__(self, key=None):
         self.key = self.validate(key)
@@ -13,6 +13,7 @@ class Trifid(Cipher):
     def validate(self, key):
         if key is None:
             key = self.default
+        key = self.clean(key)
         if len(key) != 27:
             raise ScytaleError("The Trifid key must be 27 letters long; a 3x3x3 grid")
         key = key.upper()

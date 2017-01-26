@@ -10,8 +10,8 @@ class Playfair(Cipher):
         self.key = self.validate(key)
 
     def compare(self, a, b):
-        a = a.replace("J", "I").replace(" ", "").replace("X", "")
-        b = b.replace("J", "I").replace(" ", "").replace("X", "")
+        a = a.replace("J", "I").replace(" ", "").replace("X", "").replace("_", "")
+        b = b.replace("J", "I").replace(" ", "").replace("X", "").replace("_", "")
         return super().compare(a, b)
 
     def validate(self, key):

@@ -8,12 +8,12 @@ def test_from_worksheet():
     cipher = MixedAlphabet(key="QWERTYUIOPASDFG HJKLZXCVBNM")
 
     ciphertext = cipher.encrypt("WELCOME TO VILLIERS PARK")
-    assert "CTSEGDTMLGMXOSSOTJKM QJA" == ciphertext
-    assert "WELCOME TO VILLIERS PARK" == cipher.decrypt(ciphertext)
+    assert cipher.compare_ciphertext("CTSEGDTMLGMXOSSOTJKM QJA", ciphertext)
+    assert cipher.compare_plaintext("WELCOME TO VILLIERS PARK", cipher.decrypt(ciphertext))
 
     plaintext = cipher.decrypt("WTLLTJMLIQFMEQTKQJ")
-    assert "BETTER THAN CAESAR" == plaintext
-    assert "WTLLTJMLIQFMEQTKQJ" == cipher.encrypt(plaintext)
+    assert cipher.compare_plaintext("BETTER THAN CAESAR", plaintext)
+    assert cipher.compare_ciphertext("WTLLTJMLIQFMEQTKQJ", cipher.encrypt(plaintext))
 
 
 def test_key_too_short():

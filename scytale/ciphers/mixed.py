@@ -9,7 +9,7 @@ class MixedAlphabet(Cipher):
 
     def validate(self, alphabet):
         if alphabet is None:
-            alphabet = "QWERTYUIOPASDFG HJKLZXCVBNM"
+            alphabet = "QWERTYUIOPASDFG_HJKLZXCVBNM"
         if len(alphabet) != 27:
             raise ScytaleError("The Mixed Alphabet key must be 27 letters long; A-Z plus a space")
         alphabet = alphabet.upper()

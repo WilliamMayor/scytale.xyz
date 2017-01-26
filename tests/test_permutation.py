@@ -29,6 +29,13 @@ def test_from_website():
     assert cipher.compare("THEQUICKBROWNFOXJUMPEDOVERTHELAZYDOG", plaintext), plaintext
 
 
+def test_student_example():
+    cipher = Permutation(key="UNICORNS")
+
+    ciphertext = cipher.encrypt("LYDIARD PARK ACADEMY")
+    assert cipher.compare("IDYDAR LKRAC AAPYME    D", ciphertext), ciphertext
+
+
 def test_key_blank():
     with pytest.raises(ScytaleError):
         Permutation(key="")

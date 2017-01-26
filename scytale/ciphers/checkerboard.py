@@ -3,7 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Checkerboard(Cipher):
-    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ."
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_."
 
     def __init__(self, key=None):
         self.table = self.validate(key)
@@ -13,14 +13,14 @@ class Checkerboard(Cipher):
 
     def validate(self, table):
         if table is None:
-            table = "RAIN OTS EQWYUPDFGHJKLZXCVBM ."
+            table = "RAIN OTS EQWYUPDFGHJKLZXCVBM_."
         table = table.upper()
         if len(table) != 30:
             raise ScytaleError("Checkerboard table needs to be 30 characters long")
         rows = [table[0:10], table[10:20], table[20:30]]
         if list(rows[0]).count(" ") != 2:
             raise ScytaleError("The first row in the Checkerboard table must have 2 spaces")
-        if len(set(table)) != 28:
+        if len(set(table)) != 29:  # Extra one for gaps in top row
             raise ScytaleError("The Checkerboard table must have 28 unique letters in it")
         return rows
 

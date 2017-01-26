@@ -24,16 +24,16 @@ def test_key_too_short():
 
 def test_key_too_long():
     with pytest.raises(ScytaleError):
-        Trifid(key="abcdefghijklmnopqrstuvwxyz .")
+        Trifid(key="abcdefghijklmnopqrstuvwxyz_.")
 
 
 def test_key_has_repeating_chars():
     with pytest.raises(ScytaleError):
-        Trifid(key="aacdefghiklmnopqrstuvwxyz ")
+        Trifid(key="aacdefghiklmnopqrstuvwxyz_")
 
 
 def test_cton():
-    cipher = Trifid(key="QWERTYUIOPASDFGHJKLZXCVBNM ")
+    cipher = Trifid(key="QWERTYUIOPASDFGHJKLZXCVBNM_")
     cton = cipher.cton
     assert cton["Q"] == "000"
     assert cton["W"] == "001"
@@ -61,4 +61,4 @@ def test_cton():
     assert cton["B"] == "122"
     assert cton["N"] == "220"
     assert cton["M"] == "221"
-    assert cton[" "] == "222"
+    assert cton["_"] == "222"
