@@ -2,6 +2,9 @@ body.messages.read #content {
     .message {
         margin-left: $base-spacing;
         margin-bottom: $small-spacing;
+        width: 500px;
+        word-wrap: break-word;
+
         p {
             margin: 0;
             &.small {

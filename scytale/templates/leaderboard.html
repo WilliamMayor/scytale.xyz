@@ -5,8 +5,8 @@
 <h2>Leaderboard</h2>
 {% for group in groups | sort(attribute="total", reverse=True) %}
     <div class="group">
-        <h3>{{ loop.index | ordinal }}: {{ group.name }} ({{ group.total }} points)</h3>
-        <ul>
+        <h3>{{ loop.index | ordinal }}: <a class="toggle" href="#toggle">{{ group.name }} ({{ group.total }} points)</a></h3>
+        <ul class="points hidden">
             {% for p in group.points %}
                 <li>{{ p.reason }} ({{ p.score }} points)</li>
             {% endfor %}

@@ -1,0 +1,1 @@
+$("body.messages.read").ready(function(){$("a.toggle-group").click(function(){return $(this).parents(".group").find(".message").toggleClass("hidden"),!1})});
