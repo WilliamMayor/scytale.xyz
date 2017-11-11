@@ -3,6 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Checkerboard(Cipher):
+    name = "Checkerboard"
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ_."
 
     def __init__(self, key=None):

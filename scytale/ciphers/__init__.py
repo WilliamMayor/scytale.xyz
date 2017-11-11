@@ -6,6 +6,7 @@ from scytale.ciphers.permutation import Permutation
 from scytale.ciphers.otp import OneTimePad
 from scytale.ciphers.playfair import Playfair
 from scytale.ciphers.railfence import RailFence
+from scytale.ciphers.shuffle import Shuffle
 from scytale.ciphers.trifid import Trifid
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     OneTimePad,
     Playfair,
     RailFence,
+    Shuffle,
     Trifid
 ]

@@ -1,8 +1,11 @@
+import random
+
 from scytale.ciphers.base import Cipher
 from scytale.exceptions import ScytaleError
 
 
 class Playfair(Cipher):
+    name = "Playfair"
     default = "ILKENCRYPTOABDFGHMQSUVWXZ"
     alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
 
@@ -68,3 +71,9 @@ class Playfair(Cipher):
 
     def decrypt(self, ciphertext):
         return self.process(ciphertext, direction=-1)
+
+    @staticmethod
+    def generate_key():
+        a = list(Playfair.alphabet)
+        random.shuffle(a)
+        return ''.join(a)

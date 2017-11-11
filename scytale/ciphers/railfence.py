@@ -3,6 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class RailFence(Cipher):
+    name = "RailFence"
     default = 5
 
     def __init__(self, key=None):

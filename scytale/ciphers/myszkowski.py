@@ -3,6 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Myszkowski(Cipher):
+    name = "Myszkowski"
     default = "VILLIERS"
 
     def __init__(self, key=None):

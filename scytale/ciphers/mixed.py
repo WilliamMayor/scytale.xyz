@@ -3,6 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class MixedAlphabet(Cipher):
+    name = "MixedAlphabet"
 
     def __init__(self, key=None):
         self.key = self.validate(key)

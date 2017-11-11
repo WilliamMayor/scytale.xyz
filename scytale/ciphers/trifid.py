@@ -1,8 +1,11 @@
+import random
+
 from scytale.ciphers.base import Cipher
 from scytale.exceptions import ScytaleError
 
 
 class Trifid(Cipher):
+    name = "Trifid"
     default = "QWERTYUIOPASDFGHJKLZXCVBNM_"
 
     def __init__(self, key=None):
@@ -46,3 +49,9 @@ class Trifid(Cipher):
         coords = "".join([self.cton[c] for c in ciphertext])
         coords = [coords[i::length] for i in range(length)]
         return "".join([self.ntoc[n] for n in coords])
+
+    @staticmethod
+    def generate_key():
+        a = list(Trifid.alphabet)
+        random.shuffle(a)
+        return ''.join(a)

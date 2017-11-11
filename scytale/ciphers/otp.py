@@ -2,6 +2,7 @@ from scytale.ciphers.base import Cipher
 
 
 class OneTimePad(Cipher):
+    name = "OneTimePad"
 
     def __init__(self, key=None):
         self.key = self.validate(key)

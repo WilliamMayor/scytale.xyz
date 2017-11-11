@@ -3,6 +3,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Permutation(Cipher):
+    name = "Permutation"
     default = "VILLIERS"
 
     def __init__(self, key=None, alphabet=None):

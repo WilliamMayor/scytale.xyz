@@ -1,3 +1,4 @@
+import random
 import math
 
 from scytale.ciphers.base import Cipher
@@ -5,6 +6,7 @@ from scytale.exceptions import ScytaleError
 
 
 class Fleissner(Cipher):
+    name = "Fleissner"
     default = "XooXooooooXoXoooXoooXXoXoooooooooXoXoooXooooXoooXoXoooXXoooooooo"
 
     def __init__(self, key=None):
@@ -100,3 +102,19 @@ class Fleissner(Cipher):
             for i in range(0, len(ciphertext), self.key_size)]
         plaintext = "".join([self.read(t) for t in texts])
         return plaintext.rstrip("X")
+
+    @staticmethod
+    def generate_key():
+        """OMG this might the worst code I've ever written.
+        It just randomly tries keys until one validates.
+        I need to learn maths and try to write this again :("""
+        key = list(Fleissner.default)
+        random.shuffle(key)
+        done = False
+        while not done:
+            try:
+                Fleissner(key=''.join(key))
+                done = True
+            except:
+                random.shuffle(key)
+        return ''.join(key)
