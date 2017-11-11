@@ -16,6 +16,14 @@ def test_from_worksheet():
     assert cipher.compare_ciphertext("WTLLTJMLIQFMEQTKQJ", cipher.encrypt(plaintext))
 
 
+def test_from_cryptanalysis_presentation():
+    cipher = MixedAlphabet(key="WEKIATBOZXMGNLCPURDJYQH_FSV")
+
+    ciphertext = cipher.encrypt("HELLO EVERYONE")
+    assert cipher.compare_ciphertext("OAGGCVAQARFCLA", ciphertext)
+    assert cipher.compare_plaintext("HELLO EVERYONE", cipher.decrypt(ciphertext))
+
+
 def test_key_too_short():
     with pytest.raises(ScytaleError):
         MixedAlphabet(key="abcd")
