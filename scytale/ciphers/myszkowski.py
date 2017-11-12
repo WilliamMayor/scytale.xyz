@@ -29,7 +29,7 @@ class Myszkowski(Cipher):
     def pad(self, text):
         if len(text) % len(self.key) != 0:
             num_rows = len(text) // len(self.key) + 1
-            text = text.ljust(len(self.key) * num_rows, " ")
+            text = text.ljust(len(self.key) * num_rows, "_")
         return text
 
     def encrypt(self, plaintext):

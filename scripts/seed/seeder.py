@@ -152,25 +152,15 @@ def create_h4x0r_messages(group):
             cipher.encrypt(message))
 
 
-def create_activity_messages(group, myszkowski_key, messages):
-    playfair = Playfair(key=Playfair.generate_key())
-    myszkowski = Myszkowski(key=myszkowski_key)
-    fleissner = Fleissner(key=Fleissner.generate_key())
-    trifid = Trifid(key=Trifid.generate_key())
+def create_activity_messages(group, ciphers, trifid, messages):
 
-    ciphers = [playfair, myszkowski, fleissner]
-    random.shuffle(ciphers)
-
-    for pt in messages:
-        c = random.choice(ciphers)
+    for c, pt in zip(ciphers * 2, messages):
         yield create_message(
             group,
             cipher=c.name,
             key=c.key,
             plaintext=pt,
             ciphertext=c.encrypt(pt))
-
-    print("Provide the {} key in plaintext".format(ciphers[0].name))
 
     pt = 'The {} key is {}'.format(ciphers[1].name, ciphers[1].key)
     yield create_message(
@@ -191,26 +181,26 @@ def create_activity_messages(group, myszkowski_key, messages):
     pt = 'Line one of the Trifid key is {}'.format(trifid.key[0:9])
     yield create_message(
         group,
-        cipher='Playfair',
-        key=playfair.key,
+        cipher=ciphers[0].name,
+        key=ciphers[0].key,
         plaintext=pt,
-        ciphertext=playfair.encrypt(pt))
+        ciphertext=ciphers[0].encrypt(pt))
 
     pt = 'Line two of the Trifid key is {}'.format(trifid.key[9:18])
     yield create_message(
         group,
-        cipher='Myszkowski',
-        key=myszkowski.key,
+        cipher=ciphers[1].name,
+        key=ciphers[1].key,
         plaintext=pt,
-        ciphertext=myszkowski.encrypt(pt))
+        ciphertext=ciphers[1].encrypt(pt))
 
     pt = 'Line three of the Trifid key is {}'.format(trifid.key[18:27])
     yield create_message(
         group,
-        cipher='Fleissner',
-        key=fleissner.key,
+        cipher=ciphers[2].name,
+        key=ciphers[2].key,
         plaintext=pt,
-        ciphertext=fleissner.encrypt(pt))
+        ciphertext=ciphers[2].encrypt(pt))
 
     pt = 'CORRECT HORSE BATTERY STAPLE'
     yield create_message(
@@ -222,6 +212,11 @@ def create_activity_messages(group, myszkowski_key, messages):
 
 
 def create_babbage_messages(group):
+    playfair = Playfair(key='SCQOGUERPBKVWYZFDAHIMTLNX')
+    myszkowski = Myszkowski(key='ENGINE')
+    fleissner = Fleissner(key='ooooooXoooooXooXooooooooXoXoXoXoooooooooXXXoXooXooXoooXoXoooXooo')
+    trifid = Trifid(key='HFERKDGNOQVJTMYP_AXSUBZWLIC')
+
     messages = [
         'CHARLES BABBAGE WAS BORN IN THE YEAR SEVENTEEN HUNDRED AND NINETY ONE',
         'BABBAGE INVENTED THE IDEA OF A DIGITAL PROGRAMMABLE COMPUTER',
@@ -230,10 +225,15 @@ def create_babbage_messages(group):
         'ON THE ECONOMY OF MACHINERY AND MANUFACTURES',
         'BABBAGE CRACKED THE UNCRACKABLE VIGENERE CIPHER',
     ]
-    yield from create_activity_messages(group, 'ENGINE', messages)
+    yield from create_activity_messages(group, [playfair, myszkowski, fleissner], trifid, messages)
 
 
 def create_friedman_messages(group):
+    playfair = Playfair(key='ADUQYKOMRETGVFHNWLXZCIPBS')
+    myszkowski = Myszkowski(key='INDIANA')
+    fleissner = Fleissner(key='oooXooooXXoXXooXXXooooXooooooooooooXoXoXXoXoXooooooooooooooooooX')
+    trifid = Trifid(key='V_WLNJDOGRMHIPXKYQSETBZUAFC')
+
     messages = [
         'AMERICAS FIRST FEMALE CRYPTANALYST',
         'ES FRIEDMAN WAS BORN IN EIGHTEEN NINETY TWO',
@@ -242,10 +242,15 @@ def create_friedman_messages(group):
         'SHE WORKED FOR THE US NAVY THE TREASURY DEPARTMENT AND THE COAST GUARD',
         'THE SHAKESPEAREAN CIPHERS EXAMINED'
     ]
-    yield from create_activity_messages(group, 'INDIANA', messages)
+    yield from create_activity_messages(group, [myszkowski, playfair, fleissner], trifid, messages)
 
 
 def create_driscoll_messages(group):
+    playfair = Playfair(key='CTOEFMUHYISAWNGQRZXLDKBVP')
+    myszkowski = Myszkowski(key='ILLINOIS')
+    fleissner = Fleissner(key='oooooooXXoooXoooXoXooooXXooooXoXooooXXooooooooXoXXooXXoooooooooo')
+    trifid = Trifid(key='VAMZWXKSYONFTDUCHIBERGPJL_Q')
+
     messages = [
         'AGNES MEYER DRISCOLL WAS BORN IN EIGHTEEN EIGHTY NINE',
         'SHE WAS ALSO KNOWN AS MADAME X',
@@ -254,10 +259,15 @@ def create_driscoll_messages(group):
         'SHE IS IN THE NATIONAL SECURITY AGENCYS HALL OF HONOR',
         'AGNES CRACKED JAPANESE NAVAL CODES INCLUDING THE RED AND BLUE BOOK CODES'
     ]
-    yield from create_activity_messages(group, 'ILLINOIS', messages)
+    yield from create_activity_messages(group, [fleissner, playfair, myszkowski], trifid, messages)
 
 
 def create_tutte_messages(group):
+    playfair = Playfair(key='KQSGLRYTWEUXBFPVDHMNZOCAI')
+    myszkowski = Myszkowski(key='TUNNY')
+    fleissner = Fleissner(key='oXXXooXXooXoXXooooooXooooooXoooooXooooooooooXXoXoXoooooooooXoooo')
+    trifid = Trifid(key='_AWCDPYSEKQORNHBTLGJMVFIZXU')
+
     messages = [
         'WILLIAM THOMAS TUTTE WORKED AT BLETCHLEY PARK CRACKING GERMAN CIPHERS',
         'BILL WAS BORN IN SUFFOLK IN NINETEEN SEVENTEEN',
@@ -266,10 +276,15 @@ def create_tutte_messages(group):
         'TUTTE PERFORMED ONE OF THE GREATEST INTELLECTUAL FEATS OF WORLD WAR TWO',
         'UNLIKE IN THE MOVIE TUTTE DID NOT WORK DIRECTLY WITH TURING'
     ]
-    yield from create_activity_messages(group, 'TUNNY', messages)
+    yield from create_activity_messages(group, [myszkowski, fleissner, playfair], trifid, messages)
 
 
 def create_rivest_messages(group):
+    playfair = Playfair(key='PCGDAVESFOHMUWZLYNBRXKIQT')
+    myszkowski = Myszkowski(key='CLIFFORD')
+    fleissner = Fleissner(key='oXXXooXoooXoXoooXooooXooXooooXXooooXoooooooXooXoooooooXooooooooX')
+    trifid = Trifid(key='AOGMPWEDZRCIBH_XTLVUQSNKYJF')
+
     messages = [
         'RONALD LINN RIVEST WAS BORN IN NINETEEN FOURTY SEVEN',
         'RIVEST IS ONE OF THE INVENTORS OF THE RSA ALGORITHM',
@@ -278,10 +293,15 @@ def create_rivest_messages(group):
         'RIVEST WAS GIVEN A TURING AWARD IN TWO THOUSAND AND TWO',
         'RSA IS ONE OF THE FIRST PRACTICAL PUBLIC KEY CIPHERS IT IS USED EVERYWHERE'
     ]
-    yield from create_activity_messages(group, 'CLIFFORD', messages)
+    yield from create_activity_messages(group, [playfair, fleissner, myszkowski], trifid, messages)
 
 
 def create_diffie_messages(group):
+    playfair = Playfair(key='LSCZGADKUORFXTHQNBEPYMWIV')
+    myszkowski = Myszkowski(key='HELLMAN')
+    fleissner = Fleissner(key='ooooooooooooXoooXoooXoXXXoooXXXoooooooooooXooooooXXooooXooooXoXX')
+    trifid = Trifid(key='CSQY_UBNVDWKPGERLTZJOHFAXMI')
+
     messages = [
         'BAILEY WHITFIELD DIFFIE WAS BORN IN NINETEEN FOURTY FOUR',
         'WHIT WAS THE COCREATOR OF DIFFIE HELLMAN KEY EXCHANGE',
@@ -290,7 +310,7 @@ def create_diffie_messages(group):
         'NEW DIRECTIONS IN CRYPTOGRAPHY',
         'HE HELPED DEVELOP THE FUNDAMENTAL IDEAS BEHIND PUBLIC KEY CIPHERS'
     ]
-    yield from create_activity_messages(group, 'HELLMAN', messages)
+    yield from create_activity_messages(group, [fleissner, myszkowski, playfair], trifid, messages)
 
 
 if __name__ == '__main__':

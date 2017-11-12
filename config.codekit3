@@ -9,24 +9,16 @@
 	],
 "creatorBuild": "26148",
 "files": {
-	"\/.cache\/v\/cache": {
+	"\/.cache": {
 		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/build\/.cache\/v\/cache",
+		"oAP": "\/build\/.cache",
 		"oF": 0
 		},
-	"\/.env\/default": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/.env\/default",
-		"oF": 0
-		},
-	"\/.env\/production": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/.env\/production",
+	"\/.env": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/.env",
 		"oF": 0
 		},
 	"\/.gitignore": {
@@ -50,74 +42,10 @@
 		"oAP": "\/LICENSE",
 		"oF": 0
 		},
-	"\/migrations\/__pycache__\/env.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/__pycache__\/env.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/migrations\/alembic.ini": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/alembic.ini",
-		"oF": 0
-		},
-	"\/migrations\/env.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/env.py",
-		"oF": 0
-		},
-	"\/migrations\/script.py.mako": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/script.py.mako",
-		"oF": 0
-		},
-	"\/migrations\/versions\/40449c25c57a_add_group.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/versions\/40449c25c57a_add_group.py",
-		"oF": 0
-		},
-	"\/migrations\/versions\/71de7d079c37_add_point.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/versions\/71de7d079c37_add_point.py",
-		"oF": 0
-		},
-	"\/migrations\/versions\/__pycache__\/40449c25c57a_add_group.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/versions\/__pycache__\/40449c25c57a_add_group.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/migrations\/versions\/__pycache__\/71de7d079c37_add_point.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/versions\/__pycache__\/71de7d079c37_add_point.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/migrations\/versions\/__pycache__\/e6d7560692fe_add_message.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/versions\/__pycache__\/e6d7560692fe_add_message.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/migrations\/versions\/e6d7560692fe_add_message.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/migrations\/versions\/e6d7560692fe_add_message.py",
+	"\/migrations": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/migrations",
 		"oF": 0
 		},
 	"\/Procfile": {
@@ -159,74 +87,10 @@
 		"oAP": "\/runtime.txt",
 		"oF": 0
 		},
-	"\/scripts\/app\/build": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/app\/build",
-		"oF": 0
-		},
-	"\/scripts\/app\/debug": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/app\/debug",
-		"oF": 0
-		},
-	"\/scripts\/app\/Dockerfile": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/app\/Dockerfile",
-		"oF": 0
-		},
-	"\/scripts\/app\/shell": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/app\/shell",
-		"oF": 0
-		},
-	"\/scripts\/deploy": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/deploy",
-		"oF": 0
-		},
-	"\/scripts\/migrate\/apply": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/migrate\/apply",
-		"oF": 0
-		},
-	"\/scripts\/migrate\/learn": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/migrate\/learn",
-		"oF": 0
-		},
-	"\/scripts\/seed\/seed": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/seed\/seed",
-		"oF": 0
-		},
-	"\/scripts\/seed\/seeder.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/seed\/seeder.py",
-		"oF": 0
-		},
-	"\/scripts\/test": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scripts\/test",
+	"\/scripts": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/scripts",
 		"oF": 0
 		},
 	"\/scytale\/__init__.py": {
@@ -236,221 +100,16 @@
 		"oAP": "\/scytale\/__init__.py",
 		"oF": 0
 		},
-	"\/scytale\/__pycache__\/__init__.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
+	"\/scytale\/__pycache__": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/scytale\/__pycache__\/__init__.cpython-35.pyc",
+		"oAP": "\/build\/scytale\/__pycache__",
 		"oF": 0
 		},
-	"\/scytale\/__pycache__\/config.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/__pycache__\/config.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/__pycache__\/exceptions.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/__pycache__\/exceptions.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/__pycache__\/forms.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/__pycache__\/forms.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/__pycache__\/jinja.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/__pycache__\/jinja.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/__pycache__\/login.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/__pycache__\/login.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/__pycache__\/views.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/__pycache__\/views.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__init__.py": {
-		"cB": 0,
-		"ft": 8192,
+	"\/scytale\/ciphers": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/scytale\/ciphers\/__init__.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/__init__.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/__init__.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/base.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/base.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/checkerboard.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/checkerboard.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/fleissner.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/fleissner.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/mixed.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/mixed.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/myszkowski.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/myszkowski.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/otp.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/otp.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/permutation.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/permutation.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/playfair.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/playfair.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/railfence.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/railfence.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/shuffle.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/shuffle.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/__pycache__\/trifid.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/__pycache__\/trifid.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/base.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/base.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/checkerboard.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/checkerboard.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/fleissner.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/fleissner.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/mixed.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/mixed.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/myszkowski.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/myszkowski.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/otp.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/otp.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/permutation.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/permutation.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/playfair.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/playfair.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/railfence.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/railfence.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/shuffle.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/shuffle.py",
-		"oF": 0
-		},
-	"\/scytale\/ciphers\/trifid.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/ciphers\/trifid.py",
+		"oAP": "\/build\/scytale\/ciphers",
 		"oF": 0
 		},
 	"\/scytale\/config.py": {
@@ -488,60 +147,10 @@
 		"oAP": "\/scytale\/login.py",
 		"oF": 0
 		},
-	"\/scytale\/models\/__init__.py": {
-		"cB": 0,
-		"ft": 8192,
+	"\/scytale\/models": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/scytale\/models\/__init__.py",
-		"oF": 0
-		},
-	"\/scytale\/models\/__pycache__\/__init__.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/scytale\/models\/__pycache__\/__init__.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/models\/__pycache__\/group.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/models\/__pycache__\/group.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/models\/__pycache__\/message.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/models\/__pycache__\/message.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/models\/__pycache__\/point.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/models\/__pycache__\/point.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/scytale\/models\/group.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/models\/group.py",
-		"oF": 0
-		},
-	"\/scytale\/models\/message.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/models\/message.py",
-		"oF": 0
-		},
-	"\/scytale\/models\/point.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/models\/point.py",
+		"oAP": "\/build\/scytale\/models",
 		"oF": 0
 		},
 	"\/scytale\/static\/css\/.sass-cache\/233959572bef595c357701ab161fd259b0ffb6b2\/_animation.scssc": {
@@ -2580,130 +2189,10 @@
 		"oAP": "\/scytale\/static\/worksheets\/trifid.pdf",
 		"oF": 0
 		},
-	"\/scytale\/templates\/base.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/base.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/checkerboard.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/checkerboard.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/fleissner.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/fleissner.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/mixed.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/mixed.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/myszkowski.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/myszkowski.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/otp.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/otp.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/permutation.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/permutation.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/playfair.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/playfair.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/railfence.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/railfence.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/ciphers\/trifid.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/ciphers\/trifid.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/home.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/home.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/leaderboard.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/leaderboard.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/macros.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/macros.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/messages\/hack.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/messages\/hack.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/messages\/read.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/messages\/read.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/messages\/send.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/messages\/send.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/signin.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/signin.html",
-		"oF": 0
-		},
-	"\/scytale\/templates\/signup.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/scytale\/templates\/signup.html",
+	"\/scytale\/templates": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/scytale\/templates",
 		"oF": 0
 		},
 	"\/scytale\/views.py": {
@@ -2713,186 +2202,10 @@
 		"oAP": "\/scytale\/views.py",
 		"oF": 0
 		},
-	"\/tests\/__init__.py": {
-		"cB": 0,
-		"ft": 8192,
+	"\/tests": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/tests\/__init__.py",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/__init__.cpython-35.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/tests\/__pycache__\/__init__.cpython-35.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/conftest.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/conftest.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_all.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_all.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_checkerboard.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_checkerboard.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_fleissner.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_fleissner.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_group.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_group.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_mixed.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_mixed.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_myszkowski.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_myszkowski.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_permutation.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_permutation.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_playfair.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_playfair.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_railfence.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_railfence.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_shuffle.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_shuffle.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/__pycache__\/test_trifid.cpython-35-PYTEST.pyc": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/__pycache__\/test_trifid.cpython-35-PYTEST.pyc",
-		"oF": 0
-		},
-	"\/tests\/conftest.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/conftest.py",
-		"oF": 0
-		},
-	"\/tests\/test_all.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_all.py",
-		"oF": 0
-		},
-	"\/tests\/test_checkerboard.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_checkerboard.py",
-		"oF": 0
-		},
-	"\/tests\/test_fleissner.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_fleissner.py",
-		"oF": 0
-		},
-	"\/tests\/test_group.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_group.py",
-		"oF": 0
-		},
-	"\/tests\/test_mixed.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_mixed.py",
-		"oF": 0
-		},
-	"\/tests\/test_myszkowski.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_myszkowski.py",
-		"oF": 0
-		},
-	"\/tests\/test_permutation.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_permutation.py",
-		"oF": 0
-		},
-	"\/tests\/test_playfair.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_playfair.py",
-		"oF": 0
-		},
-	"\/tests\/test_railfence.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_railfence.py",
-		"oF": 0
-		},
-	"\/tests\/test_shuffle.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_shuffle.py",
-		"oF": 0
-		},
-	"\/tests\/test_trifid.py": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/tests\/test_trifid.py",
+		"oAP": "\/build\/tests",
 		"oF": 0
 		},
 	"\/web.py": {
@@ -4961,7 +4274,7 @@
 		],
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
-	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
+	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules, \/tests, \/scripts, \/migrations, \/.env, \/.cache, \/scytale\/__pycache__, \/scytale\/ciphers, \/scytale\/models, \/scytale\/templates",
 	"sourceFolderName": "source",
 	"susyVersion": 3,
 	"uglifyDefinesString": "",
