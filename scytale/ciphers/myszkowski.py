@@ -22,8 +22,8 @@ class Myszkowski(Cipher):
         return key
 
     def compare(self, a, b):
-        a = a.rstrip(" ")
-        b = b.rstrip(" ")
+        a = a.rstrip(" ").rstrip("_")
+        b = b.rstrip(" ").rstrip("_")
         return super().compare(a, b)
 
     def pad(self, text):

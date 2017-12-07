@@ -35,7 +35,7 @@ def test_compare():
 
 def test_pad():
     cipher = Myszkowski(key="ABC")
-    assert "A  " == cipher.pad("A")
+    assert "A__" == cipher.pad("A")
 
 
 def test_pad_nothing_needed():
@@ -45,7 +45,7 @@ def test_pad_nothing_needed():
 
 def test_pad_two_rows():
     cipher = Myszkowski(key="ABC")
-    assert "AAAA  " == cipher.pad("AAAA")
+    assert "AAAA__" == cipher.pad("AAAA")
 
 
 def test_hello_with_hello():
@@ -57,12 +57,12 @@ def test_hello_with_hello():
 def test_hello():
     cipher = Myszkowski(key="VILLIERS")
     #                        HELLO
-    assert " EOLL  H" == cipher.encrypt("HELLO")
+    assert "_EOLL__H" == cipher.encrypt("HELLO")
     assert "HELLO" == cipher.decrypt(" EOLL  H")
 
 
 def test_hello_small_key():
     cipher = Myszkowski(key="HI")
     #                        HELLO
-    assert "HLOEL " == cipher.encrypt("HELLO")
+    assert "HLOEL_" == cipher.encrypt("HELLO")
     assert "HELLO" == cipher.decrypt("HLOEL ")
