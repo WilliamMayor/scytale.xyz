@@ -65,8 +65,8 @@ class Playfair(Cipher):
         return "".join(text_out)
 
     def encrypt(self, plaintext):
-        plaintext = self.clean(plaintext.upper())
         plaintext = plaintext.replace("J", "I").replace(" ", "")
+        plaintext = self.clean(plaintext.upper())
         return self.process(plaintext)
 
     def decrypt(self, ciphertext):

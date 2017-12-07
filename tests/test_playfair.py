@@ -85,3 +85,10 @@ def test_switch_same_column_other_direction():
 def test_switch_same_column_wrap():
     cipher = Playfair(key="abcdefghizklmnopqrstuvwxy")
     assert ["L", "B"] == cipher.switch("G", "V")
+
+
+def test_broken_example():
+    cipher = Playfair(key="BMRUKPIGNSVZCXQAEHOFLWYTD")
+    plaintext = 'JIU JITSU IN MY JIM JAMS'
+    ciphertext = cipher.encrypt(plaintext)
+    assert ciphertext == 'NZNMNZNWNKGSRWNZZIPEKI'
