@@ -1,4 +1,3 @@
-import random
 import os
 
 from scytale import create_app
@@ -203,7 +202,8 @@ def create_activity_messages(group, ciphers, trifid, messages):
         ciphertext=ciphers[2].encrypt(pt))
 
     pt = 'CORRECT HORSE BATTERY STAPLE'
-    yield create_message(
+    # Don't return this one, don't want it on the site, where known plaintext could be used.
+    create_message(
         group,
         cipher='Trifid',
         key=trifid.key,
@@ -236,13 +236,13 @@ def create_friedman_messages(group):
 
     messages = [
         'AMERICAS FIRST FEMALE CRYPTANALYST',
-        'ES FRIEDMAN WAS BORN IN EIGHTEEN NINETY TWO',
+        'FRIEDMAN WAS BORN IN EIGHTEEN NINETY TWO',
         'CRACKED CODES AT RIVERBANK DURING WORLD WAR ONE',
         'USED CRYPTANALYSIS TO STOP SMUGGLING AND BOOTLEGGING',
         'SHE WORKED FOR THE US NAVY THE TREASURY DEPARTMENT AND THE COAST GUARD',
         'THE SHAKESPEAREAN CIPHERS EXAMINED'
     ]
-    yield from create_activity_messages(group, [myszkowski, playfair, fleissner], trifid, messages)
+    yield from create_activity_messages(group, [myszkowski, fleissner, playfair], trifid, messages)
 
 
 def create_driscoll_messages(group):
@@ -288,12 +288,12 @@ def create_rivest_messages(group):
     messages = [
         'RONALD LINN RIVEST WAS BORN IN NINETEEN FOURTY SEVEN',
         'RIVEST IS ONE OF THE INVENTORS OF THE RSA ALGORITHM',
-        'RON ALSO AUTHORED ENCRYPTION ALGORITMS RC2 RC4 RC5 AND RC6',
+        'RON ALSO AUTHORED MANY OTHER ENCRYPTION ALGORITMS',
         'RONALD WORKS AS A CRYPTOGRAPHER AND INSTITUTE PROFESSOR AT MIT',
         'RIVEST WAS GIVEN A TURING AWARD IN TWO THOUSAND AND TWO',
         'RSA IS ONE OF THE FIRST PRACTICAL PUBLIC KEY CIPHERS IT IS USED EVERYWHERE'
     ]
-    yield from create_activity_messages(group, [playfair, fleissner, myszkowski], trifid, messages)
+    yield from create_activity_messages(group, [playfair, myszkowski, fleissner], trifid, messages)
 
 
 def create_diffie_messages(group):
