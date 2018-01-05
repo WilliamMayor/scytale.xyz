@@ -1,3 +1,4 @@
+from scytale.ciphers.caesar import Caesar
 from scytale.ciphers.checkerboard import Checkerboard
 from scytale.ciphers.fleissner import Fleissner
 from scytale.ciphers.mixed import MixedAlphabet
@@ -10,6 +11,7 @@ from scytale.ciphers.shuffle import Shuffle
 from scytale.ciphers.trifid import Trifid
 
 __all__ = [
+    Caesar,
     Checkerboard,
     Fleissner,
     MixedAlphabet,

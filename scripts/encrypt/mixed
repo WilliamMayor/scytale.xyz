@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+docker run \
+    --rm \
+    --interactive \
+    --tty \
+    --env-file="$VG_ENV_FILE" \
+    --volume="$VG_APP_DIR":/usr/src/app \
+    scytale python -u "/usr/src/app/scripts/encrypt/mixed.py"
