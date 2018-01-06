@@ -71,7 +71,7 @@ def messages_send():
         m.plaintext = form.plaintext.data
         m.ciphertext = form.ciphertext.data
         db.session.add(m)
-        current_user.give_point(1, "Sent Message")
+        current_user.give_point(1, "Sent Message", m)
         db.session.commit()
         flash("Message Sent!")
         form = MessageForm(None, cipher=m.cipher, key=m.key)
@@ -112,14 +112,13 @@ def messages_hack(mid):
     form = HackForm(message=message)
     if form.validate_on_submit():
         if form.key.data and not see_key:
-            points = current_user.give_point(20, "Hacked Key {0}".format(message.key_id))
-            flash("Key Hacked! ({0} points)".format(points))
+            reason = "Hacked Key {0}".format(message.key_id)
+            current_user.give_point(20, reason, message)
+            flash("Key Hacked! (20 points)")
         if form.plaintext.data and not see_plaintext:
             reason = "Hacked Message {0}".format(mid)
-            if message.group.name == "Billy":
-                reason = "Hacked Billy's Message"
-            points = current_user.give_point(5, reason)
-            flash("Message Hacked! ({0} points)".format(points))
+            current_user.give_point(5, reason, message)
+            flash("Message Hacked! (5 points)")
         db.session.commit()
         return redirect(url_for(".messages_hack", mid=mid))
     return render_template(
@@ -136,8 +135,9 @@ def messages_plaintext(mid):
         abort(404)
     if message.group == current_user:
         abort(403)
-    points = current_user.give_point(-5, "Requested plaintext {0}".format(mid))
-    flash("Requested Plaintext ({0} points)".format(points))
+    reason = "Requested plaintext {0}".format(mid)
+    current_user.give_point(-5, reason, message)
+    flash("Requested Plaintext (-5 points)")
     db.session.commit()
     return redirect(url_for(".messages_hack", mid=mid))
 

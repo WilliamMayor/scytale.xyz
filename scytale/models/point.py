@@ -8,3 +8,6 @@ class Point(db.Model):
 
     group_id = db.Column(db.Integer, db.ForeignKey('group.gid'))
     group = db.relationship('Group', backref=db.backref('points', lazy='dynamic'))
+
+    message_id = db.Column(db.Integer, db.ForeignKey('message.mid'))
+    message = db.relationship('Message', backref=db.backref('points', lazy='dynamic'))

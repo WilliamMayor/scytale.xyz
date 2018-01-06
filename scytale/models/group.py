@@ -17,9 +17,10 @@ class Group(UserMixin, db.Model):
     def check_password(self, candidate):
         return bcrypt.check_password_hash(bytes.fromhex(self.password), candidate)
 
-    def give_point(self, score, reason, max=0):
+    def give_point(self, score, reason, message):
         p = Point()
         p.group = self
+        p.message = message
         p.score = score
         p.reason = reason
         db.session.add(p)

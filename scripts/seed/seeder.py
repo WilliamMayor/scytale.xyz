@@ -319,42 +319,42 @@ if __name__ == '__main__':
         db.session.add(a)
         for m in create_admin_messages(a):
             db.session.add(m)
-            a.give_point(1, "Sent Message", max=5)
+            a.give_point(1, "Sent Message", m)
 
         h = create_group("L33t H4x0r")
         db.session.add(h)
         for m in create_h4x0r_messages(h):
             db.session.add(m)
-            h.give_point(1, "Sent Message", max=5)
+            h.give_point(1, "Sent Message", m)
 
         g = create_group("Babbage")
         for m in create_babbage_messages(g):
-            g.give_point(1, "Sent Message", max=5)
+            g.give_point(1, "Sent Message", m)
             db.session.add(m)
 
         g = create_group("Friedman")
         for m in create_friedman_messages(g):
-            g.give_point(1, "Sent Message", max=5)
+            g.give_point(1, "Sent Message", m)
             db.session.add(m)
 
         g = create_group("Driscoll")
         for m in create_driscoll_messages(g):
-            g.give_point(1, "Sent Message", max=5)
+            g.give_point(1, "Sent Message", m)
             db.session.add(m)
 
         g = create_group("Tutte")
         for m in create_tutte_messages(g):
-            g.give_point(1, "Sent Message", max=5)
+            g.give_point(1, "Sent Message", m)
             db.session.add(m)
 
         g = create_group("Rivest")
         for m in create_rivest_messages(g):
-            g.give_point(1, "Sent Message", max=5)
+            g.give_point(1, "Sent Message", m)
             db.session.add(m)
 
         g = create_group("Diffie")
         for m in create_diffie_messages(g):
-            g.give_point(1, "Sent Message", max=5)
+            g.give_point(1, "Sent Message", m)
             db.session.add(m)
 
         db.session.commit()
