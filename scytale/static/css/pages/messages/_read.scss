@@ -1,15 +1,22 @@
 body.messages.read #content {
-    .message {
-        margin-left: $base-spacing;
-        margin-bottom: $small-spacing;
-        width: 500px;
-        word-wrap: break-word;
-
-        p {
-            margin: 0;
-            &.small {
-                font-size: smaller;
-            }
+    table {
+        td {
+            padding: 0.25em 0;
         }
+        .group {
+            width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .ciphertext {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .plaintext, .key {
+                width: 2em;
+                text-align: center;
+            }
     }
 }

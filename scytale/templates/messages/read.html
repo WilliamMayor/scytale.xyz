@@ -3,26 +3,22 @@
 {% block title %}{{ super() }} | Read Messages{% endblock %}
 {% block content %}
 <h2>Read Messages</h2>
-{% for group in messages | sort(attribute='ciphertext') | groupby('group_id') %}
-<div class="group">
-    <h3>Sent by: <a class="toggle-group" href="#toggle-group">{{ group.list[0].group.name }}</a></h3>
-    {% for m in group.list %}
-        <div class="message hidden">
-            <p><a class="toggle-message" href="#toggle-message">{{ m.ciphertext }}</a></p>
-            <p class="small details hidden">
-                Cipher: {{ m.cipher | title }}
-            </p>
-            <p class="small details hidden">
-               <a href="{{ url_for('.messages_hack', mid=m.mid)}}">Hack message</a>
-            </p>
-            <p class="small details hidden">
-                <a href="{{ url_for('.messages_read', key=m.key_id)}}">See other messages encrypted with this key</a>
-            </p>
-            <p class="small details hidden">
-                <a href="{{ url_for('.messages_read', cipher=m.cipher)}}">See other messages encrypted with this cipher</a>
-            </p>
-        </div>
-    {% endfor %}
-</div>
-{% endfor %}
+<table>
+    <thead>
+        <tr>
+            <th class="group">Group</th>
+            <th class="ciphertext">Ciphertext</th>
+            <th class="plaintext">P</th>
+            <th class="key">K</th>
+        </tr>
+    </thead>
+    <tbody>{% for m in messages | sort(attribute='sent_at', reverse=True) %}
+        <tr>
+            <td class="group">{{ m.group.name }}</td>
+            <td class="ciphertext"><a href="{{ url_for('bp.messages_hack', mid=m.mid) }}">{{ m.ciphertext }}</a></td>
+            <td class="plaintext">{% if current_user.knows_plaintext(m) %}&#10004;{% endif %}</td>
+            <td class="key">{% if current_user.knows_key(m) %}&#10004;{% endif %}</td>
+        </tr>
+    {% endfor %}</tbody>
+</table>
 {% endblock %}

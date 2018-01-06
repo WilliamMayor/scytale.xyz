@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+vantage -e default pg new
+vantage -e default pg ping
+vantage -e default migrate apply
+vantage -e default seed

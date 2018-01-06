@@ -25,3 +25,24 @@ class Group(UserMixin, db.Model):
         p.reason = reason
         db.session.add(p)
         return p
+
+    def knows_plaintext(self, message):
+        if message.group_id == self.gid:
+            return True
+        reasons = {
+            "Requested plaintext {0}".format(message.mid),
+            "Hacked Message {0}".format(message.mid)}
+        for p in self.points:
+            if p.reason in reasons:
+                return True
+        return False
+
+    def knows_key(self, message):
+        if message.group_id == self.gid:
+            return True
+        if message.group.name == "Billy":
+            # Messages from worksheets
+            return True
+        return any([
+            p.reason == "Hacked Key {0}".format(message.key_id)
+            for p in self.points])

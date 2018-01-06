@@ -101,14 +101,8 @@ def messages_hack(mid):
     message = Message.query.get(mid)
     if message is None:
         abort(404)
-    see_plaintext = message.group == current_user or any([
-        p.reason in [
-            "Requested plaintext {0}".format(mid),
-            "Hacked Message {0}".format(mid)]
-        for p in current_user.points])
-    see_key = message.group == current_user or message.group.name == "Billy" or any([
-        p.reason == "Hacked Key {0}".format(message.key_id)
-        for p in current_user.points])
+    see_plaintext = current_user.knows_plaintext(message)
+    see_key = current_user.knows_key(message)
     form = HackForm(message=message)
     if form.validate_on_submit():
         if form.key.data and not see_key:
