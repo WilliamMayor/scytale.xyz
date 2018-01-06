@@ -1,11 +1,23 @@
 body.leaderboard #content {
+    table {
+        thead {
+            .rank {
+                width: 2em;
+            }
+            .points {
+                width: 5em;
+            }
+        }
+        .points {
+            td {
+                padding: 0;
+            }
+            table {
+                margin: 0;
+            }
+        }
+    }
     .group {
-        margin: $base-spacing 0;
-        h3 {
-            margin: 0;
-        }
-        ul {
-            margin-left: $base-spacing;
-        }
+
     }
 }

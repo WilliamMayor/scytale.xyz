@@ -26,11 +26,7 @@ p {
 
 a {
   color: $action-color;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
 }
 
 hr {

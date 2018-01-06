@@ -3,14 +3,33 @@
 {% block title %}{{ super() }} | Leaderboard{% endblock %}
 {% block content %}
 <h2>Leaderboard</h2>
-{% for group in groups | sort(attribute="total", reverse=True) %}
-    <div class="group">
-        <h3>{{ loop.index | ordinal }}: <a class="toggle" href="#toggle">{{ group.name }} ({{ group.total }} points)</a></h3>
-        <ul class="points hidden">
-            {% for p in group.points %}
-                <li>{{ p.reason }} ({{ p.score }} points)</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endfor %}
+<table>
+    <thead>
+        <tr>
+            <th class="rank"></th>
+            <th class="group">Group</th>
+            <th class="points">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for group in groups | sort(attribute="total", reverse=True) %}
+            <tr class="group">
+                <td>{{ loop.index | ordinal }}</td>
+                <td><a class="toggle" href="#toggle">{{ group.name }}</a></td>
+                <td>{{ group.total }}</td>
+            </tr>
+            <tr class="points hidden">
+                <td></td>
+                <td colspan="2"><table><tbody>{% for p in group.points %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('bp.messages_hack', mid=p.message_id) }}">{{ p.reason }}</a>
+                            ({{ p.score }} points)
+                        </td>
+                    </tr>
+                {% endfor %}</tbody></table></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

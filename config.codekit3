@@ -1973,6 +1973,34 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/scytale\/static\/instructions\/fleissner.pdf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/scytale\/static\/instructions\/fleissner.pdf",
+		"oF": 0
+		},
+	"\/scytale\/static\/instructions\/myszkowski.pdf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/scytale\/static\/instructions\/myszkowski.pdf",
+		"oF": 0
+		},
+	"\/scytale\/static\/instructions\/playfair.pdf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/scytale\/static\/instructions\/playfair.pdf",
+		"oF": 0
+		},
+	"\/scytale\/static\/instructions\/trifid.pdf": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "\/scytale\/static\/instructions\/trifid.pdf",
+		"oF": 0
+		},
 	"\/scytale\/static\/js\/app\/checkerboard.js": {
 		"ft": 64,
 		"ma": 0,
@@ -2089,16 +2117,6 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "\/scytale\/static\/js\/min\/messages_read.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/scytale\/static\/js\/min\/messages_read.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/scytale\/static\/js\/min\/min\/messages_read.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
