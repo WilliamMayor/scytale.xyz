@@ -18,4 +18,10 @@
     <input type="submit" value="Hack">
 </form>
 {% endif %}
+<h3>Useful Links</h3>
+<ul>
+    <li><a href="{{ url_for('.messages_read', group=message.group.name)}}">All messages encrypted by this group</a></li>
+    <li><a href="{{ url_for('.messages_read', key=message.key_id)}}">All messages encrypted with this key</a></li>
+    <li><a href="{{ url_for('.messages_read', cipher=message.cipher)}}">All messages encrypted with this cipher</a></li>
+</ul>
 {% endblock %}
