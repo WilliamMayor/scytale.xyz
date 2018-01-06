@@ -18,13 +18,9 @@ class Group(UserMixin, db.Model):
         return bcrypt.check_password_hash(bytes.fromhex(self.password), candidate)
 
     def give_point(self, score, reason, max=0):
-        if max > 0:
-            count = len([p for p in self.points if p.reason == reason])
-            if count >= max:
-                return 0
         p = Point()
         p.group = self
         p.score = score
         p.reason = reason
         db.session.add(p)
-        return score
+        return p
