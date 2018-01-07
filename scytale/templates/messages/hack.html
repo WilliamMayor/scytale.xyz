@@ -5,11 +5,15 @@
 {% block content %}
 <h2>Hack Message</h2>
 <p>For easy reading the spaces below have been replaced with underscores.</p>
+
 <p><label>Cipher:</label> {{ message.cipher }}</p>
+
 {% if see_key %}<p><label>Key:</label> <pre>{{ message.key | display }}</pre></p>{% endif %}
+
 <p><label>Ciphertext:</label> <pre>{{ message.ciphertext | display }}</pre></p>
-{% if see_plaintext %}<p><label>Plaintext:</label> <pre>{{ message.plaintext | display }}</pre></p>
-{% elif message.group.name != "Billy" %}<p><a class="button" href="{{ url_for('.messages_plaintext', mid=message.mid) }}">Request Plaintext</a> (-5 points)</p>{% endif %}
+
+{% if see_plaintext %}<p><label>Plaintext:</label> <pre>{{ message.plaintext | display }}</pre></p>{% endif %}
+
 {% if not (see_key and see_plaintext) %}
 <form method="POST">
     {{ form.hidden_tag() }}
@@ -18,6 +22,7 @@
     <input type="submit" value="Hack">
 </form>
 {% endif %}
+
 <h3>Useful Links</h3>
 <ul>
     <li><a href="{{ url_for('.messages_read', group=message.group.name)}}">All messages encrypted by this group</a></li>

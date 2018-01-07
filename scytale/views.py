@@ -121,21 +121,6 @@ def messages_hack(mid):
         see_plaintext=see_plaintext, see_key=see_key)
 
 
-@bp.route("/messages/plaintext/<int:mid>/", methods=["GET", "POST"])
-@login_required
-def messages_plaintext(mid):
-    message = Message.query.get(mid)
-    if message is None:
-        abort(404)
-    if message.group == current_user:
-        abort(403)
-    reason = "Requested plaintext {0}".format(mid)
-    current_user.give_point(-5, reason, message)
-    flash("Requested Plaintext (-5 points)")
-    db.session.commit()
-    return redirect(url_for(".messages_hack", mid=mid))
-
-
 @bp.route("/leaderboard/")
 def leaderboard():
     groups = defaultdict(lambda: {"total": 0, "points": []})

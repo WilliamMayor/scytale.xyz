@@ -2124,16 +2124,6 @@
 		"sC": 1,
 		"tS": 0
 		},
-	"\/scytale\/static\/js\/messages_read.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/scytale\/static\/js\/min\/messages_read.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
 	"\/scytale\/static\/js\/vendor\/jquery-1.11.3.min.js": {
 		"ft": 64,
 		"ma": 0,
@@ -2315,12 +2305,6 @@
 			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/leaderboard.js",
 			"position": 10,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/scytale\/static\/js\/messages_read.js",
-			"position": 11,
 			"type": 1
 			}
 		]
