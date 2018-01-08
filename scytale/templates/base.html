@@ -30,6 +30,7 @@
                     <li>Cryptanalysis</li>
                     <li><ul>
                         <li><a href="{{ url_for('.cryptanalysis_mixed') }}">Mixed Alphabet Toolbox</a></li>
+                        <li><a href="{{ url_for('.cryptanalysis_fleissner') }}">Fleissner Grille Toolbox</a></li>
                         <li><a href="{{ url_for('.cryptanalysis_frequency') }}">Frequency Analysis</a></li>
                     </ul></li>
                     {% if current_user.is_authenticated %}

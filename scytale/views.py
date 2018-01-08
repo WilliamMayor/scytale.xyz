@@ -205,3 +205,18 @@ def cryptanalysis_frequency():
         graphs=graphs,
         digraphs=digraphs,
         ciphertexts=ciphertexts)
+
+
+@bp.route("/cryptanalysis/fleissner/", methods=["GET", "POST"])
+def cryptanalysis_fleissner():
+    ciphertexts = request.form.get('ciphertexts', '').strip().splitlines()
+    plaintexts = request.form.get('plaintexts', '').strip().splitlines()
+    key = request.form.get('key', 'XooXooooooXoXoooXoooXXoXoooooooooXoXoooXooooXoooXoXoooXXoooooooo')
+    if request.method == "POST":
+        cipher = Fleissner(key=key)
+        plaintexts = [cipher.decrypt(c) for c in ciphertexts]
+    return render_template(
+        "cryptanalysis/fleissner.html",
+        ciphertexts=ciphertexts,
+        plaintexts=plaintexts,
+        key=key)

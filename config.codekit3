@@ -1960,6 +1960,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"\/scytale\/static\/css\/pages\/cryptanalysis\/_fleissner.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "\/scytale\/static\/css\/pages\/css\/_fleissner.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"\/scytale\/static\/css\/pages\/cryptanalysis\/_frequency.scss": {
 		"aP": 0,
 		"bl": 0,

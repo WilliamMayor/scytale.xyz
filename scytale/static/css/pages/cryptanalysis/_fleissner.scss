@@ -1,0 +1,23 @@
+.cryptanalysis.fleissner {
+    textarea {
+        overflow: auto;
+    }
+    h3 {
+        font-size: 2em;
+        margin: 0.3 * $base-spacing 0;
+    }
+    table {
+        width: auto;
+        margin: auto;
+        td {
+            width: 2em;
+            height: 2em;
+            padding: 0;
+            border: 1px solid $action-color;
+            cursor: pointer;
+            &.X {
+                background-color: $action-color;
+            }
+        }
+    }
+}

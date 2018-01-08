@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% set page="cryptanalysis fleissner" %}
+{% block title %}{{ super() }} | Cryptanalysis | Fleissner Grille{% endblock %}
+{% block content %}
+<h2>Cryptanalysis - Fleissner Grille Cipher</h2>
+
+<p>The tools on this page should help you break into a ciphertext encrypted using the Fleissner Grille cipher.</p>
+
+<form method="POST">
+
+<h3>Ciphertexts</h3>
+
+<p>In the box below put all of the ciphertexts that you have, one on each line.</p>
+
+<p>Make sure that all of the ciphertexts have been encrypted using the Fleissner Grille cipher.</p>
+
+<p>Make sure that all of ciphertexts have been encrypted using the same key.</p>
+
+<textarea name="ciphertexts" cols="30" rows="10" wrap="off">{% for c in ciphertexts %}{{ c }}
+{% endfor %}</textarea>
+
+<h3>The Key</h3>
+
+<p>Use the grid below to create a key and then click "Decrypt" to use the key on all of the ciphertexts above.</p>
+
+<div class="key grille">
+    <input type="hidden" name="key">
+    <table>
+        <tr>
+            <td data-id="1" class=""></td>
+            <td data-id="2" class=""></td>
+            <td data-id="3" class=""></td>
+            <td data-id="4" class=""></td>
+            <td data-id="13" class=""></td>
+            <td data-id="9" class=""></td>
+            <td data-id="5" class=""></td>
+            <td data-id="1" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="5" class=""></td>
+            <td data-id="6" class=""></td>
+            <td data-id="7" class=""></td>
+            <td data-id="8" class=""></td>
+            <td data-id="14" class=""></td>
+            <td data-id="10" class=""></td>
+            <td data-id="6" class=""></td>
+            <td data-id="2" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="9" class=""></td>
+            <td data-id="10" class=""></td>
+            <td data-id="11" class=""></td>
+            <td data-id="12" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="11" class=""></td>
+            <td data-id="7" class=""></td>
+            <td data-id="3" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="13" class=""></td>
+            <td data-id="14" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="16" class=""></td>
+            <td data-id="16" class=""></td>
+            <td data-id="12" class=""></td>
+            <td data-id="8" class=""></td>
+            <td data-id="4" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="4" class=""></td>
+            <td data-id="8" class=""></td>
+            <td data-id="12" class=""></td>
+            <td data-id="16" class=""></td>
+            <td data-id="16" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="14" class=""></td>
+            <td data-id="13" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="3" class=""></td>
+            <td data-id="7" class=""></td>
+            <td data-id="11" class=""></td>
+            <td data-id="15" class=""></td>
+            <td data-id="12" class=""></td>
+            <td data-id="11" class=""></td>
+            <td data-id="10" class=""></td>
+            <td data-id="9" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="2" class=""></td>
+            <td data-id="6" class=""></td>
+            <td data-id="10" class=""></td>
+            <td data-id="14" class=""></td>
+            <td data-id="8" class=""></td>
+            <td data-id="7" class=""></td>
+            <td data-id="6" class=""></td>
+            <td data-id="5" class=""></td>
+        </tr>
+        <tr>
+            <td data-id="1" class=""></td>
+            <td data-id="5" class=""></td>
+            <td data-id="9" class=""></td>
+            <td data-id="13" class=""></td>
+            <td data-id="4" class=""></td>
+            <td data-id="3" class=""></td>
+            <td data-id="2" class=""></td>
+            <td data-id="1" class=""></td>
+        </tr>
+    </table>
+</div>
+
+<input type="submit" value="Decrypt">
+
+<h3>Plaintexts</h3>
+
+<textarea id="plaintexts" name="plaintexts" cols="30" rows="10" wrap="off">{% for p in plaintexts %}{{ p }}
+{% endfor %}</textarea>
+
+</form>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    new APP.fleissner(".key.grille", "[name=key]", "{{ key }}");
+</script>
+{% endblock %}

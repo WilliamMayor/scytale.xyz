@@ -16,7 +16,7 @@
 
 <p>Make sure that all of ciphertexts have been encrypted using the same key.</p>
 
-<textarea name="ciphertexts" cols="30" rows="10">{% for c in ciphertexts %}{{ c }}
+<textarea name="ciphertexts" cols="30" rows="10" wrap="off">{% for c in ciphertexts %}{{ c }}
 {% endfor %}</textarea>
 
 <label>The Key</label>
@@ -41,7 +41,7 @@
 <label for="use_generated"><input type="checkbox" name="use_generated" id="use_generated" value="t" {% if use_generated %}checked{% endif %}> Use generated key</label>
 <input type="submit" value="Decrypt" name="action" >
 
-<textarea id="plaintexts" name="plaintexts" cols="30" rows="10">{% for p in plaintexts %}{{ p }}
+<textarea id="plaintexts" name="plaintexts" cols="30" rows="10" wrap="off">{% for p in plaintexts %}{{ p }}
 {% endfor %}</textarea>
 
 </form>
