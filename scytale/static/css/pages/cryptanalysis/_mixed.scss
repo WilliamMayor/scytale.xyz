@@ -1,0 +1,15 @@
+.cryptanalysis.mixed {
+    input[type=text] {
+        font-family: monospace;
+        font-size: 16px;
+        letter-spacing: 5px;
+
+        &[name=known_key] {
+            margin-bottom: -1px;
+            margin-top: -13px;
+        }
+    }
+    input[type=submit] {
+        margin-bottom: 20px;
+    }
+}

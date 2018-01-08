@@ -7,6 +7,8 @@
     <a href="http://en.wikipedia.org/wiki/Substitution_cipher#Simple_substitution" target="_blank">Wikipedia</a>
     |
     <a href="{{ url_for('static', filename='worksheets/mixed.pdf') }}" target="_blank">Worksheet</a>
+    |
+    <a href="{{ url_for('bp.cryptanalysis', cipher='mixed') }}">Cryptanalysis</a>
 </p>
 <p>The Mixed Alphabet Cipher is a substitution cipher that replaces letters in the plain text with letters from the secret key.</p>
 
@@ -34,7 +36,7 @@
 
 <div class="key">
     <label>Key:</label>
-    <input type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ " disabled>
+    <input type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ_" disabled>
     <input type="text" value="{{ cipher.key }}" class="key" />
 </div>
 

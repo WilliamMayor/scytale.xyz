@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% set page="cryptanalysis mixed" %}
+{% block title %}{{ super() }} | Cryptanalysis | Mixed Alphabet{% endblock %}
+{% block content %}
+<h2>Cryptanalysis - Mixed Alphabet Cipher</h2>
+
+<p>The tools on this page should help you break into a ciphertext encrypted using the Mixed Alphabet cipher.</p>
+
+<form method="POST">
+
+<label>Ciphertexts</label>
+
+<p>In the box below put all of the ciphertexts that you have, one on each line.</p>
+
+<p>Make sure that all of the ciphertexts have been encrypted using the Mixed Alphabet cipher.</p>
+
+<p>Make sure that all of ciphertexts have been encrypted using the same key.</p>
+
+<textarea name="ciphertexts" cols="30" rows="10">{% for c in ciphertexts %}{{ c }}
+{% endfor %}</textarea>
+
+<label>The Key</label>
+
+<p>Here you can add the key to be used to decrypt the above ciphertexts. For parts of the key that you don't know yet, type a question mark (?).</p>
+
+<p>The third line contains a randomly generated key that you can use to fill in the blanks. Use the "Generate Key" button to try a new random key.</p>
+
+<input type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ_" disabled>
+<input type="text" value="{{ known_key }}" name="known_key">
+<input type="hidden" value="{{ generated_key }}" name="generated_key">
+<input type="text" value="{{ generated_key }}" disabled>
+
+<input type="submit" value="Generate Key" name="action" >
+
+<label>Plaintexts</label>
+
+<p>Press this button to have the ciphertexts decrypted using one of the keys above.</p>
+
+<p>Where a part of the key is unknown a question mark will be shown.</p>
+
+<label for="use_generated"><input type="checkbox" name="use_generated" id="use_generated" value="t" {% if use_generated %}checked{% endif %}> Use generated key</label>
+<input type="submit" value="Decrypt" name="action" >
+
+<textarea id="plaintexts" name="plaintexts" cols="30" rows="10">{% for p in plaintexts %}{{ p }}
+{% endfor %}</textarea>
+
+</form>
+
+{% endblock %}

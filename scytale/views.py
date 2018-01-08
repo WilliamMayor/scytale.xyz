@@ -1,3 +1,4 @@
+import random
 from collections import defaultdict
 
 from flask import Blueprint, render_template, redirect, url_for, flash, abort, request
@@ -145,3 +146,42 @@ def ciphers(cipher):
             return "Something went wrong!", 400
     c = CIPHERS[cipher]()
     return render_template("ciphers/{}.html".format(cipher), cipher=c)
+
+
+def generate_key(alphabet, known_key):
+    randomised = list(set(alphabet) - set(known_key))
+    random.shuffle(randomised)
+    for k in known_key:
+        if k == '?':
+            yield randomised.pop()
+        else:
+            yield k
+
+
+@bp.route("/cryptanalysis/mixed/", methods=["GET", "POST"])
+def cryptanalysis_mixed():
+    if request.method == "POST":
+        known_key = request.form.get('known_key')
+        generated_key = request.form.get('generated_key')
+        use_generated = bool(request.form.get('use_generated'))
+        ciphertexts = request.form.get('ciphertexts', '').strip().splitlines()
+        plaintexts = request.form.get('plaintexts', '').strip().splitlines()
+        cipher = MixedAlphabet(known_key, wildcard='?')
+        if request.form.get('action') == 'Generate Key':
+            use_generated = True
+            generated_key = "".join(generate_key(cipher.alphabet, known_key))
+        if use_generated:
+            cipher = MixedAlphabet(generated_key, wildcard='?')
+        plaintexts = [cipher.decrypt(c) for c in ciphertexts]
+    else:
+        known_key = generated_key = '?' * 27
+        use_generated = False
+        plaintexts = []
+        ciphertexts = []
+    return render_template(
+        "cryptanalysis/mixed.html",
+        known_key=known_key,
+        generated_key=generated_key,
+        use_generated=use_generated,
+        plaintexts=plaintexts,
+        ciphertexts=ciphertexts)
