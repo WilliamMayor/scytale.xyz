@@ -185,3 +185,23 @@ def cryptanalysis_mixed():
         use_generated=use_generated,
         plaintexts=plaintexts,
         ciphertexts=ciphertexts)
+
+
+@bp.route("/cryptanalysis/frequency/", methods=["GET", "POST"])
+def cryptanalysis_frequency():
+    graphs = defaultdict(int)
+    digraphs = defaultdict(int)
+    ciphertexts = request.form.get('ciphertexts', '').strip().splitlines()
+    if request.method == "POST":
+        for ciphertext in ciphertexts:
+            for i, c in enumerate(ciphertext):
+                graphs[c] += 1
+                if i + 1 < len(ciphertext):
+                    digraph = f'{c}{ciphertext[i + 1]}'
+                    digraphs[digraph] += 1
+        digraphs = {l: c for l, c in digraphs.items() if c > 3}
+    return render_template(
+        "cryptanalysis/frequency.html",
+        graphs=graphs,
+        digraphs=digraphs,
+        ciphertexts=ciphertexts)

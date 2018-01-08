@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% set page="cryptanalysis frequency" %}
+{% block title %}{{ super() }} | Cryptanalysis | Frequency{% endblock %}
+{% block content %}
+<h2>Cryptanalysis - Frequency Analysis</h2>
+
+<p>The tools on this page can tell you how often letters and pairs of letter appear in ciphertext.</p>
+
+<h3>Ciphertexts</h3>
+
+<p>In the box below put all of the ciphertexts that you have, one on each line.</p>
+
+<p>Make sure that all of the ciphertexts have been encrypted using the same cipher.</p>
+
+<p>Make sure that all of ciphertexts have been encrypted using the same key.</p>
+
+<form method="POST">
+
+<textarea name="ciphertexts" cols="30" rows="10">{% for c in ciphertexts %}{{ c }}
+{% endfor %}</textarea>
+
+<input type="submit" value="Analyse">
+
+</form>
+
+{% if graphs %}
+
+<h3>Single Letters</h3>
+
+<p>Below is a table of the frequency in which letters appear in your ciphertexts.</p>
+
+<p>Wikipedia has a great page on the <a href="https://en.wikipedia.org/wiki/Letter_frequency" target="_blank">frequency of letters in plaintext</a>.</p>
+
+<table>
+    <thead>
+        <tr><th>Letter</th><th>Count</th></tr>
+    </thead>
+    <tbody>{% for letter, count in graphs | dictsort(by='value', reverse=True) %}
+        <tr><td>{{ letter }}</td><td>{{ count }}</td></tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+{% if graphs %}
+
+<h3>Pairs of Letters</h3>
+
+<p>Below is a table of the frequency in which pairs of letters appear in your ciphertexts. Only pairs that appear more than 3 times are shown.</p>
+
+<p>Cornell University have a great page on the <a href="https://www.math.cornell.edu/~mec/2003-2004/cryptography/subs/digraphs.html" target="_blank">frequency of pairs of letters in plaintext</a>.</p>
+
+<table>
+    <thead>
+        <tr><th>Pair</th><th>Count</th></tr>
+    </thead>
+    <tbody>{% for pair, count in digraphs | dictsort(by='value', reverse=True) %}
+        <tr><td>{{ pair }}</td><td>{{ count }}</td></tr>
+    {% endfor %}
+</table>
+
+{% endif %}
+
+{% endblock %}
