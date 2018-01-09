@@ -37,3 +37,7 @@ class MixedAlphabet(Cipher):
     def decrypt(self, ciphertext):
         key = {v: k for k, v in self.key.items()}
         return "".join(key.get(c, self.wildcard) for c in ciphertext)
+
+    @property
+    def key_string(self):
+        return "".join(self.key.get(c, '') for c in self.alphabet)
