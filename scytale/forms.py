@@ -1,6 +1,7 @@
 from flask_wtf import Form
 from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
+from flask_login import current_user
 
 from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Permutation, OneTimePad, Playfair, RailFence, Trifid
 from scytale.exceptions import ScytaleError
@@ -58,7 +59,17 @@ class MessageForm(Form):
         if not Form.validate(self):
             return False
         try:
-            cipher = {
+            cipher = self.validate_cipher_and_key()
+            self.validate_not_multiple_keys()
+            self.validate_not_duplicate_message()
+            self.validate_correctness(cipher)
+        except ScytaleError as se:
+            return False
+        return True
+
+    def validate_cipher_and_key(self):
+        try:
+            return {
                 "Checkerboard": Checkerboard,
                 "Fleissner": Fleissner,
                 "Mixed Alphabet": MixedAlphabet,
@@ -70,16 +81,36 @@ class MessageForm(Form):
                 "Trifid": Trifid
             }[self.cipher.data](key=self.key.data)
         except ScytaleError as se:
-            self.key.errors.append("Invalid Key: {0}".format(se.args[0]))
-            return False
+            self.key.errors.append("Invalid Key: {0}".format(se.message))
+            raise se
+
+    def validate_not_multiple_keys(self):
+        for p in current_user.points:
+            multiple_keys = all([
+                p.reason == 'Sent Message',
+                p.message.cipher == self.cipher.data,
+                p.message.key != self.key.data])
+            if multiple_keys:
+                self.key.errors.append('You can only use one key per cipher')
+                raise ScytaleError('You can only use one key per cipher')
+
+    def validate_not_duplicate_message(self):
+        for p in current_user.points:
+            multiple_keys = all([
+                p.reason == 'Sent Message',
+                p.message.cipher == self.cipher.data,
+                p.message.plaintext == self.plaintext.data])
+            if multiple_keys:
+                self.plaintext.errors.append("You can't send the same message twice")
+                raise ScytaleError("You can't send the same message twice")
+
+    def validate_correctness(self, cipher):
         try:
             ciphertext = cipher.encrypt(self.plaintext.data)
             assert cipher.compare_ciphertext(ciphertext, self.ciphertext.data)
         except Exception:
-            print("{} not equal to {}".format(ciphertext, self.ciphertext.data))
             self.ciphertext.errors.append("Incorrect ciphertext")
-            return False
-        return True
+            raise ScytaleError('Incorrect ciphertext')
 
 
 class HackForm(Form):
