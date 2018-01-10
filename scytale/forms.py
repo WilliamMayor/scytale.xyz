@@ -85,7 +85,7 @@ class MessageForm(Form):
             raise se
 
     def validate_not_multiple_keys(self):
-        for p in current_user.points:
+        for p in getattr(current_user, 'points', []):
             multiple_keys = all([
                 p.reason == 'Sent Message',
                 p.message.cipher == self.cipher.data,
@@ -95,7 +95,7 @@ class MessageForm(Form):
                 raise ScytaleError('You can only use one key per cipher')
 
     def validate_not_duplicate_message(self):
-        for p in current_user.points:
+        for p in getattr(current_user, 'points', []):
             multiple_keys = all([
                 p.reason == 'Sent Message',
                 p.message.cipher == self.cipher.data,

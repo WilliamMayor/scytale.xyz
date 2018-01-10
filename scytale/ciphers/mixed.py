@@ -23,8 +23,6 @@ class MixedAlphabet(Cipher):
             if len(set(key)) != 27:
                 raise ScytaleError("The Mixed Alphabet key must have 27 unique letters in it; A-Z plus a space")
 
-        key = {self.alphabet[i]: k for i, k in enumerate(key)}
-
         return key, wildcard
 
     def substitute(self, char, key, wildcard=None):
@@ -32,12 +30,17 @@ class MixedAlphabet(Cipher):
 
     def encrypt(self, plaintext):
         plaintext = self.clean(plaintext.upper())
-        return "".join(self.key.get(c, self.wildcard) for c in plaintext)
+        key = self.key_dict
+        return "".join(key.get(c, self.wildcard) for c in plaintext)
 
     def decrypt(self, ciphertext):
-        key = {v: k for k, v in self.key.items()}
+        key = {v: k for k, v in self.key_dict.items()}
         return "".join(key.get(c, self.wildcard) for c in ciphertext)
 
     @property
+    def key_dict(self):
+        return {self.alphabet[i]: k for i, k in enumerate(self.key)}
+
+    @property
     def key_string(self):
-        return "".join(self.key.get(c, '') for c in self.alphabet)
+        return self.key
