@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_sslify import SSLify
 
 from scytale.views import bp
 from scytale import jinja, login, models
@@ -25,6 +26,7 @@ def auto_convert(s):
 
 def create_app():
     app = Flask(__name__)
+    SSLify(app)
 
     app.config.from_object('scytale.config')
     app.config.update({
