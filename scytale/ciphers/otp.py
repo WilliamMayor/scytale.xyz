@@ -24,13 +24,13 @@ class OneTimePad(Cipher):
         plaintext = self.clean(plaintext.upper())
         pad = self.generate_pad(len(plaintext))
         a = self.alphabet
-        return ''.join([
-            a[(a.index(d) + a.index(p)) % len(a)]
-            for d, p in zip(plaintext, pad)])
+        return "".join(
+            [a[(a.index(d) + a.index(p)) % len(a)] for d, p in zip(plaintext, pad)]
+        )
 
     def decrypt(self, ciphertext):
         pad = self.generate_pad(len(ciphertext))
         a = self.alphabet
-        return ''.join([
-            a[(a.index(d) - a.index(p)) % len(a)]
-            for d, p in zip(ciphertext, pad)])
+        return "".join(
+            [a[(a.index(d) - a.index(p)) % len(a)] for d, p in zip(ciphertext, pad)]
+        )

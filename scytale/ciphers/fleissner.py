@@ -17,7 +17,9 @@ class Fleissner(Cipher):
         all_a = self.encrypt("A" * self.key_size)
         all_a = all_a.replace("X", "")
         if len(all_a) != self.key_size:
-            raise ScytaleError("Either a space in the grille overlaps another, or your gaps do not cover the grid.")
+            raise ScytaleError(
+                "Either a space in the grille overlaps another, or your gaps do not cover the grid."
+            )
 
     def compare_ciphertext(self, a, b):
         """Returns true if the two ciphertexts are equivalent in this cipher"""
@@ -27,14 +29,18 @@ class Fleissner(Cipher):
         """Returns true if the two ciphertexts are equivalent in this cipher"""
         a = self.make_comparable(a)
         b = self.make_comparable(b)
-        return b.startswith(a) or a.startswith(b)  # i.e. ignore any final random letters
+        return b.startswith(a) or a.startswith(
+            b
+        )  # i.e. ignore any final random letters
 
     def validate(self, key):
         if key is None:
             key = self.default
         xo = set(list(key))
         if xo != set(["X", "o"]):
-            raise ScytaleError("The Fleissner Grille key must be a string of X (cut) and o (don't cut) letters only")
+            raise ScytaleError(
+                "The Fleissner Grille key must be a string of X (cut) and o (don't cut) letters only"
+            )
         length = len(key)
         sqrt = int(math.sqrt(length))
         if math.pow(sqrt, 2) != length:
@@ -93,13 +99,15 @@ class Fleissner(Cipher):
         plaintext = self.clean(plaintext.upper())
         texts = [
             list(plaintext[i:i + self.key_size])
-            for i in range(0, len(plaintext), self.key_size)]
+            for i in range(0, len(plaintext), self.key_size)
+        ]
         return "".join([self.write(t) for t in texts])
 
     def decrypt(self, ciphertext):
         texts = [
             list(ciphertext[i:i + self.key_size])
-            for i in range(0, len(ciphertext), self.key_size)]
+            for i in range(0, len(ciphertext), self.key_size)
+        ]
         plaintext = "".join([self.read(t) for t in texts])
         return plaintext.rstrip("X")
 
@@ -113,8 +121,8 @@ class Fleissner(Cipher):
         done = False
         while not done:
             try:
-                Fleissner(key=''.join(key))
+                Fleissner(key="".join(key))
                 done = True
             except:
                 random.shuffle(key)
-        return ''.join(key)
+        return "".join(key)

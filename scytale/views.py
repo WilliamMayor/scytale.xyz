@@ -4,7 +4,17 @@ from collections import defaultdict
 from flask import Blueprint, render_template, redirect, url_for, flash, abort, request
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Permutation, OneTimePad, Playfair, RailFence, Trifid
+from scytale.ciphers import (
+    Checkerboard,
+    Fleissner,
+    MixedAlphabet,
+    Myszkowski,
+    Permutation,
+    OneTimePad,
+    Playfair,
+    RailFence,
+    Trifid,
+)
 from scytale.exceptions import ScytaleError
 from scytale.forms import SignUpForm, SignInForm, MessageForm, HackForm
 from scytale.models import db, Group, Message, Point
@@ -118,8 +128,11 @@ def messages_hack(mid):
         return redirect(url_for(".messages_hack", mid=mid))
     return render_template(
         "messages/hack.html",
-        message=message, form=form,
-        see_plaintext=see_plaintext, see_key=see_key)
+        message=message,
+        form=form,
+        see_plaintext=see_plaintext,
+        see_key=see_key,
+    )
 
 
 @bp.route("/leaderboard/")
@@ -152,7 +165,7 @@ def generate_key(alphabet, known_key):
     randomised = list(set(alphabet) - set(known_key))
     random.shuffle(randomised)
     for k in known_key:
-        if k == '?':
+        if k == "?":
             yield randomised.pop()
         else:
             yield k
@@ -161,20 +174,20 @@ def generate_key(alphabet, known_key):
 @bp.route("/cryptanalysis/mixed/", methods=["GET", "POST"])
 def cryptanalysis_mixed():
     if request.method == "POST":
-        known_key = request.form.get('known_key')
-        generated_key = request.form.get('generated_key')
-        use_generated = bool(request.form.get('use_generated'))
-        ciphertexts = request.form.get('ciphertexts', '').strip().splitlines()
-        plaintexts = request.form.get('plaintexts', '').strip().splitlines()
-        cipher = MixedAlphabet(known_key, wildcard='?')
-        if request.form.get('action') == 'Generate Key':
+        known_key = request.form.get("known_key")
+        generated_key = request.form.get("generated_key")
+        use_generated = bool(request.form.get("use_generated"))
+        ciphertexts = request.form.get("ciphertexts", "").strip().splitlines()
+        plaintexts = request.form.get("plaintexts", "").strip().splitlines()
+        cipher = MixedAlphabet(known_key, wildcard="?")
+        if request.form.get("action") == "Generate Key":
             use_generated = True
             generated_key = "".join(generate_key(cipher.alphabet, known_key))
         if use_generated:
-            cipher = MixedAlphabet(generated_key, wildcard='?')
+            cipher = MixedAlphabet(generated_key, wildcard="?")
         plaintexts = [cipher.decrypt(c) for c in ciphertexts]
     else:
-        known_key = generated_key = '?' * 27
+        known_key = generated_key = "?" * 27
         use_generated = False
         plaintexts = []
         ciphertexts = []
@@ -184,34 +197,38 @@ def cryptanalysis_mixed():
         generated_key=generated_key,
         use_generated=use_generated,
         plaintexts=plaintexts,
-        ciphertexts=ciphertexts)
+        ciphertexts=ciphertexts,
+    )
 
 
 @bp.route("/cryptanalysis/frequency/", methods=["GET", "POST"])
 def cryptanalysis_frequency():
     graphs = defaultdict(int)
     digraphs = defaultdict(int)
-    ciphertexts = request.form.get('ciphertexts', '').strip().splitlines()
+    ciphertexts = request.form.get("ciphertexts", "").strip().splitlines()
     if request.method == "POST":
         for ciphertext in ciphertexts:
             for i, c in enumerate(ciphertext):
                 graphs[c] += 1
                 if i + 1 < len(ciphertext):
-                    digraph = f'{c}{ciphertext[i + 1]}'
+                    digraph = f"{c}{ciphertext[i + 1]}"
                     digraphs[digraph] += 1
         digraphs = {l: c for l, c in digraphs.items() if c > 3}
     return render_template(
         "cryptanalysis/frequency.html",
         graphs=graphs,
         digraphs=digraphs,
-        ciphertexts=ciphertexts)
+        ciphertexts=ciphertexts,
+    )
 
 
 @bp.route("/cryptanalysis/fleissner/", methods=["GET", "POST"])
 def cryptanalysis_fleissner():
-    ciphertexts = request.form.get('ciphertexts', '').strip().splitlines()
-    plaintexts = request.form.get('plaintexts', '').strip().splitlines()
-    key = request.form.get('key', 'XooXooooooXoXoooXoooXXoXoooooooooXoXoooXooooXoooXoXoooXXoooooooo')
+    ciphertexts = request.form.get("ciphertexts", "").strip().splitlines()
+    plaintexts = request.form.get("plaintexts", "").strip().splitlines()
+    key = request.form.get(
+        "key", "XooXooooooXoXoooXoooXXoXoooooooooXoXoooXooooXoooXoXoooXXoooooooo"
+    )
     if request.method == "POST":
         cipher = Fleissner(key=key)
         plaintexts = [cipher.decrypt(c) for c in ciphertexts]
@@ -219,4 +236,5 @@ def cryptanalysis_fleissner():
         "cryptanalysis/fleissner.html",
         ciphertexts=ciphertexts,
         plaintexts=plaintexts,
-        key=key)
+        key=key,
+    )

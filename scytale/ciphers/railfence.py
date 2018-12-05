@@ -26,9 +26,9 @@ class RailFence(Cipher):
 
     def encrypt(self, plaintext):
         plaintext = self.clean(plaintext.upper())
-        return ''.join(self.fence(plaintext))
+        return "".join(self.fence(plaintext))
 
     def decrypt(self, ciphertext):
         rng = range(len(ciphertext))
         pos = self.fence(rng)
-        return ''.join(ciphertext[pos.index(n)] for n in rng)
+        return "".join(ciphertext[pos.index(n)] for n in rng)

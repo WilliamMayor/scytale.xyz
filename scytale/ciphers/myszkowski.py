@@ -49,7 +49,9 @@ class Myszkowski(Cipher):
         for i, c in enumerate(sorted(set(self.key))):
             indexes = self.indexes[c]
             col_count = len(indexes)
-            text, ciphertext = ciphertext[:depth * col_count], ciphertext[depth * col_count:]
+            text, ciphertext = ciphertext[:depth * col_count], ciphertext[
+                depth * col_count:
+            ]
             for j, k in enumerate(indexes):
                 columns[k] = text[j::col_count]
         plaintext = []

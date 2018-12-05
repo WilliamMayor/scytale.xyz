@@ -37,23 +37,22 @@ class Permutation(Cipher):
     def encrypt(self, plaintext):
         plaintext = self.clean(plaintext.upper())
         plaintext = self.pad(plaintext)
-        columns = [
-            (k, plaintext[i::len(self.key)])
-            for i, k in enumerate(self.key)]
+        columns = [(k, plaintext[i::len(self.key)]) for i, k in enumerate(self.key)]
         columns = sorted(columns, key=lambda c: c[0])
         columns = [c[1] for c in columns]
         return "".join("".join(r) for r in zip(*columns))
 
     def decrypt(self, ciphertext):
         columns = [
-            (k, ciphertext[i::len(self.key)])
-            for i, k in enumerate(sorted(self.key))]
+            (k, ciphertext[i::len(self.key)]) for i, k in enumerate(sorted(self.key))
+        ]
         key = list(self.key)
 
         def key_func(col):
             i = key.index(col[0])
             key[i] = None
             return i
+
         columns = sorted(columns, key=key_func)
         columns = [c[1] for c in columns]
         return "".join("".join(r) for r in zip(*columns))

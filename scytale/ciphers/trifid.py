@@ -54,4 +54,4 @@ class Trifid(Cipher):
     def generate_key():
         a = list(Trifid.alphabet)
         random.shuffle(a)
-        return ''.join(a)
+        return "".join(a)

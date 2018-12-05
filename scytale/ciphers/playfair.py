@@ -43,10 +43,7 @@ class Playfair(Cipher):
             two_row = (two_row + direction) % 5
         else:
             one_column, two_column = two_column, one_column
-        return [
-            self.key[one_row * 5 + one_column],
-            self.key[two_row * 5 + two_column]
-        ]
+        return [self.key[one_row * 5 + one_column], self.key[two_row * 5 + two_column]]
 
     def next_two(self, remaining):
         one = remaining.pop(0)
@@ -76,4 +73,11 @@ class Playfair(Cipher):
     def generate_key():
         a = list(Playfair.alphabet)
         random.shuffle(a)
-        return ''.join(a)
+        return "".join(a)
+
+
+if __name__ == "__main__":
+    cipher = Playfair("")
+    for c in []:
+        p = cipher.decrypt(c)
+        print(f"{c} = {p}")

@@ -20,9 +20,13 @@ class Checkerboard(Cipher):
             raise ScytaleError("Checkerboard table needs to be 30 characters long")
         rows = [table[0:10], table[10:20], table[20:30]]
         if list(rows[0]).count(" ") != 2:
-            raise ScytaleError("The first row in the Checkerboard table must have 2 spaces")
+            raise ScytaleError(
+                "The first row in the Checkerboard table must have 2 spaces"
+            )
         if len(set(table)) != 29:  # Extra one for gaps in top row
-            raise ScytaleError("The Checkerboard table must have 28 unique letters in it")
+            raise ScytaleError(
+                "The Checkerboard table must have 28 unique letters in it"
+            )
         return rows
 
     def find_blanks(self, table):
@@ -36,7 +40,7 @@ class Checkerboard(Cipher):
         self.char_to_numbers = {}
         for i, c in enumerate(self.table[0]):
             if c != " ":
-                self.char_to_numbers[c] = (i, )
+                self.char_to_numbers[c] = (i,)
         for i, c in enumerate(self.table[1]):
             self.char_to_numbers[c] = (self.blanks[0], i)
         for i, c in enumerate(self.table[2]):
@@ -56,11 +60,9 @@ class Checkerboard(Cipher):
 
     def encrypt(self, plaintext):
         plaintext = self.clean(plaintext.upper())
-        return "".join([
-            str(number)
-            for c in plaintext
-            for number in self.char_to_numbers[c]
-        ])
+        return "".join(
+            [str(number) for c in plaintext for number in self.char_to_numbers[c]]
+        )
 
     def decrypt(self, ciphertext):
         plaintext = []

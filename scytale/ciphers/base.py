@@ -8,7 +8,7 @@ class Cipher:
 
     def clean(self, text):
         text = text.replace(" ", "_")
-        return ''.join(filter(lambda c: c in self.alphabet, text))
+        return "".join(filter(lambda c: c in self.alphabet, text))
 
     def make_comparable(self, text):
         return text.upper().replace(" ", "_")

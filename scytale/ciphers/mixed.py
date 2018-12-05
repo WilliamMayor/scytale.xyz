@@ -12,16 +12,22 @@ class MixedAlphabet(Cipher):
         if key is None:
             key = "QWERTYUIOPASDFG_HJKLZXCVBNM"
         if len(key) != 27:
-            raise ScytaleError("The Mixed Alphabet key must be 27 letters long; A-Z plus a space")
+            raise ScytaleError(
+                "The Mixed Alphabet key must be 27 letters long; A-Z plus a space"
+            )
         key = key.upper()
 
         if wildcard is not None:
             if len(wildcard) != 1:
-                raise ScytaleError("The Mixed Alphabet wildcard must be a single character")
+                raise ScytaleError(
+                    "The Mixed Alphabet wildcard must be a single character"
+                )
             wildcard = wildcard.upper()
         else:
             if len(set(key)) != 27:
-                raise ScytaleError("The Mixed Alphabet key must have 27 unique letters in it; A-Z plus a space")
+                raise ScytaleError(
+                    "The Mixed Alphabet key must have 27 unique letters in it; A-Z plus a space"
+                )
 
         return key, wildcard
 

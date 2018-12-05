@@ -3,7 +3,17 @@ from wtforms import StringField, PasswordField, SelectField, TextAreaField
 from wtforms.validators import DataRequired
 from flask_login import current_user
 
-from scytale.ciphers import Checkerboard, Fleissner, MixedAlphabet, Myszkowski, Permutation, OneTimePad, Playfair, RailFence, Trifid
+from scytale.ciphers import (
+    Checkerboard,
+    Fleissner,
+    MixedAlphabet,
+    Myszkowski,
+    Permutation,
+    OneTimePad,
+    Playfair,
+    RailFence,
+    Trifid,
+)
 from scytale.exceptions import ScytaleError
 from scytale.models import Group
 
@@ -40,17 +50,20 @@ class SignUpForm(Form):
 
 
 class MessageForm(Form):
-    cipher = SelectField("Cipher", choices=[
-        ("Checkerboard", "Checkerboard"),
-        ("Fleissner", "Fleissner"),
-        ("Mixed Alphabet", "Mixed Alphabet"),
-        ("Myszkowski", "Myszkowski"),
-        ("Permutation", "Permutation"),
-        ("One Time Pad", "One Time Pad"),
-        ("Playfair", "Playfair"),
-        ("Rail Fence", "Rail Fence"),
-        ("Trifid", "Trifid")
-    ])
+    cipher = SelectField(
+        "Cipher",
+        choices=[
+            ("Checkerboard", "Checkerboard"),
+            ("Fleissner", "Fleissner"),
+            ("Mixed Alphabet", "Mixed Alphabet"),
+            ("Myszkowski", "Myszkowski"),
+            ("Permutation", "Permutation"),
+            ("One Time Pad", "One Time Pad"),
+            ("Playfair", "Playfair"),
+            ("Rail Fence", "Rail Fence"),
+            ("Trifid", "Trifid"),
+        ],
+    )
     key = StringField("Key", validators=[DataRequired()])
     plaintext = TextAreaField("Plain Text", validators=[DataRequired()])
     ciphertext = TextAreaField("Cipher Text", validators=[DataRequired()])
@@ -78,28 +91,38 @@ class MessageForm(Form):
                 "One Time Pad": OneTimePad,
                 "Playfair": Playfair,
                 "Rail Fence": RailFence,
-                "Trifid": Trifid
-            }[self.cipher.data](key=self.key.data)
+                "Trifid": Trifid,
+            }[
+                self.cipher.data
+            ](
+                key=self.key.data
+            )
         except ScytaleError as se:
             self.key.errors.append("Invalid Key: {0}".format(se.message))
             raise se
 
     def validate_not_multiple_keys(self):
-        for p in getattr(current_user, 'points', []):
-            multiple_keys = all([
-                p.reason == 'Sent Message',
-                p.message.cipher == self.cipher.data,
-                p.message.key != self.key.data])
+        for p in getattr(current_user, "points", []):
+            multiple_keys = all(
+                [
+                    p.reason == "Sent Message",
+                    p.message.cipher == self.cipher.data,
+                    p.message.key != self.key.data,
+                ]
+            )
             if multiple_keys:
-                self.key.errors.append('You can only use one key per cipher')
-                raise ScytaleError('You can only use one key per cipher')
+                self.key.errors.append("You can only use one key per cipher")
+                raise ScytaleError("You can only use one key per cipher")
 
     def validate_not_duplicate_message(self):
-        for p in getattr(current_user, 'points', []):
-            multiple_keys = all([
-                p.reason == 'Sent Message',
-                p.message.cipher == self.cipher.data,
-                p.message.plaintext == self.plaintext.data])
+        for p in getattr(current_user, "points", []):
+            multiple_keys = all(
+                [
+                    p.reason == "Sent Message",
+                    p.message.cipher == self.cipher.data,
+                    p.message.plaintext == self.plaintext.data,
+                ]
+            )
             if multiple_keys:
                 self.plaintext.errors.append("You can't send the same message twice")
                 raise ScytaleError("You can't send the same message twice")
@@ -110,7 +133,7 @@ class MessageForm(Form):
             assert cipher.compare_ciphertext(ciphertext, self.ciphertext.data)
         except Exception:
             self.ciphertext.errors.append("Incorrect ciphertext")
-            raise ScytaleError('Incorrect ciphertext')
+            raise ScytaleError("Incorrect ciphertext")
 
 
 class HackForm(Form):
@@ -138,12 +161,22 @@ class HackForm(Form):
                 "One Time Pad": OneTimePad,
                 "Playfair": Playfair,
                 "Rail Fence": RailFence,
-                "Trifid": Trifid
-            }[self.message.cipher](key=self.message.key)
+                "Trifid": Trifid,
+            }[
+                self.message.cipher
+            ](
+                key=self.message.key
+            )
             try:
-                assert cipher.compare_plaintext(self.plaintext.data, self.message.plaintext)
+                assert cipher.compare_plaintext(
+                    self.plaintext.data, self.message.plaintext
+                )
             except Exception:
-                print("{} not equal to {}".format(self.plaintext.data, self.message.plaintext))
+                print(
+                    "{} not equal to {}".format(
+                        self.plaintext.data, self.message.plaintext
+                    )
+                )
                 self.plaintext.errors.append("Incorrect plain text")
                 result = False
         return result

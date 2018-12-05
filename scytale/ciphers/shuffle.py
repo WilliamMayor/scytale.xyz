@@ -16,7 +16,9 @@ class Shuffle(Cipher):
             indexes = list(range(0, 14))
             random.shuffle(indexes)
         if len(set(indexes)) != len(indexes):
-            raise ScytaleError("The shuffle cipher must not have repeating numbers in its key")
+            raise ScytaleError(
+                "The shuffle cipher must not have repeating numbers in its key"
+            )
         return indexes
 
     def pad(self, text):
@@ -36,6 +38,7 @@ class Shuffle(Cipher):
 
     def decrypt(self, ciphertext):
         return "".join(
-            ciphertext[c]
-            for c, p in sorted(enumerate(self.key), key=lambda k: k[1])
-        ).rstrip("_")
+            ciphertext[c] for c, p in sorted(enumerate(self.key), key=lambda k: k[1])
+        ).rstrip(
+            "_"
+        )
